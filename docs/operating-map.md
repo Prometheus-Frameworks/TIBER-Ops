@@ -11,7 +11,8 @@ UI, or source data. It coordinates the repos that do.
 ### 1. Product lane
 
 - **Scope:** Management, Observatory, roster surfaces.
-- **Current anchor:** TIBER-Fantasy #264.
+- **Anchor:** TIBER-Fantasy #264 — **completed and closed** (PR A–D:
+  #269 / #270 / #271 / #278).
 
 ### 2. Doctrine / governance lane
 
@@ -23,10 +24,14 @@ UI, or source data. It coordinates the repos that do.
 
 - **Scope:** FLF paper, orchestration paper, Reality Stack writeups.
 
-### 4. ML / modeling lane
+### 4. ML / modeling lane — **active**
 
 - **Scope:** PPM, point projection / scenario / outlook work.
-- **Current anchor:** PPM issue #49 and TIBER-Fantasy #265.
+- **Active anchor:** Point-prediction-model #60 — first successful PPM
+  model-run operator evaluation.
+- **Indexed anchors:** PPM issue #49 and TIBER-Fantasy #265.
+- **First step:** audit/spec for 2024 full-league Teamstate artifacts and PPM
+  consumption boundaries — see [`lane-index.md`](lane-index.md).
 
 ### 5. Parked / incubation lane
 
