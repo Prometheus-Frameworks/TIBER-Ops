@@ -17,8 +17,9 @@
 - **Lane note:** per [`docs/operating-map.md`](../operating-map.md), the currently active
   implementation lane is ML/modeling (Point-prediction-model #60). This document is **audit /
   spec** work — it produces findings and a plan, it does not implement — and does not itself
-  activate a new implementation lane. Promoting Phase 2 (below) to active implementation status
-  is a separate weekly-board decision, not a consequence of merging this document.
+  activate a new implementation lane. Promoting Phase 2 (contract design, §12) or Phase 3
+  (implementation, §12) to the active lane is a separate weekly-board decision, not a consequence
+  of merging this document. Phase 2 itself contains no publication code — see §13.
 
 ---
 
@@ -70,8 +71,8 @@ Current machine-readable service state:
 
 This is the correct current posture: the service is publicly reachable, but no football artifact
 has been authorized for publication. Nothing in this document changes that state. It stays this
-way until a report contract, its validator, and an explicit publication decision all exist (Phase
-2+, §12).
+way until a report contract (Phase 2), its validator implementation (Phase 3), and an explicit
+publication authorization all exist (§12).
 
 ---
 
@@ -106,28 +107,50 @@ never sufficient for that artifact to become public.
 ## 3. Publication eligibility matrix
 
 For every provenance/lifecycle state below: whether publication is forbidden, allowed only with
-warnings, requires full-league coverage, requires a source cutoff, requires source artifact
+warnings, what coverage is required, requires a source cutoff, requires source artifact
 IDs/hashes, requires methodology documentation, requires human approval, allows search indexing,
 and how the service fails closed when a requirement is not met.
 
-| State | Publication | Full-league coverage required | Source cutoff required | Source artifact IDs/hashes required | Methodology doc required | Human approval required | Search indexing allowed | Fail-closed behavior |
+**Coverage is scope-relative, not universally full-league.** A governed public report may
+legitimately declare a narrower scope than "all 32 NFL teams" — one team, one player, one position
+population, one game, or any other bounded population. The invariant is **complete coverage of the
+report's declared scope**, not full-league coverage as a blanket requirement. Every report must
+carry:
+
+- `declared_scope` / `expected_entities` — what population the report claims to cover, stated
+  explicitly (e.g. "all 32 NFL teams," "team DET only," "all starting QBs, 2024 season");
+- actual coverage measured against that declared scope, not against some other, larger population;
+- an explicit flag for whether the report claims full-league (or otherwise "complete industry")
+  coverage, since that is a stronger claim than "complete coverage of a narrow declared scope" and
+  readers/agents need to know which claim is being made;
+- withholding whenever actual coverage does not satisfy the declared claim, at **any** declared
+  scope — a one-team report that is missing that team's data fails closed exactly like a
+  league-wide report missing teams would.
+
+For **this specific Direction A report**, the declared scope is all 32 NFL teams and the complete
+2024 regular season, so 32/32 teams and 544/544 team-game rows remain mandatory for it — that
+requirement is a consequence of this report's own declared scope, not of a universal full-league
+rule.
+
+| State | Publication | Coverage requirement | Source cutoff required | Source artifact IDs/hashes required | Methodology doc required | Human approval required | Search indexing allowed | Fail-closed behavior |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `governed_real_data` | **Allowed** | Yes | Yes | Yes | Yes | Yes (initial publication + any methodology change) | Yes | If any required field is missing/malformed, treat as ineligible and withhold — never partially publish |
-| `partial_real_data` | **Forbidden as authoritative; may appear only as explicitly labeled partial-coverage evidence, never as a full-league report** | N/A (coverage is partial by definition) | Yes | Yes | Yes | Yes | No (not indexed as if it were a complete report) | Withhold from any full-league report route; a partial-coverage page, if it exists at all, must self-label as partial in both HTML and JSON |
+| `governed_real_data` | **Allowed** | Yes — complete coverage of the report's own `declared_scope`/`expected_entities`; a report claiming full-league coverage must actually have it (32/32 teams for this pilot), but a narrower honestly-declared scope is equally valid if it is complete against itself | Yes | Yes | Yes | Yes (initial publication + any methodology change) | Yes | If any required field is missing/malformed, or actual coverage does not satisfy `declared_scope`, treat as ineligible and withhold — never partially publish |
+| `partial_real_data` | **Forbidden as authoritative; may appear only as explicitly labeled partial-coverage evidence, never as satisfying its own declared scope** | By definition does not satisfy its own declared scope — the gap must be stated explicitly, not implied | Yes | Yes | Yes | Yes | No (not indexed as if it were a complete report) | Withhold from any report route whose contract claims complete coverage; a partial-coverage page, if it exists at all, must self-label as partial (and state the declared scope it falls short of) in both HTML and JSON |
 | `candidate` | **Forbidden** | — | — | — | — | — | No | Fail closed on `provenanceStatus` alone — path, filename, or validation success must never be used to infer eligibility (this mirrors the boundary TIBER-Teamstate's own candidate/governed adapters already enforce) |
 | `fixture_scaffold` | **Forbidden as authoritative content.** May exist only as an internally-labeled dev/demo artifact, never served on a public report route | — | — | — | — | — | No | Any artifact whose `provenanceStatus` is `fixture_scaffold` must be rejected by the publication validator, regardless of how complete or convenient it looks |
 | `sample` | **Forbidden** | — | — | — | — | — | No | Same as `fixture_scaffold` |
 | `operator_seeded` | **Forbidden as authoritative; may be shown only with an explicit, prominent "operator-seeded, not validated" label if surfaced at all** | — | — | — | — | Yes, and re-approval required before any status upgrade | No | Never silently promoted; a status change requires an explicit governance action, not a data refresh |
 | `public_data_pending` | **Forbidden** | — | — | — | — | — | No | Treated identically to `unknown_provenance` until the pending status resolves explicitly |
 | `unknown_provenance` | **Forbidden** | — | — | — | — | — | No | Hardest fail-closed case: absence of a provenance marker is not a passing state, it is a rejection |
-| `deprecated` / `superseded` | **Forbidden as the canonical current report.** May remain reachable only as an explicitly marked historical/superseded page that links to its successor | Reflects whatever coverage it had when it was current | Reflects its original cutoff | Yes (preserved for audit trail) | Yes (preserved) | No new approval needed to keep it archived; approval is needed to keep serving it as current | No (excluded from primary indexing; a superseded marker/canonical redirect points crawlers to the current report) | A report that becomes superseded must flip to this state before or atomically with the new report's publication — never a window where both look current |
+| `deprecated` / `superseded` | **Forbidden as the canonical current report.** May remain reachable only via its immutable versioned identity (§6) as an explicitly marked historical/superseded page that links to its successor at the canonical alias | Reflects whatever `declared_scope` and coverage it had when it was current | Reflects its original cutoff | Yes (preserved for audit trail) | Yes (preserved) | No new approval needed to keep it archived; approval is needed to keep serving it as current | No (excluded from primary indexing; a superseded marker/canonical redirect points crawlers to the current report) | A report that becomes superseded must flip to this state before or atomically with the new report's publication — never a window where both look current |
 | Model-generated / modeled / experimental outputs (forecasts, projections, scenario outputs) | **Forbidden from this lane.** Public knowledge layer v0 publishes governed *observed* derivations only; modeled/forecast outputs are out of scope until a separately authorized lane defines their own eligibility rules | — | — | — | — | — | No | Any field whose value is modeled/projected rather than observed must be absent from the response, not present-with-a-disclaimer |
 
 Fixture, sample, candidate, operator-seeded, pending, and unknown-provenance material must never
 silently appear as authoritative TIBER truth. The only state eligible for full public authoritative
 publication in this v0 architecture is `governed_real_data`, evaluated field-by-field, not
 artifact-wide (§4 shows why artifact-level `governed_real_data` status does not automatically make
-every field in that artifact publication-ready).
+every field in that artifact publication-ready), and scope-by-scope, not by an assumed full-league
+default (this section).
 
 ---
 
@@ -204,7 +227,25 @@ a historical 2024 regular-season comparison, not a current or predictive stateme
 
 ## 6. Human-readable report contract (proposed)
 
-Candidate route:
+### Route identity
+
+A public report needs **two** distinct route/identity concepts, not one mutable canonical route,
+so that a later methodology revision can never make an earlier report's response silently change
+or disappear:
+
+- a **canonical alias** — e.g. `/nfl/2024/offensive-environments` — that always resolves to
+  whatever report is currently `current` (§8's supersession status) for that declared scope; and
+- an **immutable versioned identity** — a report/artifact identity (route or ID, exact syntax left
+  to the Teamstate contract issue, §13) that, once published, keeps returning that exact version's
+  content forever, even after the canonical alias moves on to a superseded successor.
+
+Without both, "superseded reports remain reachable" (§3, §8) is a stated guarantee with no way to
+implement it: if methodology v2 replaces v1 at the same mutable URL, v1's content is either
+silently overwritten or lost. The versioned identity is what a citation, an agent tool, or a
+search index can point to permanently; the canonical alias is what a human question resolves to
+today.
+
+Candidate canonical alias:
 
 ```text
 /nfl/2024/offensive-environments
@@ -215,8 +256,12 @@ Required page elements:
 - report title, stated as a historical comparison (e.g. "2024 NFL Offensive Environments —
   Regular-Season Comparison");
 - season scope (2024 regular season, weeks 1–18) — explicitly not current-season;
-- generation timestamp and source cutoff timestamp;
-- coverage summary (32/32 teams, 544/544 team-game rows, full regular-season calendar);
+- the three distinct temporal facts (§8): when the underlying football events occurred
+  (`data_through`/`coverage_cutoff`), when the upstream source bytes were retrieved
+  (`source_snapshot_at`), and when this report was derived (`generated_at`) — not collapsed into
+  one ambiguous "cutoff" timestamp;
+- coverage summary against the report's declared scope (§3) — for this report, 32/32 teams,
+  544/544 team-game rows, full regular-season calendar;
 - provenance status (`governed_real_data`) and governance reference;
 - methodology version, linking to the season-aggregation methodology document that §13 will
   produce (this document does not itself define that methodology — see §4's finding that no
@@ -227,7 +272,10 @@ Required page elements:
   (`pressureRateAllowed`, fantasy splits, any current/future/model-derived lane);
 - per-team observed supporting signals and deterministic derivations;
 - uncertainty and missing-data warnings (e.g. null-aware handling of zero-red-zone-trip weeks);
-- supersession status (whether this report has been superseded by a later version);
+- supersession status (whether this report has been superseded by a later version) and, if
+  superseded, a link to its successor at the canonical alias;
+- the immutable versioned identity for this exact report version, distinct from the canonical
+  alias;
 - a link to the machine-readable representation (§7);
 - clear language describing what the report does not claim — it is a historical, observed,
   governed-source comparison, not a projection, ranking recommendation, or advice surface.
@@ -247,16 +295,23 @@ Candidate route:
 
 Illustrative shape — **not final**; the actual field list depends on the season-aggregation
 methodology decisions §13 scopes, and must publish only fields with a documented, justified
-derivation, excluding the withheld fields in §4:
+derivation, excluding the withheld fields in §4. Note the three separated temporal fields (§6, §8)
+and the versioned-identity fields (§6) — none of these collapse into a single ambiguous timestamp
+or a single mutable URL:
 
 ```json
 {
   "artifact": "public_team_offensive_environment_report_v1",
   "schema_version": "1.0.0",
+  "report_version_id": "teamstate_public_offensive_environment_2024_v1.r1",
+  "canonical_url": "/nfl/2024/offensive-environments",
+  "version_url": "/nfl/2024/offensive-environments/v1",
   "season": 2024,
   "scope": "regular_season_historical",
-  "generated_at": "ISO-8601 timestamp",
-  "source_cutoff": "ISO-8601 timestamp",
+  "declared_scope": "all_32_nfl_teams_2024_regular_season",
+  "generated_at": "ISO-8601 timestamp — when this report was derived",
+  "data_through": "ISO-8601 date — latest football event/date included (2024 regular season)",
+  "source_snapshot_at": "ISO-8601 timestamp — when the upstream source bytes were retrieved",
   "coverage": {
     "team_count": 32,
     "expected_team_count": 32,
@@ -293,18 +348,33 @@ Every public report (human- and machine-readable) must carry:
 - **Provenance:** the governing `provenanceStatus` and its governance markers
   (`governanceStatus`, `governanceSource`), consistent with §3's eligibility matrix — no report
   publishes without these.
-- **Coverage:** team count vs. expected, row count vs. expected, `is_full_league`, and (for
-  weekly/partial scopes, not used in the v0 historical report) week coverage.
-- **Cutoff:** the source cutoff timestamp the governed data reflects, distinct from
-  `generated_at`.
+- **Coverage:** `declared_scope`/`expected_entities` (what population the report claims to cover),
+  actual coverage measured against that declared scope (entity count vs. expected, row count vs.
+  expected), and an explicit `is_full_league` flag distinct from "complete against declared scope"
+  — a report can satisfy the latter while declaring a scope narrower than full-league (§3). For
+  weekly/partial scopes (not used in the v0 historical report), week coverage as well.
+- **Temporal metadata (three distinct facts, never collapsed into one "cutoff" field):**
+  - `data_through` / `coverage_cutoff` — the latest football event/date the report's data
+    actually includes (e.g. end of the 2024 regular season);
+  - `source_snapshot_at` — when the upstream source bytes were retrieved (the governed source
+    already carries a retrieval/snapshot timestamp at the TIBER-Data layer; the public report must
+    preserve it, not discard it);
+  - `generated_at` — when this public report itself was derived from the governed source.
+
+    These can differ substantially (a report generated today can still have `data_through` fixed
+    at the end of the 2024 season), and conflating them would misstate either how current the
+    football facts are or how current the report's generation is.
 - **Methodology:** a versioned methodology identifier that resolves to a published derivation
   document — the aggregation/weighting/normalization decisions from §4/§13, not an internal
   implementation detail left undocumented.
 - **Warnings:** explicit, structured warnings for any null-aware or partial field (e.g. weeks
   excluded from a `redZoneTdRate` season average), never silent.
 - **Supersession:** a status field distinguishing `current` from `superseded`, with superseded
-  reports pointing to their successor rather than disappearing or silently changing content at a
-  stable URL.
+  reports pointing to their successor. This is only implementable given §6's two-identity
+  requirement: the immutable versioned identity keeps returning the superseded version's exact
+  content, while the canonical alias moves forward to point at the new current version — a single
+  mutable URL cannot satisfy both "superseded reports remain reachable" and "the canonical route
+  always shows the current report."
 
 ---
 
@@ -340,9 +410,12 @@ path/filename/validation-success never substituted for a real eligibility check)
 
 - Missing, malformed, or non-explicit provenance/governance markers → **withhold**, do not publish
   with a best-effort label.
-- Incomplete coverage (not full-league, missing expected weeks) for a scope that claims full
-  coverage → **withhold** or explicitly re-scope the claim (e.g. relabel as partial), never publish
-  the full-coverage claim anyway.
+- Actual coverage that does not satisfy the report's own `declared_scope`/`expected_entities`
+  (§3) — missing teams, missing weeks, missing whatever population the report declares — →
+  **withhold** or explicitly re-scope the claim to match actual coverage (e.g. relabel as
+  partial), never publish the declared-scope claim anyway. This applies at any declared scope, not
+  only full-league ones: a one-team report missing that team's data fails closed exactly like a
+  league-wide report missing teams would.
 - A field lacking a documented aggregation/derivation decision (§4) → **omit that field**, do not
   publish an unweighted or approximated value silently.
 - A report route with no corresponding contract + validator → the route does not exist; do not
@@ -407,15 +480,23 @@ because it is using a direct tool instead of web search.
   eligibility matrix; Teamstate artifact-readiness audit; first public-question selection;
   human-readable contract sketch; machine-readable contract sketch; ownership boundaries;
   discoverability requirements.
-- **Phase 2 — next Teamstate issue (scoped in §13, not yet opened).** Define the season-aggregation
-  methodology and the report contract; implement the first authorized report; expose one HTML
-  route and one JSON route; preserve fail-closed publication behavior; keep unsupported lanes
-  withheld.
-- **Phase 3.** Methodology page; canonical URLs; crawler policy; sitemap; indexing controls; report
-  supersession handling.
-- **Phase 4.** Repeatable weekly or seasonal publication process; freshness monitoring;
+- **Phase 2 — next Teamstate issue (scoped in §13, not yet opened). Contract design only, no
+  publication code.** The season-aggregation methodology; the final HTML and JSON schemas;
+  publication invariants; a validator **specification** and fail-closed acceptance test cases
+  (not validator code); route identities (§6's canonical-alias/immutable-version requirement); and
+  implementation acceptance criteria that Phase 3 must satisfy. Nothing in Phase 2 is deployed or made publishable.
+- **Phase 3 — implementation (a separate, later issue, not authorized by this document).**
+  Derivation code, validator code, the HTML and JSON routes, and any `service-metadata.json`
+  changes, all built to the Phase 2 contract's acceptance criteria. Publication stays disabled
+  (`artifact_publication_enabled: false`) until this implementation passes review and receives its
+  own explicit authorization — passing Phase 2 does not pre-authorize Phase 3's output for
+  publication.
+- **Phase 4.** Methodology page; canonical URLs; crawler policy; sitemap; indexing controls; report
+  supersession handling. Discoverability/indexing implementation is later work, not part of Phase
+  2 or Phase 3.
+- **Phase 5.** Repeatable weekly or seasonal publication process; freshness monitoring;
   publication validation; operator approval workflow.
-- **Phase 5.** Evaluate public API or MCP access; expand the pattern to the next TIBER repository
+- **Phase 6.** Evaluate public API or MCP access; expand the pattern to the next TIBER repository
   only after Teamstate proves the pathway.
 
 ---
@@ -423,7 +504,9 @@ because it is using a direct tool instead of web search.
 ## 13. Scope of the next Teamstate contract-design issue
 
 Not opened by this document — deliberately deferred until this architecture decision is merged, per
-explicit operator instruction. When opened, its scope is exactly:
+explicit operator instruction. When opened, its scope is **Phase 2 only (§12): contract design,
+zero publication code.** Deliverables are documents, schemas, and test cases — no derivation code,
+no validator code, no routes, no `service-metadata.json` changes:
 
 **Define the `teamstate_public_offensive_environment_2024_v1` report contract:**
 
@@ -436,16 +519,23 @@ explicit operator instruction. When opened, its scope is exactly:
    - `redZoneTrips`-weighted, null-preserving aggregation for `redZoneTdRate`;
    - an explicit, non-approximated denominator sourcing decision for `passEpaPerPlay` and
      `rushEpaPerPlay`;
-   - an explicit scope rationale for including or excluding `pointsAgainst`.
+   - an explicit scope rationale for including or excluding `pointsAgainst`;
+   - the `declared_scope`/`expected_entities` statement for this report (§3) — all 32 NFL teams,
+     complete 2024 regular season — and the coverage check against it.
 2. Confirmation that `pressureRateAllowed` and the 8 fantasy split fields stay withheld.
-3. The human-readable page contract (§6, finalized).
-4. The machine-readable JSON contract (§7, finalized) at
-   `/nfl/2024/offensive-environments{,.json}`.
-5. A validator that fails closed per §10.
+3. The human-readable page contract (§6, finalized), including the canonical-alias and
+   immutable-versioned-identity requirement.
+4. The machine-readable JSON contract (§7, finalized), including the split temporal metadata
+   (`data_through`/`coverage_cutoff`, `source_snapshot_at`, `generated_at`) and versioned identity.
+5. A **validator specification and fail-closed acceptance matrix** per §10 — the documented rules
+   and test cases an implementation must satisfy (e.g. "given rows missing team X, the validator
+   must reject publication with reason Y") — not a working validator. Writing the validator is
+   Phase 3.
 
-Implementation (wiring the routes, flipping `artifact_publication_enabled`) is explicitly a
-follow-on step after the contract exists, not part of this same issue unless the weekly board
-decides to scope them together.
+Implementation — derivation code, validator code, the HTML/JSON routes, and any
+`service-metadata.json` changes — is explicitly **Phase 3, a separate later issue**, not
+authorized by the contract-design issue and not to be scoped into it. Publication stays disabled
+until Phase 3's implementation passes review and receives its own explicit authorization.
 
 ---
 
@@ -472,7 +562,8 @@ decides to scope them together.
 - [x] Crawler, sitemap, canonical URL, metadata, and indexing requirements are documented (§11).
 - [x] No football artifact is published in this issue.
 - [x] No MCP server or full public API is implemented (§11).
-- [x] The report identifies the next bounded Teamstate implementation issue (§13).
+- [x] The report identifies the next bounded Teamstate **contract-design** issue (§13) — explicitly
+      not an implementation issue; implementation is a separate, later Phase 3 (§12).
 - [x] The report ends with one machine-readable decision (below).
 
 ## Non-goals (unchanged from issue #11)
