@@ -214,7 +214,7 @@ or forecast truth:
 
 Rationale (from the operator decision): the governed 2024 source already exists; coverage is all
 32 teams and 544 played team-game rows; provenance, cutoff, coverage, and null semantics are
-explicit; the report can be regenerated deterministically at the source layer; and this lets TIBER
+explicit; the governed source and consumption boundary are deterministic; and this lets TIBER
 prove the complete publication pathway before starting another upstream current-data project.
 
 **Unsupported lanes explicitly excluded** from this first report (per the operator comment and
