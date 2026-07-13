@@ -329,6 +329,19 @@ governed_dependencies:
     promotion_state: active_contract
     verification_time: "2026-07-13T22:36:33Z"
     note: "Data->FORGE weekly player input seam; input to R2/R4."
+  - id: tiber_data_repo_boundaries_and_feedback_loops
+    repo: Prometheus-Frameworks/TIBER-Data
+    path: docs/repo-boundaries-and-feedback-loops.md
+    content_sha256: c1df7ea4d628b2b1b7466e1ab35a0db12871c03770d86b60d8da33ab5c0bd9a9
+    promotion_state: active_specification
+    last_modified_commit: 531ef60d869d29edbe061cffbeb9b4fb7cd1c9aa
+    verification_time: "2026-07-13T23:19:17Z"
+    note: >
+      Defines TIBER-Data's view of FORGE's role: "FORGE should resolve
+      disagreement between upstream signals and operate as an explicit
+      arbitration layer" (line 61). One of three inconsistent FORGE role
+      definitions R2 must reconcile; pinned so R2 does not rely on
+      TIBER-Ops#13's issue-only paraphrase of this document.
   - id: evidence_layer_v0
     repo: Prometheus-Frameworks/TIBER-Data
     path: docs/contracts/evidence-layer-v0.md
@@ -385,6 +398,20 @@ governed_dependencies:
     content_sha256: 453693f1bd069326b4266ed3346443bdee729a109face215c8d8a3c7f8adc68d
     promotion_state: active_contract
     verification_time: "2026-07-13T22:36:33Z"
+  - id: tiber_forge_data_to_forge_ingestion_spec
+    repo: Prometheus-Frameworks/TIBER-FORGE
+    path: docs/architecture/TIBER_DATA_TO_FORGE_INGESTION_SPEC.md
+    content_sha256: 39dd805cc37efb98c15b8eb63f035489b56277412f4e8b2f81a6ccf9cf159a59
+    promotion_state: active_specification
+    last_modified_commit: 33cce05d73f6ce4ec1b40656999bcb4fff5ff99f
+    verification_time: "2026-07-13T23:19:17Z"
+    note: >
+      Defines TIBER-FORGE's view of its own role: "TIBER-FORGE must evolve
+      ... into the fantasy signal grading layer for football rankings"
+      (line 7); "TIBER-FORGE grades fantasy signal from governed inputs and
+      interpreted context" (line 32). One of three inconsistent FORGE role
+      definitions R2 must reconcile; pinned so R2 does not rely on
+      TIBER-Ops#13's issue-only paraphrase of this document.
   - id: forge_player_static_v1
     repo: Prometheus-Frameworks/TIBER-FORGE
     path: exports/promoted/forge_player_static/forge_player_static_v1.json
@@ -594,11 +621,12 @@ requirements:
       - preserve the distinction between source truth, transformation
         lineage, modeled facts, and evaluative judgment
     named_evidence_gaps:
-      - "reconciliation of the three inconsistent FORGE role definitions catalogued by TIBER-Ops#13 (TIBER-Data repo-boundaries doc: arbiter; TIBER-Forecast ownership-boundaries.md: grading/tiering owner; TIBER-FORGE ingestion spec: fantasy signal grading layer)"
+      - "reconciliation of three inconsistent FORGE role definitions, each grounded in a pinned governed_dependency (not TIBER-Ops#13's issue-only paraphrase of them): tiber_data_repo_boundaries_and_feedback_loops (explicit arbitration layer), forecast_ownership_boundaries (deterministic grading/tiering owner), and tiber_forge_data_to_forge_ingestion_spec (fantasy signal grading layer)"
     completion_evidence: >
       A named canonical role with rationale, cross-referenced against
       forge_core_contract, forge_football_lane_contract,
-      forecast_ownership_boundaries, and forge_player_static_v1's
+      forecast_ownership_boundaries, tiber_data_repo_boundaries_and_feedback_loops,
+      tiber_forge_data_to_forge_ingestion_spec, and forge_player_static_v1's
       score_source_policy.
     blocked_evidence: >
       Immediately before the first substantive R2 action, every

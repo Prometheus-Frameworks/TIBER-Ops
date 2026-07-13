@@ -36,15 +36,17 @@ review feedback, with the commit that applied it.
 | YAML validation command silently assumed PyYAML; documented the dependency, version, and install options explicitly (ledger Entry 12) | `7e87a1b` | Codex review |
 | Post-activation write scope excluded the ledger, which R2-R5 must append to; restructured `scope.permitted_write_paths_future_execution` with explicit per-path `writable_during` | `7aae76b` | Codex review |
 | R1's "full command log in progress-ledger.md" claim referenced a log that didn't exist; added ledger Entry 3a with the actual verbatim commands | `7aae76b` | Codex review |
-| `contract.status: proposed_pending_human_gate_review` would become false at merge; replaced with a durable status plus a separate `effective_condition` | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
-| Ledger's no-rewrite rule contradicted the in-place edits already made to Entries 3/12; added this two-phase lifecycle note and this correction log | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
-| Freshness re-check language ("if resuming after a time gap", "reasonable staleness window") was non-deterministic; made unconditional (`step0_mandatory_invariants`, R2 `blocked_evidence`) | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
-| `fantasy_embedded_forge_module` note and R4's `completion_evidence`/`blocked_evidence` presented TIBER-Ops#13's route-wiring claim as fact while classifying #13 as contextual elsewhere (FC2); reworded to ground R4 in the pinned document's own text and to stop-and-escalate rather than require out-of-scope inspection | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
-| Entry 3a's policy-pin `verify` calls omitted the `repo_name` argument required by the 4-arg function signature (would report false `MISMATCH_or_MISSING`); corrected and re-executed for real, all `MATCH` | *(this commit)* | Codex review |
+| `contract.status: proposed_pending_human_gate_review` would become false at merge; replaced with a durable status plus a separate `effective_condition` | `907c90e` | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
+| Ledger's no-rewrite rule contradicted the in-place edits already made to Entries 3/12; added this two-phase lifecycle note and this correction log | `907c90e` | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
+| Freshness re-check language ("if resuming after a time gap", "reasonable staleness window") was non-deterministic; made unconditional (`step0_mandatory_invariants`, R2 `blocked_evidence`) | `907c90e` | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
+| `fantasy_embedded_forge_module` note and R4's `completion_evidence`/`blocked_evidence` presented TIBER-Ops#13's route-wiring claim as fact while classifying #13 as contextual elsewhere (FC2); reworded to ground R4 in the pinned document's own text and to stop-and-escalate rather than require out-of-scope inspection | `907c90e` | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
+| Entry 3a's policy-pin `verify` calls omitted the `repo_name` argument required by the 4-arg function signature (would report false `MISMATCH_or_MISSING`); corrected and re-executed for real, all `MATCH` | `907c90e` | Codex review |
 | Entry 3a's repository-currency loop compared against `origin/$def` without an explicit `git fetch` first, so it could pass on stale remote-tracking refs; added `git fetch origin --quiet` to the logged loop and re-executed, still zero drift | `907c90e` | Codex review |
-| The `[INDEPENDENT REVIEW]` comment attributed the four preceding corrections to "Operator independent review." The comment was subsequently edited to disclose it was Codex-authored, posted through the operator's authenticated account at Joseph's request — not a human/operator decision. Relabeled those four rows above accordingly. No technical content of those corrections was affected: each was independently verified against the actual file contents and re-executed commands before being applied, not accepted on the strength of any claimed authority. | *(this commit)* | Codex-authored review + operator `[PROVENANCE]` clarification comment |
+| The `[INDEPENDENT REVIEW]` comment attributed the four preceding corrections to "Operator independent review." The comment was subsequently edited to disclose it was Codex-authored, posted through the operator's authenticated account at Joseph's request — not a human/operator decision. Relabeled those four rows above accordingly. No technical content of those corrections was affected: each was independently verified against the actual file contents and re-executed commands before being applied, not accepted on the strength of any claimed authority. | `8e8c8c3` | Codex-authored review + operator `[PROVENANCE]` clarification comment |
 | Entry 3a's repository-currency loop compared `local_head` to `remote_head` only, never against the commit actually pinned in `repository_revisions`; a rerun where both local and remote had drifted together from the pin would still print `match=YES`. Added an explicit `expected` pin per repo and a third comparison against it. | `8e8c8c3` | Codex review |
-| Entry 3a's policy-absence `find` commands used `-maxdepth 1`, checking only the repository root; a nested policy file under `docs/`, `src/`, etc. in TIBER-Forecast or Role-and-opportunity-model would have been missed while still reporting "absence confirmed." Changed to an unbounded repo-wide search (excluding `.git`/`node_modules`) and re-executed for real: still zero results in either repository, so the R1 absence records are unchanged, but the log now proves that rather than assuming it. | *(this commit)* | Codex review |
+| Entry 3a's policy-absence `find` commands used `-maxdepth 1`, checking only the repository root; a nested policy file under `docs/`, `src/`, etc. in TIBER-Forecast or Role-and-opportunity-model would have been missed while still reporting "absence confirmed." Changed to an unbounded repo-wide search (excluding `.git`/`node_modules`) and re-executed for real: still zero results in either repository, so the R1 absence records are unchanged, but the log now proves that rather than assuming it. | `24ede1f` | Codex review |
+| A fresh automated Codex review at head `24ede1f` (P1) found that R2's `named_evidence_gaps` required reconciling the TIBER-Data repo-boundaries doc and TIBER-FORGE ingestion spec, but neither was pinned in `governed_dependencies` — R2 as written could only rely on TIBER-Ops#13's ungoverned issue-text paraphrase of them, or immediately block. Both documents are real committed files (confirmed by direct lookup, not issue text like #13/#212); pinned both as new governed dependencies with fresh hashes after re-fetching and confirming their repos unchanged from `repository_revisions`, and reworded R2's evidence gap to cite the pinned dependency IDs directly. | *(this commit)* | Codex review (automated) |
+| A separate manual `[CODEX REVIEW]` comment (properly self-labeled with provenance) suggested replacing the `*(this commit)*` placeholders in this table with durable SHAs for cold-resume clarity. Applied. | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
 
 ---
 
@@ -176,7 +178,7 @@ map will surface any real upstream drift as `remote_eq_pinned=NO` even if
 `local_eq_remote=YES` — that gap (checked here, was previously absent) is
 exactly what the prior version of this loop could not detect.
 
-**2. Governed-dependency file hashes (26 entries) — verify function and
+**2. Governed-dependency file hashes (28 entries) — verify function and
 invocations:**
 
 ```bash
@@ -192,6 +194,7 @@ verify TIBER-Data TIBER-Data exports/promoted/nfl/player_season_coverage_v0.json
 verify TIBER-Data TIBER-Data exports/promoted/nfl/PLAYER_SEASON_COVERAGE_V0_PROMOTION_MANIFEST.json 5e9a382db0681e7a808a1d5fdf4334653cf2f0b26314c45425b333aa2024d154
 verify TIBER-Data TIBER-Data src/contracts/v1/forgeWeeklyPlayerInput.ts e8b354675aa160fb3c14d8f695c4e4146ed6367098494f7f3671b84e6b2919e4
 verify TIBER-Data TIBER-Data docs/contracts/evidence-layer-v0.md 48c0949811e69f81bb51c6f84e5af394469838b9bc713991c437599c0b89e148
+verify TIBER-Data TIBER-Data docs/repo-boundaries-and-feedback-loops.md c1df7ea4d628b2b1b7466e1ab35a0db12871c03770d86b60d8da33ab5c0bd9a9
 verify TIBER-Teamstate TIBER-Teamstate docs/contracts/team-environment-profile-v0.md 255b7f954b6ebab550ec811a4047dcd87238e541750ae628249f4ef157c9870a
 verify TIBER-Teamstate TIBER-Teamstate src/contracts/teamEnvironmentProfile.ts 75295dd955ee71527af6e3b3e707da5fbc490e7af6918fd8996e616d5725dd15
 verify TIBER-Teamstate TIBER-Teamstate docs/contracts/team-environment-movement-v1.md ee3ac8ba16a10fb13d98d86effdafe9c4ab605bbeb27a8a047d60219a498e0ee
@@ -201,6 +204,7 @@ verify Role-and-opportunity-model Role-and-opportunity-model src/types/roleOppor
 verify TIBER-FORGE TIBER-FORGE src/contracts/forge.ts ceeb45ee9833166d1192b25919b9b3ee24612f38af8a39ecea638656a45689a5
 verify TIBER-FORGE TIBER-FORGE src/contracts/football.ts 453693f1bd069326b4266ed3346443bdee729a109face215c8d8a3c7f8adc68d
 verify TIBER-FORGE TIBER-FORGE exports/promoted/forge_player_static/forge_player_static_v1.json 2020a52b2e941fbcd7a78130399380351da914959663ff9f1abf15affece1041
+verify TIBER-FORGE TIBER-FORGE docs/architecture/TIBER_DATA_TO_FORGE_INGESTION_SPEC.md 39dd805cc37efb98c15b8eb63f035489b56277412f4e8b2f81a6ccf9cf159a59
 verify TIBER-Fantasy TIBER-Fantasy docs/architecture/FORGE_EXTERNALIZATION_TRANSITION_SPEC.md 7b9b0362048d2d9dbe42fa801fb3f75236709fc56e8b0186723c0306ae66b3ba
 verify TIBER-Fantasy TIBER-Fantasy server/modules/forge/MODULE.md 32cf08fd7bb6b28813ce2f56a8608d62a1700024d1e0b734df926af40c88cc0b
 verify TIBER-Fantasy TIBER-Fantasy server/contracts/rankingsV2.ts af7f56ffdb578254438c52c56dfd482d164d1fa42f415c2b7b00518322729c39
@@ -214,7 +218,13 @@ verify TIBER-Forecast TIBER-Forecast docs/experiments/rookie-transition-profile-
 verify TIBER-Forecast TIBER-Forecast data/fixtures/tiberRookies/ROOKIE_TRANSITION_PROFILE_V0_MIRROR_PROVENANCE.json 2639d5acb11e8d77400700e814ad9c50dba9bf0a46f3f80413e4f0d51860aaa6
 ```
 
-Observed: all 26 invocations printed `MATCH`, zero mismatches.
+Observed: all 28 invocations printed `MATCH`, zero mismatches. (The final
+two — `tiber_data_repo_boundaries_and_feedback_loops` and
+`tiber_forge_data_to_forge_ingestion_spec` — were added after a
+fresh-context Codex finding that R2 required reconciling these two
+documents' FORGE-role definitions without either being pinned; both repos
+were re-fetched and confirmed still at their pinned `repository_revisions`
+commit before hashing, at `2026-07-13T23:19:17Z`.)
 
 **3. Policy pins (6 file-backed) and absence confirmation (2 repos):**
 
@@ -261,7 +271,7 @@ All entries below were independently re-verified at `2026-07-13T22:36:33Z`
 `repository_revisions`; this entry is a ledger-side duplicate for
 cold-resume readability.
 
-**Governed dependencies (26):**
+**Governed dependencies (28):**
 
 | id | repo | path | sha256 (first 12) |
 |---|---|---|---|
@@ -271,6 +281,7 @@ cold-resume readability.
 | player_season_coverage_v0_promotion_manifest | TIBER-Data | exports/promoted/nfl/PLAYER_SEASON_COVERAGE_V0_PROMOTION_MANIFEST.json | `5e9a382db068` |
 | forge_weekly_player_input_v1 | TIBER-Data | src/contracts/v1/forgeWeeklyPlayerInput.ts | `e8b354675aa1` |
 | evidence_layer_v0 | TIBER-Data | docs/contracts/evidence-layer-v0.md | `48c0949811e6` |
+| tiber_data_repo_boundaries_and_feedback_loops | TIBER-Data | docs/repo-boundaries-and-feedback-loops.md | `c1df7ea4d628` |
 | team_environment_profile_v0 | TIBER-Teamstate | docs/contracts/team-environment-profile-v0.md | `255b7f954b6e` |
 | team_environment_profile_v0_types | TIBER-Teamstate | src/contracts/teamEnvironmentProfile.ts | `75295dd955ee` |
 | team_environment_movement_v1 | TIBER-Teamstate | docs/contracts/team-environment-movement-v1.md | `ee3ac8ba16a1` |
@@ -280,6 +291,7 @@ cold-resume readability.
 | forge_core_contract | TIBER-FORGE | src/contracts/forge.ts | `ceeb45ee9833` |
 | forge_football_lane_contract | TIBER-FORGE | src/contracts/football.ts | `453693f1bd06` |
 | forge_player_static_v1 | TIBER-FORGE | exports/promoted/forge_player_static/forge_player_static_v1.json | `2020a52b2e94` |
+| tiber_forge_data_to_forge_ingestion_spec | TIBER-FORGE | docs/architecture/TIBER_DATA_TO_FORGE_INGESTION_SPEC.md | `39dd805cc37e` |
 | fantasy_forge_externalization_transition_spec | TIBER-Fantasy | docs/architecture/FORGE_EXTERNALIZATION_TRANSITION_SPEC.md | `7b9b03620480` |
 | fantasy_embedded_forge_module | TIBER-Fantasy | server/modules/forge/MODULE.md | `32cf08fd7bb6` |
 | fantasy_rankings_v2_contract | TIBER-Fantasy | server/contracts/rankingsV2.ts | `af7f56ffdb57` |
