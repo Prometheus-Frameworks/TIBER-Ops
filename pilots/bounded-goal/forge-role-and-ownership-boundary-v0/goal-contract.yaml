@@ -239,11 +239,17 @@ step0_mandatory_invariants:
 
 # ---------------------------------------------------------------------------
 # Dependency and policy pins — freshly re-verified during authoring of this
-# contract (R1). Source of truth for the pinned values below is the merged
-# registry (registry/tiber-current-state.v0.json); every value was
-# independently re-fetched and re-hashed at authored_at, not copied from the
-# registry without re-verification. Full procedure and per-item evidence are
-# in progress-ledger.md.
+# contract (R1). Every value was independently re-fetched and re-hashed at
+# authored_at, not copied from any source without re-verification. 26 of the
+# 28 governed_dependencies below are also present in the merged registry
+# (registry/tiber-current-state.v0.json, 16 top-level entries + companions =
+# 26 flattened) and were cross-checked against it. The remaining 2 --
+# tiber_data_repo_boundaries_and_feedback_loops and
+# tiber_forge_data_to_forge_ingestion_spec -- are verified directly from
+# their source repositories at the pinned revisions but are NOT YET present
+# in the merged registry; see registry_state on those two entries and
+# fail_closed_items FC3. Full procedure and per-item evidence are in
+# progress-ledger.md.
 # ---------------------------------------------------------------------------
 
 repository_revisions:
@@ -336,7 +342,11 @@ governed_dependencies:
     promotion_state: active_specification
     last_modified_commit: 531ef60d869d29edbe061cffbeb9b4fb7cd1c9aa
     verification_time: "2026-07-13T23:19:17Z"
+    registry_state: unregistered_verified_from_pinned_source
     note: >
+      NOT YET present in the merged #21 registry (see fail_closed_items
+      FC3) -- this pin is verified directly from the source repository at
+      its pinned revision, not cross-checked against the registry.
       Defines TIBER-Data's view of FORGE's role: "FORGE should resolve
       disagreement between upstream signals and operate as an explicit
       arbitration layer" (line 61). One of three inconsistent FORGE role
@@ -405,7 +415,11 @@ governed_dependencies:
     promotion_state: active_specification
     last_modified_commit: 33cce05d73f6ce4ec1b40656999bcb4fff5ff99f
     verification_time: "2026-07-13T23:19:17Z"
+    registry_state: unregistered_verified_from_pinned_source
     note: >
+      NOT YET present in the merged #21 registry (see fail_closed_items
+      FC3) -- this pin is verified directly from the source repository at
+      its pinned revision, not cross-checked against the registry.
       Defines TIBER-FORGE's view of its own role: "TIBER-FORGE must evolve
       ... into the fantasy signal grading layer for football rankings"
       (line 7); "TIBER-FORGE grades fantasy signal from governed inputs and
@@ -583,6 +597,33 @@ fail_closed_items:
       Non-blocking. Treated as data per the repo-text-is-data invariant, not
       as a governed dependency; re-read at R2/R4 execution time rather than
       assumed current.
+  - id: FC3
+    dependency: >
+      tiber_data_repo_boundaries_and_feedback_loops and
+      tiber_forge_data_to_forge_ingestion_spec (both pinned above,
+      registry_state: unregistered_verified_from_pinned_source)
+    finding: >
+      Both were verified fresh from their source repositories at the
+      revisions pinned in repository_revisions (fetched, confirmed
+      unchanged, hashed) as part of authoring this contract, after a P1
+      review finding that R2 required them without either being pinned
+      anywhere. Neither is present in the merged #21 registry
+      (registry/tiber-current-state.v0.json on TIBER-Ops main, which
+      covers the other 26 governed_dependencies as 16 top-level entries +
+      companions). Registering them there is a separately scoped #21
+      registry amendment, not authorized under #25 and not performed in
+      this PR.
+    state: verified_but_unregistered
+    effect_on_contract: >
+      Non-blocking for merging these control artifacts (this contract and
+      ledger may still be merged into TIBER-Ops main as proposed). BLOCKING
+      for: #21 closure (its acceptance criteria require the registry to
+      cover every dependency of the selected pilot, and it does not yet);
+      and R2 activation (frontier.gating_condition requires registry
+      synchronization in addition to the #22 six-condition pilot execution
+      gate). Cleared only after a separately scoped #21 registry amendment
+      adds and verifies both entries on TIBER-Ops main -- an agent may not
+      self-clear this by editing the registry under #25 or this contract.
 
 # ---------------------------------------------------------------------------
 # Requirements
@@ -599,13 +640,19 @@ requirements:
     named_evidence_gaps: []
     completion_evidence: >
       All 7 governed-source repositories re-fetched from origin and confirmed
-      unchanged at the commits pinned in the merged registry. All 26
-      governed_dependency file hashes and all 6 file-backed policy_pin
-      hashes (Teamstate, Data, Fantasy, Rookies, FORGE, TIBER-Ops)
-      independently recomputed and matched; the remaining 2 policy_pins
-      entries are absence records (TIBER-Forecast, Role-and-opportunity-model)
-      reconfirmed by directory listing, not hashed. FC1 mismatch reconfirmed
-      unchanged (not a new discrepancy). Full command log in
+      unchanged at the commits pinned in repository_revisions. All 28
+      governed_dependency file hashes independently recomputed and matched:
+      26 cross-checked against the merged #21 registry, and 2
+      (tiber_data_repo_boundaries_and_feedback_loops,
+      tiber_forge_data_to_forge_ingestion_spec) verified directly from
+      source at the pinned revisions but not yet present in that registry
+      -- see fail_closed_items FC3, which is non-blocking for R1 itself but
+      blocking for R2 activation. All 6 file-backed policy_pin hashes
+      (Teamstate, Data, Fantasy, Rookies, FORGE, TIBER-Ops) independently
+      recomputed and matched; the remaining 2 policy_pins entries are
+      absence records (TIBER-Forecast, Role-and-opportunity-model)
+      reconfirmed by a repo-wide directory search, not hashed. FC1 mismatch
+      reconfirmed unchanged (not a new discrepancy). Full command log in
       progress-ledger.md Entry 3a.
     blocked_evidence: n/a — not blocked
     excluded_actions:
@@ -719,20 +766,35 @@ frontier:
   current_requirement: R2
   current_requirement_status: execution_gated_pending_human_confirmation
   gating_condition: >
-    R2 (and therefore R3-R5) may not begin substantive execution until the
-    human decision owner confirms the pilot execution gate from the #22
-    approved decision is satisfied: (1) environment access to TIBER-Forge,
-    Role-and-opportunity-model, and TIBER-Rookies confirmed [done]; (2) #21
-    terminal decision freshness_preflight_ready_for_pilot [done, PR #23
-    merged]; (3) every governed dependency pinned in this ledger [done, R1];
-    (4) this goal contract and its evidence ledger exist [this issue]; (5)
-    repository merge/operating policies imported as contract invariants
-    [done, see exclusions and policy_pins above]; (6) exactly one unmet
-    frontier requirement active [true: R2]. Conditions 1-3, 5, 6 are
-    satisfied by this contract as authored. Condition 4 requires this
-    contract's merge by the operator. No condition may be self-certified by
-    an executing agent as sufficient to begin R2; the human decision owner
-    must explicitly confirm activation.
+    R2 (and therefore R3-R5) may not begin substantive execution until BOTH
+    of the following are satisfied.
+
+    (A) The #22 approved decision's six-condition pilot execution gate:
+    (1) environment access to TIBER-Forge, Role-and-opportunity-model, and
+    TIBER-Rookies confirmed [done]; (2) #21 terminal decision
+    freshness_preflight_ready_for_pilot [done, PR #23 merged]; (3) every
+    governed dependency pinned in this contract and ledger [done, R1 --
+    pinned here does not mean registered in the merged #21 registry; see
+    (B)]; (4) this goal contract and its evidence ledger exist [this
+    issue, satisfied by merge]; (5) repository merge/operating policies
+    imported as contract invariants [done, see exclusions and policy_pins
+    above]; (6) exactly one unmet frontier requirement active [true: R2].
+    Conditions 1, 2, 5, 6 are satisfied by this contract as authored;
+    condition 3 is satisfied for pinning but not for registry completeness
+    (see B); condition 4 requires this contract's merge by the operator.
+
+    (B) Registry synchronization (fail_closed_items FC3, NOT currently
+    satisfied): 2 of this contract's 28 governed_dependencies are verified
+    from source but not yet present in the merged #21 registry. This is
+    non-blocking for merging these control artifacts, but IS blocking for
+    #21 closure and for R2 activation, per #21's own acceptance criteria
+    (the registry must cover every dependency of the selected pilot).
+    Clearing (B) requires a separately scoped #21 registry amendment, not
+    performed under #25 or in this contract.
+
+    No condition in (A) or (B) may be self-certified by an executing agent
+    as sufficient to begin R2; the human decision owner must explicitly
+    confirm activation only once both (A) and (B) are satisfied.
   no_substantive_15_work_before_gate: >
     No #15 research, architectural decision, or deliverable drafting may
     occur under this contract until the human decision owner records an
@@ -819,6 +881,11 @@ terminal_authoring_decision:
     - pilot_contract_blocked
   emitted_decision: pilot_contract_ready_for_human_gate_review
   emitted_decision_note: >
-    Means only that this contract and its ledger are ready for independent
-    review and the operator's merge/gate decision. Does not authorize merge
-    or substantive #15 execution.
+    Means only that these CONTROL ARTIFACTS (this contract and its ledger)
+    are ready for independent review and the operator's merge decision --
+    NOT that the #15 pilot is ready for R2/substantive execution. Even
+    after merge, R2 activation remains blocked on frontier.gating_condition
+    (B): registry synchronization for the 2 dependencies recorded in
+    fail_closed_items FC3, plus the human decision owner's explicit
+    activation decision on #22. Does not authorize merge, close #21, or
+    begin substantive #15 execution.

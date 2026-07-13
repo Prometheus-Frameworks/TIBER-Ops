@@ -45,8 +45,9 @@ review feedback, with the commit that applied it.
 | The `[INDEPENDENT REVIEW]` comment attributed the four preceding corrections to "Operator independent review." The comment was subsequently edited to disclose it was Codex-authored, posted through the operator's authenticated account at Joseph's request — not a human/operator decision. Relabeled those four rows above accordingly. No technical content of those corrections was affected: each was independently verified against the actual file contents and re-executed commands before being applied, not accepted on the strength of any claimed authority. | `8e8c8c3` | Codex-authored review + operator `[PROVENANCE]` clarification comment |
 | Entry 3a's repository-currency loop compared `local_head` to `remote_head` only, never against the commit actually pinned in `repository_revisions`; a rerun where both local and remote had drifted together from the pin would still print `match=YES`. Added an explicit `expected` pin per repo and a third comparison against it. | `8e8c8c3` | Codex review |
 | Entry 3a's policy-absence `find` commands used `-maxdepth 1`, checking only the repository root; a nested policy file under `docs/`, `src/`, etc. in TIBER-Forecast or Role-and-opportunity-model would have been missed while still reporting "absence confirmed." Changed to an unbounded repo-wide search (excluding `.git`/`node_modules`) and re-executed for real: still zero results in either repository, so the R1 absence records are unchanged, but the log now proves that rather than assuming it. | `24ede1f` | Codex review |
-| A fresh automated Codex review at head `24ede1f` (P1) found that R2's `named_evidence_gaps` required reconciling the TIBER-Data repo-boundaries doc and TIBER-FORGE ingestion spec, but neither was pinned in `governed_dependencies` — R2 as written could only rely on TIBER-Ops#13's ungoverned issue-text paraphrase of them, or immediately block. Both documents are real committed files (confirmed by direct lookup, not issue text like #13/#212); pinned both as new governed dependencies with fresh hashes after re-fetching and confirming their repos unchanged from `repository_revisions`, and reworded R2's evidence gap to cite the pinned dependency IDs directly. | *(this commit)* | Codex review (automated) |
-| A separate manual `[CODEX REVIEW]` comment (properly self-labeled with provenance) suggested replacing the `*(this commit)*` placeholders in this table with durable SHAs for cold-resume clarity. Applied. | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
+| A fresh automated Codex review at head `24ede1f` (P1) found that R2's `named_evidence_gaps` required reconciling the TIBER-Data repo-boundaries doc and TIBER-FORGE ingestion spec, but neither was pinned in `governed_dependencies` — R2 as written could only rely on TIBER-Ops#13's ungoverned issue-text paraphrase of them, or immediately block. Both documents are real committed files (confirmed by direct lookup, not issue text like #13/#212); pinned both as new governed dependencies with fresh hashes after re-fetching and confirming their repos unchanged from `repository_revisions`, and reworded R2's evidence gap to cite the pinned dependency IDs directly. | `e0743bf` | Codex review (automated) |
+| A separate manual `[CODEX REVIEW]` comment (properly self-labeled with provenance) suggested replacing the `*(this commit)*` placeholders in this table with durable SHAs for cold-resume clarity. Applied. | `e0743bf` | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
+| A manual `[CODEX REVIEW]` on head `e0743bf` (properly self-labeled) found the P1 fix was directionally correct but left the contract internally inconsistent: it claimed alignment with "the merged registry" for all pins, R1's completion evidence still said "All 26," and `frontier.gating_condition` reported conditions 1-3/5/6 as fully satisfied, none of which accounted for the 2 newly-pinned dependencies being verified-but-unregistered in the actual merged #21 registry (independently confirmed: the registry's 16 top-level entries + companions flatten to exactly 26, and neither new document is among them, at any nesting level). Corrected throughout: added `registry_state: unregistered_verified_from_pinned_source` to both new entries; added `fail_closed_items` FC3 documenting the gap as non-blocking for merge but blocking for #21 closure and R2 activation; rewrote the header comment, R1's `completion_evidence`, `frontier.gating_condition` (now split into gate A, the #22 six-condition gate, and gate B, registry synchronization), and `terminal_authoring_decision.emitted_decision_note` to state this precisely; fixed the ledger's own stale "26" references in Entry 3 and Entry 12. | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
 
 ---
 
@@ -104,14 +105,22 @@ commits pinned in the merged registry (`registry/tiber-current-state.v0.json`,
 verified 2026-07-13 during PR #23). No repository advanced between the
 registry's verification and this contract's authoring.
 
-**Artifact/contract hash re-verification:** all 26 `governed_dependencies`
+**Artifact/contract hash re-verification:** all 28 `governed_dependencies`
 entries and all 6 file-backed `policy_pins` entries (Teamstate, Data,
 Fantasy, Rookies, FORGE, TIBER-Ops) in the goal contract were independently
 recomputed via `sha256sum` against the current working tree and matched
-their pinned values with zero mismatches. The remaining 2 `policy_pins`
-entries (TIBER-Forecast, Role-and-opportunity-model) are absence records,
-not file hashes — their absence was reconfirmed by directory listing, per
-Entry 5. See Entry 4 for the full list.
+their pinned values with zero mismatches. Of the 28 dependencies, 26 are
+also present in the merged #21 registry and were cross-checked against it;
+the remaining 2 (`tiber_data_repo_boundaries_and_feedback_loops`,
+`tiber_forge_data_to_forge_ingestion_spec`, added after a P1 review finding
+— see Entry 0a) are verified directly from source at their pinned
+revisions but are **not yet present in the merged registry** — see FC3
+below and `fail_closed_items` in the contract; this is non-blocking for
+these control artifacts but blocking for #21 closure and R2 activation.
+The remaining 2 `policy_pins` entries (TIBER-Forecast,
+Role-and-opportunity-model) are absence records, not file hashes — their
+absence was reconfirmed by a repo-wide directory search, per Entry 5. See
+Entry 4 for the full list.
 
 **Fail-closed items re-checked:**
 - **FC1** (TIBER-Fantasy pinned FORGE static mirror,
@@ -124,10 +133,20 @@ Entry 5. See Entry 4 for the full list.
 - **FC2** (TIBER-Ops#13 and TIBER-Data#212 exist only as issue text): still
   true; no committed document has appeared in either repository since the
   registry was authored.
+- **FC3 (new, recorded this round):** `tiber_data_repo_boundaries_and_feedback_loops`
+  and `tiber_forge_data_to_forge_ingestion_spec` are verified from source
+  at their pinned revisions but are not registered in the merged #21
+  registry. Non-blocking for R1/these control artifacts; **blocking for
+  #21 closure and R2 activation** — see `frontier.gating_condition` (B) in
+  `goal-contract.yaml`. Clearing FC3 requires a separately scoped #21
+  registry amendment, not performed here.
 
 **R1 state: `complete`.** No mismatch, no inaccessible repository, no new
-unresolved policy conflict, no unknown-currency dependency was found. Input
-freeze for R1's scope is now in effect as of this timestamp.
+unresolved policy conflict, no unknown-currency dependency was found (FC3
+is a scope-completeness gap in the merged registry, not a currency or
+verification failure of R1's own re-checks). Input freeze for R1's scope
+is now in effect as of this timestamp; the two FC3 dependencies are frozen
+as source-verified, not as registry-registered.
 
 ## Entry 3a — R1 full command log
 
@@ -351,13 +370,19 @@ Full sha256 values (not truncated) are recorded in `goal-contract.yaml`.
 
 **Current frontier requirement: R2.**
 
-R2 is execution-gated: it may not begin substantive work until the human
-decision owner (Joseph, `@Prometheus-Frameworks`) records an explicit
-activation decision on `#22`, following this contract's merge, confirming
-the pilot execution gate from the `#22` approved decision is satisfied. See
-`frontier.gating_condition` in the goal contract for the exact six
-conditions and their individual status. No requirement other than R2 may
-become the active frontier without an approved contract amendment.
+R2 is execution-gated behind two things, not one: (A) the `#22` approved
+decision's six-condition pilot execution gate, and (B) registry
+synchronization — 2 of this contract's 28 `governed_dependencies`
+(`tiber_data_repo_boundaries_and_feedback_loops`,
+`tiber_forge_data_to_forge_ingestion_spec`) are verified from source but
+not yet present in the merged `#21` registry (`fail_closed_items` FC3).
+Gate (B) is **not currently satisfied** and is not cleared by merging this
+contract; it requires a separately scoped `#21` registry amendment. Only
+once both (A) and (B) are satisfied may the human decision owner (Joseph,
+`@Prometheus-Frameworks`) record an explicit activation decision on `#22`.
+See `frontier.gating_condition` in the goal contract for the full text. No
+requirement other than R2 may become the active frontier without an
+approved contract amendment.
 
 ## Entry 8 — Parked discoveries inherited from #22 (not activated)
 
@@ -386,19 +411,31 @@ activated by this ledger entry:
 
 ## Entry 10 — Decision required from the human owner
 
-1. Review this contract and ledger (this PR).
-2. Confirm the pilot execution gate is satisfied per the `#22` approved
-   decision's six conditions (see `frontier.gating_condition` in the
-   contract) — conditions 1, 2, 3, 5, and 6 are satisfied as of this
-   authoring; condition 4 (this contract and ledger existing) is satisfied
-   by merge.
-3. Merge this PR to `Prometheus-Frameworks/TIBER-Ops` `main` (human action,
-   not autonomous).
-4. Record an explicit activation decision on `#22` authorizing R2 to begin,
-   per the frontier's `no_substantive_15_work_before_gate` condition.
-5. Confirm on `#21` that the post-merge check finds both freshness artifacts
-   referenced by this contract on `main`, satisfying `#21`'s remaining
-   contract-integration criterion.
+1. Review this contract and ledger (this PR). Note the terminal authoring
+   decision means these control artifacts are ready for review/merge, not
+   that R2/#15 execution is ready to begin.
+2. Merge this PR to `Prometheus-Frameworks/TIBER-Ops` `main` (human action,
+   not autonomous) if satisfied. This installs the control artifacts but
+   does **not** activate R2 and does **not** close `#21`.
+3. The next program frontier after that merge is a separately scoped `#21`
+   registry amendment: add and verify
+   `tiber_data_repo_boundaries_and_feedback_loops` and
+   `tiber_forge_data_to_forge_ingestion_spec` in
+   `registry/tiber-current-state.v0.json` on `main` (`fail_closed_items`
+   FC3, `frontier.gating_condition` gate B). This is narrowly scoped to
+   these 2 confirmed `#15` dependencies, not a repo-wide registry
+   expansion.
+4. Once gate B is cleared, confirm on `#21` that both the original
+   contract-integration criterion (the merged `#21` preflight/registry
+   referenced as invariants — already satisfied by this contract) and the
+   new registry-completeness criterion are met.
+5. Confirm the `#22` approved decision's six-condition pilot execution
+   gate (gate A) is satisfied per `frontier.gating_condition` — conditions
+   1, 2, 5, and 6 are satisfied as of this authoring; condition 3 requires
+   gate B above; condition 4 is satisfied by step 2's merge.
+6. Only once both gate A and gate B are satisfied, record an explicit
+   activation decision on `#22` authorizing R2 to begin, per the
+   frontier's `no_substantive_15_work_before_gate` condition.
 
 No other decision is requested by this authoring task. This ledger entry
 does **not** ask for or imply approval to begin R2, `/goal` execution, or
@@ -438,7 +475,9 @@ any #15 architectural decision.
   reviewer's own environment, consistent with #25's "validate with an
   available standard parser" instruction.
 - **Result:** parses successfully. Top-level keys, 5 requirements (`R1`–`R5`),
-  26 `governed_dependencies`, 8 `policy_pins`, 8 `repository_revisions`,
+  28 `governed_dependencies` (26 registered in the merged #21 registry + 2
+  verified-but-unregistered per FC3), 8 `policy_pins`, 8
+  `repository_revisions`, 3 `fail_closed_items` (including FC3),
   `frontier.current_requirement: R2`, and
   `terminal_authoring_decision.emitted_decision: pilot_contract_ready_for_human_gate_review`
   all confirmed present and correctly typed by direct inspection of the
