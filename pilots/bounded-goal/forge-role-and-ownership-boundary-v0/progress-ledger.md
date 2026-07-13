@@ -36,12 +36,14 @@ review feedback, with the commit that applied it.
 | YAML validation command silently assumed PyYAML; documented the dependency, version, and install options explicitly (ledger Entry 12) | `7e87a1b` | Codex review |
 | Post-activation write scope excluded the ledger, which R2-R5 must append to; restructured `scope.permitted_write_paths_future_execution` with explicit per-path `writable_during` | `7aae76b` | Codex review |
 | R1's "full command log in progress-ledger.md" claim referenced a log that didn't exist; added ledger Entry 3a with the actual verbatim commands | `7aae76b` | Codex review |
-| `contract.status: proposed_pending_human_gate_review` would become false at merge; replaced with a durable status plus a separate `effective_condition` | *(this commit)* | Operator independent review |
-| Ledger's no-rewrite rule contradicted the in-place edits already made to Entries 3/12; added this two-phase lifecycle note and this correction log | *(this commit)* | Operator independent review |
-| Freshness re-check language ("if resuming after a time gap", "reasonable staleness window") was non-deterministic; made unconditional (`step0_mandatory_invariants`, R2 `blocked_evidence`) | *(this commit)* | Operator independent review |
-| `fantasy_embedded_forge_module` note and R4's `completion_evidence`/`blocked_evidence` presented TIBER-Ops#13's route-wiring claim as fact while classifying #13 as contextual elsewhere (FC2); reworded to ground R4 in the pinned document's own text and to stop-and-escalate rather than require out-of-scope inspection | *(this commit)* | Operator independent review |
+| `contract.status: proposed_pending_human_gate_review` would become false at merge; replaced with a durable status plus a separate `effective_condition` | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
+| Ledger's no-rewrite rule contradicted the in-place edits already made to Entries 3/12; added this two-phase lifecycle note and this correction log | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
+| Freshness re-check language ("if resuming after a time gap", "reasonable staleness window") was non-deterministic; made unconditional (`step0_mandatory_invariants`, R2 `blocked_evidence`) | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
+| `fantasy_embedded_forge_module` note and R4's `completion_evidence`/`blocked_evidence` presented TIBER-Ops#13's route-wiring claim as fact while classifying #13 as contextual elsewhere (FC2); reworded to ground R4 in the pinned document's own text and to stop-and-escalate rather than require out-of-scope inspection | *(this commit)* | Codex-authored review (posted via the operator's account at Joseph's request; not a human decision) |
 | Entry 3a's policy-pin `verify` calls omitted the `repo_name` argument required by the 4-arg function signature (would report false `MISMATCH_or_MISSING`); corrected and re-executed for real, all `MATCH` | *(this commit)* | Codex review |
-| Entry 3a's repository-currency loop compared against `origin/$def` without an explicit `git fetch` first, so it could pass on stale remote-tracking refs; added `git fetch origin --quiet` to the logged loop and re-executed, still zero drift | *(this commit)* | Codex review |
+| Entry 3a's repository-currency loop compared against `origin/$def` without an explicit `git fetch` first, so it could pass on stale remote-tracking refs; added `git fetch origin --quiet` to the logged loop and re-executed, still zero drift | `907c90e` | Codex review |
+| The `[INDEPENDENT REVIEW]` comment attributed the four preceding corrections to "Operator independent review." The comment was subsequently edited to disclose it was Codex-authored, posted through the operator's authenticated account at Joseph's request — not a human/operator decision. Relabeled those four rows above accordingly. No technical content of those corrections was affected: each was independently verified against the actual file contents and re-executed commands before being applied, not accepted on the strength of any claimed authority. | *(this commit)* | Codex-authored review + operator `[PROVENANCE]` clarification comment |
+| Entry 3a's repository-currency loop compared `local_head` to `remote_head` only, never against the commit actually pinned in `repository_revisions`; a rerun where both local and remote had drifted together from the pin would still print `match=YES`. Added an explicit `expected` pin per repo and a third comparison against it. | *(this commit)* | Codex review |
 
 ---
 
@@ -138,6 +140,15 @@ verbatim otherwise.
 **1. Repository currency (7 governed-source repos):**
 
 ```bash
+declare -A pinned=(
+  [TIBER-Data]=d9a5beaacf12e3fbd74becd02db3d2ac39e48905
+  [TIBER-Forecast]=478489b565a97a1179d6010ebf9b1b4326a50c04
+  [TIBER-Teamstate]=3ec1d78e10fccf203239c88b905e3cf744d21c48
+  [Role-and-opportunity-model]=6435d8d3c2c4e53dc45ab57a05a2716e2b47598d
+  [TIBER-FORGE]=af2ca4d5f67f04ed1fc58fef50051c8169545d11
+  [TIBER-Fantasy]=d35d440f24beaa275f6eb2f36cdd37a9c4989c3f
+  [TIBER-Rookies]=2ef92faf9a9c91a393f53e9140428451529a1c48
+)
 for d in TIBER-Data TIBER-Forecast TIBER-Teamstate Role-and-opportunity-model TIBER-FORGE TIBER-Fantasy TIBER-Rookies; do
   echo "=== $d ==="
   cd /home/user/$d
@@ -145,16 +156,24 @@ for d in TIBER-Data TIBER-Forecast TIBER-Teamstate Role-and-opportunity-model TI
   def=$(git remote show origin 2>/dev/null | sed -n 's/.*HEAD branch: //p')
   local_head=$(git rev-parse HEAD)
   remote_head=$(git rev-parse origin/$def 2>/dev/null)
-  echo "default=$def local_head=$local_head remote_head=$remote_head match=$([ "$local_head" = "$remote_head" ] && echo YES || echo NO)"
+  expected="${pinned[$d]}"
+  match_local_remote=$([ "$local_head" = "$remote_head" ] && echo YES || echo NO)
+  match_vs_pin=$([ "$remote_head" = "$expected" ] && echo YES || echo NO)
+  echo "default=$def local_head=$local_head remote_head=$remote_head pinned=$expected local_eq_remote=$match_local_remote remote_eq_pinned=$match_vs_pin"
   git status --porcelain | head -2
   cd /home/user
 done
 ```
 
-Observed: `match=YES` for all 7 repos (re-fetched from origin immediately
-before comparison, not read from a possibly-stale remote-tracking ref),
+Observed: `local_eq_remote=YES` (checkout matches its own freshly-fetched
+origin, not read from a possibly-stale remote-tracking ref) **and**
+`remote_eq_pinned=YES` (origin is still exactly the commit pinned in
+`repository_revisions`, not merely self-consistent) for all 7 repos, with
 empty `git status --porcelain` for each (no local drift). Exact HEADs are
-in Entry 3's table.
+in Entry 3's table. A future rerun of this loop with an unmodified `pinned`
+map will surface any real upstream drift as `remote_eq_pinned=NO` even if
+`local_eq_remote=YES` — that gap (checked here, was previously absent) is
+exactly what the prior version of this loop could not detect.
 
 **2. Governed-dependency file hashes (26 entries) — verify function and
 invocations:**
