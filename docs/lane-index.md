@@ -32,7 +32,10 @@ of TIBER work. The active lane is chosen weekly — see
   2026-07-13). This exception does not change the active implementation lane;
   ML / modeling remains the sole active implementation lane.
 - **Related future work:** Freshness fail-closed — documented as future work,
-  **not opened.**
+  **not opened.** This item means **artifact/product-surface enforcement** (do
+  not show users stale data) and is distinct from #21's delivered
+  **agent-context** freshness protocol (preflight + registry for long-horizon
+  runs); delivering #21 does not open it.
 
 ## Research / writing lane
 
@@ -80,6 +83,6 @@ of TIBER work. The active lane is chosen weekly — see
 | PPM model (#49, #265) | ML / modeling | Indexed under active lane |
 | TIBER-Fantasy #277 | Governance | **Parked** — audit/spec ticket; not authorized |
 | TIBER-Ops #21 freshness preflight + registry v0 (PR #23) | Governance | **Authorized docs-only exception under #22** — delivered via PR #23; effective as merged to `main` (see the registry's effective condition) |
-| Freshness fail-closed | Governance | Documented future work, **not opened** |
+| Freshness fail-closed (artifact/product-surface enforcement — distinct from #21's agent-context protocol) | Governance | Documented future work, **not opened** |
 | FLF paper / docs | Research / writing | **Parked / indexed** research-lane material |
 | TIBER-Ops automation | Parked / incubation | **Parked, not started** |

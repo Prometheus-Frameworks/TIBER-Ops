@@ -155,8 +155,12 @@ When currency or authority cannot be established for a dependency:
   location; what verification was attempted; what was observed (hashes, revisions,
   dates); why currency could not be established; and the requirement(s) blocked.
 - The agent posts a `[BLOCKED]` comment to the program source of truth (#22) naming
-  the blocked requirement and the failed dependency, and proceeds only on other
-  frontier work that does not depend on the blocked item — or stops if none exists.
+  the blocked requirement and the failed dependency.
+- The active frontier requirement remains blocked. The agent may collect the
+  evidence needed to re-establish currency for the failed dependency, or perform
+  non-dependent actions within that same frontier requirement; otherwise it stops.
+  It may not activate a different requirement without an operator-approved
+  frontier transition or contract amendment.
 - Unblocking requires re-established currency (a passing re-verification) or an
   operator-approved contract amendment. Neither may be self-granted by the
   executing agent.
