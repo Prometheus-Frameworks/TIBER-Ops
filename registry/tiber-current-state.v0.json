@@ -1,0 +1,476 @@
+{
+  "registry_id": "tiber-current-state",
+  "registry_version": "v0",
+  "status": "proposed_pending_operator_merge",
+  "authority_statement": "This registry is descriptive, not a promotion gate and not merge authority. Listing an item does not promote it; absence does not demote it. It answers exactly one question: what is the current version of X, and where does it live? See docs/architecture/cross-repo-freshness-and-current-state-registry-v0.md.",
+  "scope": "Confirmed dependencies of the TIBER-Ops #15 pilot campaign only, per the approved decision on TIBER-Ops #22 (2026-07-13). Expansion beyond these dependencies is not authorized in v0.",
+  "governing_issues": {
+    "program_source_of_truth": "TIBER-Ops#22",
+    "authorizing_issue": "TIBER-Ops#21",
+    "pilot_protocol": "TIBER-Ops#20",
+    "pilot_campaign": "TIBER-Ops#15"
+  },
+  "verified_at": "2026-07-13",
+  "verification_method": "Each repository fetched from origin on 2026-07-13; local checkout confirmed equal to origin/main HEAD; every entry's sha256 computed from the working tree at that revision; promotion manifests cross-checked against artifact bytes; cross-repo mirror seams re-hashed on both sides.",
+  "repositories": [
+    {
+      "name": "Prometheus-Frameworks/TIBER-Ops",
+      "role_in_campaign": "write_target_and_program_authority",
+      "default_branch": "main",
+      "verified_head_commit": "c702dd9beb91372d0ab5ad03b1e938bb92430488"
+    },
+    {
+      "name": "Prometheus-Frameworks/TIBER-Data",
+      "role_in_campaign": "governed_read_source",
+      "default_branch": "main",
+      "verified_head_commit": "d9a5beaacf12e3fbd74becd02db3d2ac39e48905"
+    },
+    {
+      "name": "Prometheus-Frameworks/TIBER-Forecast",
+      "role_in_campaign": "governed_read_source",
+      "default_branch": "main",
+      "verified_head_commit": "478489b565a97a1179d6010ebf9b1b4326a50c04"
+    },
+    {
+      "name": "Prometheus-Frameworks/TIBER-Teamstate",
+      "role_in_campaign": "governed_read_source",
+      "default_branch": "main",
+      "verified_head_commit": "3ec1d78e10fccf203239c88b905e3cf744d21c48"
+    },
+    {
+      "name": "Prometheus-Frameworks/Role-and-opportunity-model",
+      "role_in_campaign": "governed_read_source",
+      "default_branch": "main",
+      "verified_head_commit": "6435d8d3c2c4e53dc45ab57a05a2716e2b47598d"
+    },
+    {
+      "name": "Prometheus-Frameworks/TIBER-FORGE",
+      "role_in_campaign": "governed_read_source",
+      "default_branch": "main",
+      "verified_head_commit": "af2ca4d5f67f04ed1fc58fef50051c8169545d11"
+    },
+    {
+      "name": "Prometheus-Frameworks/TIBER-Fantasy",
+      "role_in_campaign": "governed_read_source",
+      "default_branch": "main",
+      "verified_head_commit": "d35d440f24beaa275f6eb2f36cdd37a9c4989c3f"
+    },
+    {
+      "name": "Prometheus-Frameworks/TIBER-Rookies",
+      "role_in_campaign": "governed_read_source",
+      "default_branch": "main",
+      "verified_head_commit": "2ef92faf9a9c91a393f53e9140428451529a1c48"
+    }
+  ],
+  "entries": [
+    {
+      "id": "tiber_identity_crosswalk_v1",
+      "class": "promoted_artifact",
+      "repo": "Prometheus-Frameworks/TIBER-Data",
+      "path": "exports/promoted/identity_crosswalk/tiber_identity_crosswalk_v1.json",
+      "version": "v1",
+      "state": "promoted",
+      "content_sha256": "5ce5cd3f5dc8fd27c28c5a5fb283431ac648f764c3f8f2b645f6ad924338f263",
+      "last_modified_commit": "3df598a43e6af41ccf0bbd9db206bc4504b5a8b2",
+      "promoted_at": "2026-06-09",
+      "superseded_by": null,
+      "supersedes": null,
+      "companions": [
+        {
+          "path": "schemas/tiber_identity_crosswalk_v1.schema.json",
+          "content_sha256": "da7189ce7d067556b9b7a7510151fb0e0d775fe8feeebc3f18a97951104660c0"
+        }
+      ],
+      "notes": "Slug-namespace identity bridge (sleeper id -> TIBER slug), 25 operator-verified mappings, not a full player universe. No separate promotion manifest exists; provenance metadata is embedded inline. See known_drift_instances D1."
+    },
+    {
+      "id": "player_season_coverage_v0",
+      "class": "promoted_artifact",
+      "repo": "Prometheus-Frameworks/TIBER-Data",
+      "path": "exports/promoted/nfl/player_season_coverage_v0.json",
+      "version": "player_season_coverage_v0_promoted_v1",
+      "state": "promoted",
+      "content_sha256": "d45f612b207085df00b4b080e4f55ce1abbd060dcbf30b0bee777ff833ddd8ac",
+      "last_modified_commit": "711d6ee158d4e3bd116d1df4d76dea282200454d",
+      "promoted_at": "2026-07-06",
+      "promotion_review": "TIBER-Data#202",
+      "superseded_by": null,
+      "supersedes": {
+        "description": "Output of promotion review TIBER-Data#192 (seasons 2022-2025 only), replaced in place at the same path.",
+        "prior_content_sha256": "29f8e378127fa5426e5897ac4522b6187941312edabab357d8a427fb20511035",
+        "pointer_location": "exports/promoted/nfl/PLAYER_SEASON_COVERAGE_V0_PROMOTION_MANIFEST.json (prior_promoted_artifact field)"
+      },
+      "companions": [
+        {
+          "path": "exports/promoted/nfl/PLAYER_SEASON_COVERAGE_V0_PROMOTION_MANIFEST.json",
+          "content_sha256": "5e9a382db0681e7a808a1d5fdf4334653cf2f0b26314c45425b333aa2024d154"
+        }
+      ],
+      "notes": "GSIS-namespace player-season coverage, seasons 2021-2025 REG, positions QB/RB/TE/WR, 3016 rows. Manifest sha256 verified equal to artifact bytes on 2026-07-13. See confirmed_supersessions S1 and known_drift_instances D1, D5."
+    },
+    {
+      "id": "forge_weekly_player_input_v1",
+      "class": "governed_contract",
+      "repo": "Prometheus-Frameworks/TIBER-Data",
+      "path": "src/contracts/v1/forgeWeeklyPlayerInput.ts",
+      "version": "v1",
+      "state": "active_contract",
+      "content_sha256": "e8b354675aa160fb3c14d8f695c4e4146ed6367098494f7f3671b84e6b2919e4",
+      "last_modified_commit": "0b95b713e0511e6d8f9b7e2607c908bbf33e61b7",
+      "superseded_by": null,
+      "supersedes": null,
+      "notes": "The Data->FORGE weekly player input seam. Consumed by TIBER-FORGE's football lane (src/contracts/football.ts). Central to #15 required decision 4 (how FORGE consumes upstream evidence)."
+    },
+    {
+      "id": "evidence_layer_v0",
+      "class": "governed_contract",
+      "repo": "Prometheus-Frameworks/TIBER-Data",
+      "path": "docs/contracts/evidence-layer-v0.md",
+      "version": "v0",
+      "state": "active_contract",
+      "content_sha256": "48c0949811e69f81bb51c6f84e5af394469838b9bc713991c437599c0b89e148",
+      "last_modified_commit": "2fa77bb870dae41dc528a0103ba89d4d0bc80607",
+      "superseded_by": null,
+      "supersedes": null,
+      "notes": "Evidence statuses, promotion gates, artifact targets. Input to #15's evidence-class non-collapse requirement."
+    },
+    {
+      "id": "team_environment_profile_v0",
+      "class": "governed_contract",
+      "repo": "Prometheus-Frameworks/TIBER-Teamstate",
+      "path": "docs/contracts/team-environment-profile-v0.md",
+      "version": "v0",
+      "state": "active_contract",
+      "content_sha256": "255b7f954b6ebab550ec811a4047dcd87238e541750ae628249f4ef157c9870a",
+      "last_modified_commit": "ed4e57c1d4a3bb28dc98db2d88b3b77391d083ca",
+      "superseded_by": null,
+      "supersedes": null,
+      "companions": [
+        {
+          "path": "src/contracts/teamEnvironmentProfile.ts",
+          "content_sha256": "75295dd955ee71527af6e3b3e707da5fbc490e7af6918fd8996e616d5725dd15"
+        }
+      ],
+      "notes": "Teamstate's first governed downstream contract (team_environment_profiles_v0). The committed output/team_environment_profiles_v0.json (sha256 63000cb08e8c82ca81336099852a0a8676f6e79c1940c3e9ffdd018a69bccb8e) is fixture_scaffold provenance, not governed truth, per docs/output-artifact-policy.md."
+    },
+    {
+      "id": "team_environment_movement_v1",
+      "class": "governed_contract",
+      "repo": "Prometheus-Frameworks/TIBER-Teamstate",
+      "path": "docs/contracts/team-environment-movement-v1.md",
+      "version": "v1",
+      "state": "active_contract",
+      "content_sha256": "ee3ac8ba16a10fb13d98d86effdafe9c4ab605bbeb27a8a047d60219a498e0ee",
+      "last_modified_commit": "822e96e898b431ab47f681dd8b60904429371d21",
+      "superseded_by": null,
+      "supersedes": null,
+      "companions": [
+        {
+          "path": "src/contracts/teamEnvironmentMovementV1.ts",
+          "content_sha256": "b0a1308bb4b31493c09bdf4ae5ab70f6b5cf100991172951c8acae8586ba544a"
+        }
+      ],
+      "notes": "Successor design to team_environment_movement_v0 but NOT a completed supersession: the v1 contract explicitly keeps v0 unchanged for the current TIBER-Fantasy consumer during migration (issue Teamstate#34). Both versions are intentionally live; no superseded_by pointer is applied, fail-closed. Committed output/team_environment_movement_v1.json (sha256 208e5b19ff5eb353e01d9b3f8cc22f8fe36f8a1ea37ae0e7007f3e045682dec9) is fixture_scaffold, not governed truth."
+    },
+    {
+      "id": "role_opportunity_profile_v0",
+      "class": "governed_contract",
+      "repo": "Prometheus-Frameworks/Role-and-opportunity-model",
+      "path": "docs/contracts/role-opportunity-profile-v0.md",
+      "version": "role_opportunity_profile_v0",
+      "state": "contract_first_no_governed_pipeline",
+      "content_sha256": "a156ff5e9f7d335a3a45e76dda8765aaa4883b158c62bc4da02eb9cf4d634bdb",
+      "last_modified_commit": "66296ed00f5fec091abcc9712cfcbd8cb94238ea",
+      "superseded_by": null,
+      "supersedes": null,
+      "companions": [
+        {
+          "path": "src/types/roleOpportunityProfileV0.ts",
+          "content_sha256": "2fca35020d3cf4830a54f932dcbb47520792177eaef1f699032dac16bcde9498"
+        }
+      ],
+      "notes": "Contract-first only; existing exports remain non-governed until a governed pipeline emits the artifact. WR/TE only. Every emitted fixture profile carries readyForForgeScoring=false; FORGE consumption is explicitly gated behind that readiness flag."
+    },
+    {
+      "id": "forge_core_contract",
+      "class": "governed_contract",
+      "repo": "Prometheus-Frameworks/TIBER-FORGE",
+      "path": "src/contracts/forge.ts",
+      "version": "unversioned_typescript_contract",
+      "state": "active_contract",
+      "content_sha256": "ceeb45ee9833166d1192b25919b9b3ee24612f38af8a39ecea638656a45689a5",
+      "last_modified_commit": "fc619b5057d325a120d44078bb5942eade11aafb",
+      "superseded_by": null,
+      "supersedes": null,
+      "companions": [
+        {
+          "path": "src/contracts/football.ts",
+          "content_sha256": "453693f1bd069326b4266ed3346443bdee729a109face215c8d8a3c7f8adc68d"
+        }
+      ],
+      "notes": "Standalone FORGE service contracts (PlayerInput, EvaluateRequest, EvaluationScore, tiers, confidence; football lane consumes ForgeWeeklyPlayerInput/v1 from TIBER-Data). Repo self-describes as bootstrap-demo, not production-complete (package tiber-forge v0.2.0)."
+    },
+    {
+      "id": "forge_player_static_v1",
+      "class": "promoted_artifact",
+      "repo": "Prometheus-Frameworks/TIBER-FORGE",
+      "path": "exports/promoted/forge_player_static/forge_player_static_v1.json",
+      "version": "forge_player_static_v1 (model forge-player-static-v1.0.0)",
+      "state": "promoted",
+      "content_sha256": "2020a52b2e941fbcd7a78130399380351da914959663ff9f1abf15affece1041",
+      "last_modified_commit": "1fca205469a2793de4d509026c34da1864104db9",
+      "promoted_at": "2026-06-09",
+      "superseded_by": null,
+      "supersedes": null,
+      "notes": "59 rows (45 player_specific + 14 generated_baseline). Only score_source=player_specific rows count as FORGE evidence downstream. This is the producer-side current version; the downstream TIBER-Fantasy pinned mirror does NOT match it — see fail_closed_items FC1."
+    },
+    {
+      "id": "fantasy_forge_externalization_transition_spec",
+      "class": "governed_specification",
+      "repo": "Prometheus-Frameworks/TIBER-Fantasy",
+      "path": "docs/architecture/FORGE_EXTERNALIZATION_TRANSITION_SPEC.md",
+      "version": "unversioned_spec",
+      "state": "active_specification",
+      "content_sha256": "7b9b0362048d2d9dbe42fa801fb3f75236709fc56e8b0186723c0306ae66b3ba",
+      "last_modified_commit": "052d90e7a2f02fc94e3b98624740f05a6eb4ac63",
+      "superseded_by": null,
+      "supersedes": null,
+      "notes": "The authoritative statement of the embedded-FORGE -> external-FORGE migration plan (7 stages; currently Stage 0 freeze). Primary input to #15 required decision on migration status."
+    },
+    {
+      "id": "fantasy_embedded_forge_module",
+      "class": "live_implementation_status_marker",
+      "repo": "Prometheus-Frameworks/TIBER-Fantasy",
+      "path": "server/modules/forge/MODULE.md",
+      "version": "n/a",
+      "state": "live_legacy_core_temp",
+      "content_sha256": "32cf08fd7bb6b28813ce2f56a8608d62a1700024d1e0b734df926af40c88cc0b",
+      "last_modified_commit": "052d90e7a2f02fc94e3b98624740f05a6eb4ac63",
+      "superseded_by": null,
+      "supersedes": null,
+      "notes": "Embedded FORGE engine is classified LEGACY_CORE_TEMP and remains LIVE (wired into live routes per the TIBER-Ops#13 audit). It is NOT superseded by the TIBER-FORGE standalone repo; neither implementation currently supersedes the other. Resolving canonical status is #15's deliverable, not this registry's. See known_drift_instances D3."
+    },
+    {
+      "id": "fantasy_rankings_v2_contract",
+      "class": "governed_contract",
+      "repo": "Prometheus-Frameworks/TIBER-Fantasy",
+      "path": "server/contracts/rankingsV2.ts",
+      "version": "v2",
+      "state": "active_contract",
+      "content_sha256": "af7f56ffdb578254438c52c56dfd482d164d1fa42f415c2b7b00518322729c39",
+      "last_modified_commit": "052d90e7a2f02fc94e3b98624740f05a6eb4ac63",
+      "superseded_by": null,
+      "supersedes": null,
+      "notes": "Defines the sourceStack vocabulary including the 'promoted_artifact' layer label. See known_drift_instances D2 for the vocabulary-drift instance."
+    },
+    {
+      "id": "rookie_transition_profile_v0_2_0",
+      "class": "promoted_artifact",
+      "repo": "Prometheus-Frameworks/TIBER-Rookies",
+      "path": "exports/promoted/rookie-transition-profile/2026_rookie_transition_profile_v0.json",
+      "version": "rookie-transition-profile-v0.2.0",
+      "state": "promoted",
+      "content_sha256": "c95b941c7855612daccfc2226fc51e0e34dbb2ebe8a2487596675d2522a22f37",
+      "last_modified_commit": "2ef92faf9a9c91a393f53e9140428451529a1c48",
+      "promoted_at": "2026-07-10",
+      "promotion_review": "TIBER-Rookies#269 (PR #270); review doc docs/reports/2026-07-10-rookie-transition-profile-v0-2-promotion-review.md sha256 39f1aff45de04af2943ad3fa42717ee110c88b1984c7fa6ee9260c33b0abd05a",
+      "superseded_by": null,
+      "supersedes": null,
+      "companions": [
+        {
+          "path": "exports/promoted/rookie-transition-profile/2026_rookie_transition_profile_v0.csv",
+          "content_sha256": "3005bcd6ad4ffc87a312c6926e20c5e3658747012855aa9d8ccfa33d898545e6"
+        },
+        {
+          "path": "exports/promoted/rookie-transition-profile/2026_manifest.json",
+          "content_sha256": "0acf361c6d2d8cc6f684026481a5aa279e9f7fa718256fad78da0366d5804413"
+        },
+        {
+          "path": "docs/rookie-transition-profile-contract.md",
+          "content_sha256": "187fb0c68b8a9d30d7e4db0f130ceb98009af4cffb878394dded540d3d6b285b"
+        }
+      ],
+      "notes": "Season 2026, 48 rows. Single promotion event in git history (no prior promoted version exists; no supersession). Evidence consolidation layer, explicitly not a score or ranking. The TIBER-Forecast mirror was re-hashed on 2026-07-13 and is byte-identical."
+    },
+    {
+      "id": "forecast_projection_artifacts_contract",
+      "class": "governed_contract",
+      "repo": "Prometheus-Frameworks/TIBER-Forecast",
+      "path": "src/contracts/projectionArtifacts.ts",
+      "version": "projection-run-manifest-v1 family",
+      "state": "active_contract",
+      "content_sha256": "a11f3030ada3b9fa932915978b8de2b9a1a353275496819c439b926b597fd012",
+      "last_modified_commit": "3adb2eb36505c7a2adaae6e94c8dccff6ed6e55d",
+      "superseded_by": null,
+      "supersedes": null,
+      "notes": "Defines the five governed Forecast output artifact types. Tests assert persisted artifacts contain no FORGE grading/tiering fields. Primary input to #15 required decision 3 (what Forecast emits)."
+    },
+    {
+      "id": "forecast_ownership_boundaries",
+      "class": "governed_specification",
+      "repo": "Prometheus-Frameworks/TIBER-Forecast",
+      "path": "docs/ownership-boundaries.md",
+      "version": "unversioned_spec",
+      "state": "active_specification",
+      "content_sha256": "4790a90461b2025000f726df3ba2aac2f31bbe6b6c3fee454b217c706ed85f6b",
+      "last_modified_commit": "7cb74dfca5d0fe29a7466a6bbf006c04e86e746d",
+      "superseded_by": null,
+      "supersedes": null,
+      "notes": "States that deterministic grading/tiering is owned by TIBER-FORGE and Forecast emits model/scoring facts only. Note: this is one of the three inconsistent cross-repo FORGE role definitions catalogued by TIBER-Ops#13 — reconciling them is #15's job."
+    },
+    {
+      "id": "forecast_rookie_transition_profile_consumption",
+      "class": "governed_specification",
+      "repo": "Prometheus-Frameworks/TIBER-Forecast",
+      "path": "docs/experiments/rookie-transition-profile-forecast-consumption-design-2026-07-11.md",
+      "version": "design 2026-07-11",
+      "state": "design_only_no_consumption_authorized",
+      "content_sha256": "3792da358b92011df04b21819e59b117a1c242a652baa74c813727df42355090",
+      "last_modified_commit": "6c68b1691476f0d26f1b0270e32c199a3ee2f436",
+      "superseded_by": null,
+      "supersedes": null,
+      "companions": [
+        {
+          "path": "data/fixtures/tiberRookies/ROOKIE_TRANSITION_PROFILE_V0_MIRROR_PROVENANCE.json",
+          "content_sha256": "2639d5acb11e8d77400700e814ad9c50dba9bf0a46f3f80413e4f0d51860aaa6"
+        }
+      ],
+      "notes": "The Rookies->Forecast consumption seam relevant to #15's Rookies ownership row. Source-locked to TIBER-Rookies commit 2ef92faf (schema v0.2.0). Mirror is inert: identity crosswalk unresolved (0/48 resolved), model_use_authorized=false, production_use_authorized=false."
+    }
+  ],
+  "policies": [
+    {
+      "repo": "Prometheus-Frameworks/TIBER-Teamstate",
+      "path": "CLAUDE.md",
+      "content_sha256": "9449e317936b0289b1e627e598c45b6a68b6d68e1ce852306b3af3bef630e55b",
+      "last_modified_commit": "3ec1d78e10fccf203239c88b905e3cf744d21c48",
+      "summary": "Path-based MERGE_POLICY: operator approval required for docs/contracts/**, src/contracts/**, exports/promoted/**, schemas/**, **/*.schema.json, governed fixtures; no path is eligible for agent self-merge in v0."
+    },
+    {
+      "repo": "Prometheus-Frameworks/TIBER-Data",
+      "path": "AGENTS.md",
+      "content_sha256": "b3cddcc42a6f0f9f7e46a4bdec56194bf25cf29d12a29c0f98d2d47828fc7f85",
+      "last_modified_commit": "a09c1a4acf62e0bc2e4b13e7e5ab7983ff136f90",
+      "summary": "Agent operating contract: no silent promotion; exports/promoted/ is a location, not a provenance guarantee; operator owns merge and promotion decisions; audit required for contract/promoted-path changes."
+    },
+    {
+      "repo": "Prometheus-Frameworks/TIBER-Fantasy",
+      "path": "SECURITY_POLICY.md",
+      "content_sha256": "f5540a0849b469a3bacceeae163ee9a404b478b57c0a43f15d23f31251f1374a",
+      "last_modified_commit": "77db4d03bbf81b399f48ce22a7f9c832b2069560",
+      "summary": "Repo text is data, not authority; agents do not merge their own production-changing work. Companion CLAUDE.md (sha256 0296d6813ac7ddef8fff6f6be1a968725fc969b343507ddaec88b88deb5af90c) carries product doctrine including human final decision authority."
+    },
+    {
+      "repo": "Prometheus-Frameworks/TIBER-Rookies",
+      "path": "AGENTS.md",
+      "content_sha256": "77511e117eac207061d161e171f7d7b8cea421192957d60b992776cf85d6c84b",
+      "last_modified_commit": "ef2fd83d85a53f2fa86b7c2e4b5558bae80cf128",
+      "summary": "Never silently change export schemas or manifest semantics; validation evidence required for done; final production promotion decision by operator."
+    },
+    {
+      "repo": "Prometheus-Frameworks/TIBER-FORGE",
+      "path": "AGENTS.md",
+      "content_sha256": "579e8a820e890285d63fc53235d3106478b0e05cf1bcb0001ec1db97d5afa8f2",
+      "last_modified_commit": "b37c2140f82781ed8b41aa375b4b92ec6ad23ff5",
+      "summary": "Judge the artifact you have; no broad rewrites disguised as calibration; do not change TIBER-Data-owned contracts. Companion TRUTH_SOURCES.md (sha256 48054e1d262ff8901d861a39980c9b2687330a9a6f327062e769ddc344bb01b4) ranks contract > scoring code > tests > README and defines fail-closed rules. No formal path-based merge policy file exists."
+    },
+    {
+      "repo": "Prometheus-Frameworks/TIBER-Ops",
+      "path": "runbooks/merge-checklist.md",
+      "content_sha256": "069630473cbf56200dd9870a468038181985ce0d30467b17b83a1d07e9a6d9c3",
+      "last_modified_commit": "59933bbf859d3c65c14f3adbddbf6a4d966f536d",
+      "summary": "Docs-only repo; pre-merge gate checklist; single-active-lane doctrine. Code/automation PRs do not belong in TIBER-Ops."
+    },
+    {
+      "repo": "Prometheus-Frameworks/TIBER-Forecast",
+      "path": null,
+      "content_sha256": null,
+      "last_modified_commit": null,
+      "summary": "ABSENCE RECORDED: no CLAUDE.md, AGENTS.md, MERGE_POLICY, or SECURITY_POLICY file exists. Governance is enforced via the PR template's governance-verification section and the capability sequence in docs/capabilities/README.md."
+    },
+    {
+      "repo": "Prometheus-Frameworks/Role-and-opportunity-model",
+      "path": null,
+      "content_sha256": null,
+      "last_modified_commit": null,
+      "summary": "ABSENCE RECORDED: no formal agent/merge policy file exists. Boundary rules are stated informally in README.md and contract guardrails in docs/contracts/role-opportunity-profile-v0.md."
+    }
+  ],
+  "contextual_references": [
+    {
+      "id": "tiber_ops_13_forge_cross_repo_audit",
+      "location": "https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/13",
+      "state": "closed_completed_2026-07-11",
+      "notes": "Precursor audit. Findings live only in the issue body; no committed repo document exists. Confirms embedded Fantasy FORGE is live and standalone TIBER-FORGE is bootstrap-demo, and catalogues the three inconsistent FORGE role definitions."
+    },
+    {
+      "id": "tiber_data_212_player_attribute_evidence_design",
+      "location": "https://github.com/Prometheus-Frameworks/TIBER-Data/issues/212",
+      "state": "open",
+      "notes": "Precursor design issue. No committed design document exists in TIBER-Data as of 2026-07-13; the deliverable has not been produced. Contextual only: #15 cites the issue and its evidence-class taxonomy, but does not consume a governed artifact from it."
+    },
+    {
+      "id": "tiber_ops_supersession_precedent",
+      "location": "Prometheus-Frameworks/TIBER-Ops docs/architecture/public-knowledge-and-agent-discovery-v0.md",
+      "state": "committed (sha256 bec601415acd867bb2f516d93cea217b466399516eb68b5b2000b112f4941955)",
+      "notes": "Existing supersession semantics (section 8) and three-way temporal-fact separation; cited by the freshness convention."
+    }
+  ],
+  "confirmed_supersessions": [
+    {
+      "id": "S1",
+      "successor": "player_season_coverage_v0 promotion TIBER-Data#202 (sha256 d45f612b...)",
+      "superseded": "player_season_coverage_v0 promotion TIBER-Data#192 output (sha256 29f8e378...)",
+      "pointer_status": "already_compliant_no_edit_required",
+      "rationale": "The successor replaced the predecessor in place at the same canonical path, and the promotion manifest already carries an explicit machine-readable backward pointer (prior_promoted_artifact with sha256, review reference, and supersedes note). No stale co-resident document exists that fails to point forward, so no new pointer edit is required or proposed."
+    }
+  ],
+  "known_drift_instances": [
+    {
+      "id": "D1",
+      "description": "Identity namespace incoherence: tiber_identity_crosswalk_v1 is slug-namespace (sleeper->slug) while player_season_coverage_v0 is GSIS-namespace; the two promoted TIBER-Data artifacts cannot join.",
+      "classification": "coherence_gap_not_supersession",
+      "disposition": "Recorded for #15 context (from the TIBER-Data#18 review, restated in TIBER-Ops#21). Remediation is not authorized under #21."
+    },
+    {
+      "id": "D2",
+      "description": "TIBER-Fantasy rankingsV2 sourceStack labels a live request-time scoring-service call with layer 'promoted_artifact' (server/routes/rankingsV2Routes.ts, success path), diverging from the governance meaning of promoted artifact.",
+      "classification": "vocabulary_drift_not_supersession",
+      "disposition": "Recorded for #15 context (from the TIBER-Fantasy#19 review). Product code change is out of scope for #21."
+    },
+    {
+      "id": "D3",
+      "description": "FORGE exists as two implementations: the live embedded engine in TIBER-Fantasy (LEGACY_CORE_TEMP, wired into live routes) and the standalone TIBER-FORGE service (bootstrap-demo). No authoritative pointer designates which is canonical.",
+      "classification": "unresolved_dual_implementation_not_supersession",
+      "disposition": "Fail-closed: no supersedes pointer is applied in either direction. Designating the canonical implementation is precisely #15's required decision 10; applying a pointer now would prejudge the campaign."
+    },
+    {
+      "id": "D4",
+      "description": "TIBER-Fantasy's pinned external FORGE artifact does not match the producer's current promoted artifact and matches no revision in the producer's git history (byte-level or semantic).",
+      "classification": "stale_mirror_with_unverifiable_provenance",
+      "disposition": "Fail-closed: see fail_closed_items FC1."
+    },
+    {
+      "id": "D5",
+      "description": "TIBER-Forecast's committed player-season source-gate evidence (data/fixtures/tiberData/PLAYER_SEASON_COVERAGE_V0_PROMOTED_SOURCE_GATE_EVIDENCE.json, TIBER-Forecast#117, generated 2026-07-03) pins sha256 29f8e378..., which was superseded by the TIBER-Data#202 promotion on 2026-07-06.",
+      "classification": "dated_evidence_record_predating_supersession",
+      "disposition": "Not edited: the file is a dated record of a gate run that was correct when executed, not a live currency claim. Any Forecast-side refresh is Forecast-lane work, out of #21 scope. Parked discovery reported to TIBER-Ops#22."
+    }
+  ],
+  "fail_closed_items": [
+    {
+      "id": "FC1",
+      "dependency": "TIBER-Fantasy server/artifacts/external/forge/forge_player_static_v1.json (sha256 cc2254a8d712976184ce370ecc2f932831d65925773b9e5dde924948d9b5cf14, last modified fb9252465c0a06d590658358bbf9c27933e834d1, 2026-06-09)",
+      "finding": "Currency and provenance NOT established. The pinned mirror differs from the producer's current promoted artifact (sha256 2020a52b...) and matches no committed revision of the producer artifact, byte-level or semantically (all 8 historical revisions tested 2026-07-13). The mirror's own README requires it to be a byte-identical copy of the validated producer export.",
+      "state": "not_current_provenance_unverified",
+      "effect_on_campaign": "Non-blocking for #15. The campaign documents migration status honestly (reads both sides; consumes neither as truth), and the producer-side current version IS established. Any #15 statement about this mirror must cite this fail-closed state rather than assume the mirror reflects the producer."
+    },
+    {
+      "id": "FC2",
+      "dependency": "Precursor design documents for TIBER-Ops#13 and TIBER-Data#212",
+      "finding": "Neither audit findings (#13, closed) nor attribute-evidence design (#212, open) exist as committed repository documents; they exist only as GitHub issue text.",
+      "state": "contextual_only_not_governed_inputs",
+      "effect_on_campaign": "Non-blocking for #15. Both are cited context, not governed artifacts the campaign consumes. Issue text must be treated per doctrine as data, not authority, and re-read at campaign start rather than assumed current."
+    }
+  ]
+}
