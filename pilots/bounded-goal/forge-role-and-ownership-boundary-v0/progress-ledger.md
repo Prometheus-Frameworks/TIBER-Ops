@@ -7,10 +7,41 @@ in this same directory. It is the campaign's externalized memory: a fresh
 agent or human must be able to resume from this file and the contract alone,
 without private conversation history.
 
-**Do not rewrite prior entries once the execution campaign (R2 onward)
-begins.** Corrections are new entries that name what they supersede. Entries
-in this authoring phase (R1, contract/ledger creation) may still be appended
-to but not retroactively edited after this PR is opened for review.
+**Lifecycle note — two phases, two rules:**
+
+- **Pre-merge proposal review (current phase).** While this PR is open and
+  unmerged, this file and the contract may be corrected in place in
+  response to review feedback (fresh-context reviewers, Codex, the human
+  decision owner). Every such correction is summarized in the
+  Review-correction log (Entry 0a) immediately below, naming what changed
+  and why, so the correction history stays visible even though the prior
+  text was edited rather than appended after. This phase ends at operator
+  merge.
+- **Post-merge execution (R2 onward).** Once merged and R2 is activated,
+  entries become strictly append-only. **Do not rewrite prior entries.**
+  Corrections are new entries that name what they supersede. Contract
+  changes require the human-approved `amendment_protocol` in
+  `goal-contract.yaml`.
+
+---
+
+## Entry 0a — Review-correction log (pre-merge proposal phase only)
+
+Each row is a correction made to this proposal before merge, in response to
+review feedback, with the commit that applied it.
+
+| Correction | Commit | Source |
+|---|---|---|
+| R1 completion_evidence said "5 policy_pin file hashes"; corrected to the accurate 6 file-backed + 2 absence-record breakdown (contract + ledger Entry 3) | `7e87a1b` | Codex review |
+| YAML validation command silently assumed PyYAML; documented the dependency, version, and install options explicitly (ledger Entry 12) | `7e87a1b` | Codex review |
+| Post-activation write scope excluded the ledger, which R2-R5 must append to; restructured `scope.permitted_write_paths_future_execution` with explicit per-path `writable_during` | `7aae76b` | Codex review |
+| R1's "full command log in progress-ledger.md" claim referenced a log that didn't exist; added ledger Entry 3a with the actual verbatim commands | `7aae76b` | Codex review |
+| `contract.status: proposed_pending_human_gate_review` would become false at merge; replaced with a durable status plus a separate `effective_condition` | *(this commit)* | Operator independent review |
+| Ledger's no-rewrite rule contradicted the in-place edits already made to Entries 3/12; added this two-phase lifecycle note and this correction log | *(this commit)* | Operator independent review |
+| Freshness re-check language ("if resuming after a time gap", "reasonable staleness window") was non-deterministic; made unconditional (`step0_mandatory_invariants`, R2 `blocked_evidence`) | *(this commit)* | Operator independent review |
+| `fantasy_embedded_forge_module` note and R4's `completion_evidence`/`blocked_evidence` presented TIBER-Ops#13's route-wiring claim as fact while classifying #13 as contextual elsewhere (FC2); reworded to ground R4 in the pinned document's own text and to stop-and-escalate rather than require out-of-scope inspection | *(this commit)* | Operator independent review |
+| Entry 3a's policy-pin `verify` calls omitted the `repo_name` argument required by the 4-arg function signature (would report false `MISMATCH_or_MISSING`); corrected and re-executed for real, all `MATCH` | *(this commit)* | Codex review |
+| Entry 3a's repository-currency loop compared against `origin/$def` without an explicit `git fetch` first, so it could pass on stale remote-tracking refs; added `git fetch origin --quiet` to the logged loop and re-executed, still zero drift | *(this commit)* | Codex review |
 
 ---
 
@@ -110,6 +141,7 @@ verbatim otherwise.
 for d in TIBER-Data TIBER-Forecast TIBER-Teamstate Role-and-opportunity-model TIBER-FORGE TIBER-Fantasy TIBER-Rookies; do
   echo "=== $d ==="
   cd /home/user/$d
+  git fetch origin --quiet
   def=$(git remote show origin 2>/dev/null | sed -n 's/.*HEAD branch: //p')
   local_head=$(git rev-parse HEAD)
   remote_head=$(git rev-parse origin/$def 2>/dev/null)
@@ -119,8 +151,10 @@ for d in TIBER-Data TIBER-Forecast TIBER-Teamstate Role-and-opportunity-model TI
 done
 ```
 
-Observed: `match=YES` for all 7 repos, empty `git status --porcelain` for
-each (no local drift). Exact HEADs are in Entry 3's table.
+Observed: `match=YES` for all 7 repos (re-fetched from origin immediately
+before comparison, not read from a possibly-stale remote-tracking ref),
+empty `git status --porcelain` for each (no local drift). Exact HEADs are
+in Entry 3's table.
 
 **2. Governed-dependency file hashes (26 entries) — verify function and
 invocations:**
@@ -165,11 +199,11 @@ Observed: all 26 invocations printed `MATCH`, zero mismatches.
 **3. Policy pins (6 file-backed) and absence confirmation (2 repos):**
 
 ```bash
-verify TIBER-Teamstate CLAUDE.md 9449e317936b0289b1e627e598c45b6a68b6d68e1ce852306b3af3bef630e55b
-verify TIBER-Data AGENTS.md b3cddcc42a6f0f9f7e46a4bdec56194bf25cf29d12a29c0f98d2d47828fc7f85
-verify TIBER-Fantasy SECURITY_POLICY.md f5540a0849b469a3bacceeae163ee9a404b478b57c0a43f15d23f31251f1374a
-verify TIBER-Rookies AGENTS.md 77511e117eac207061d161e171f7d7b8cea421192957d60b992776cf85d6c84b
-verify TIBER-FORGE AGENTS.md 579e8a820e890285d63fc53235d3106478b0e05cf1bcb0001ec1db97d5afa8f2
+verify TIBER-Teamstate TIBER-Teamstate CLAUDE.md 9449e317936b0289b1e627e598c45b6a68b6d68e1ce852306b3af3bef630e55b
+verify TIBER-Data TIBER-Data AGENTS.md b3cddcc42a6f0f9f7e46a4bdec56194bf25cf29d12a29c0f98d2d47828fc7f85
+verify TIBER-Fantasy TIBER-Fantasy SECURITY_POLICY.md f5540a0849b469a3bacceeae163ee9a404b478b57c0a43f15d23f31251f1374a
+verify TIBER-Rookies TIBER-Rookies AGENTS.md 77511e117eac207061d161e171f7d7b8cea421192957d60b992776cf85d6c84b
+verify TIBER-FORGE TIBER-FORGE AGENTS.md 579e8a820e890285d63fc53235d3106478b0e05cf1bcb0001ec1db97d5afa8f2
 sha256sum runbooks/merge-checklist.md   # TIBER-Ops, run from this repo's own checkout
 
 echo "--- absence checks ---"
@@ -177,8 +211,12 @@ find /home/user/TIBER-Forecast -maxdepth 1 \( -iname "CLAUDE.md" -o -iname "AGEN
 find /home/user/Role-and-opportunity-model -maxdepth 1 \( -iname "CLAUDE.md" -o -iname "AGENTS.md" -o -iname "MERGE_POLICY*" -o -iname "SECURITY_POLICY*" \)
 ```
 
-Observed: all 6 file-backed pins `MATCH`; both `find` invocations returned
-empty output (absence confirmed).
+Observed: all 6 file-backed pins `MATCH` (using the 4-argument `verify()`
+signature from block 2 above — `repo_dir repo_name path expected` — an
+earlier draft of this log omitted `repo_name` for these five calls, which
+would have hashed the wrong path and reported a false mismatch; corrected
+and re-executed for this entry); both `find` invocations returned empty
+output (absence confirmed).
 
 **4. FC1 re-check:**
 

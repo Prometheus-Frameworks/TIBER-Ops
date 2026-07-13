@@ -8,7 +8,15 @@
 contract:
   identifier: forge-role-and-ownership-boundary-v0
   version: v0
-  status: proposed_pending_human_gate_review
+  status: pilot_contract_v0
+  effective_condition: >
+    This contract and its ledger are authoritative for the #15 pilot's
+    execution gate only as present on Prometheus-Frameworks/TIBER-Ops main
+    after operator merge; before merge they are a proposal only. This
+    condition remains true both before and after merge: main is the sole
+    effective location. Merge by itself does not activate R2 or any
+    substantive #15 execution — R2 requires a separate human activation
+    decision recorded on TIBER-Ops#22, per frontier.gating_condition below.
   authored_on_issue: Prometheus-Frameworks/TIBER-Ops#25
   campaign_issue: Prometheus-Frameworks/TIBER-Ops#15
   pilot_protocol_issue: Prometheus-Frameworks/TIBER-Ops#20
@@ -210,8 +218,13 @@ imported_invariants:
 step0_mandatory_invariants:
   description: >
     Before any substantive #15 requirement work (R2 onward), the executing
-    agent must treat the following as binding and must re-run the freshness
-    preflight described in them if resuming after a time gap.
+    agent must treat the following as binding. Immediately before the first
+    substantive R2 action, the agent must re-run the freshness preflight
+    described in them in full and append the result to the ledger — this is
+    unconditional, not contingent on how much time has passed. On any cold
+    resume (a fresh agent or context picking this campaign back up), currency
+    must be re-established from these documents and the ledger before relying
+    on any governed input; nothing is presumed current from a prior session.
   documents:
     - path: docs/architecture/cross-repo-freshness-and-current-state-registry-v0.md
       repo: Prometheus-Frameworks/TIBER-Ops
@@ -396,9 +409,18 @@ governed_dependencies:
     promotion_state: live_legacy_core_temp
     verification_time: "2026-07-13T22:36:33Z"
     note: >
-      Embedded FORGE is LIVE, wired into live routes (per TIBER-Ops#13 audit
-      context). Not superseded by TIBER-FORGE; canonical-implementation
-      determination is R4/R2's job, not pre-decided here.
+      The pinned document itself (not TIBER-Ops#13) is the governed basis
+      for R4's live/migration-status statement: it classifies embedded
+      FORGE as LEGACY_CORE_TEMP, states under "Dependency caveat" that "this
+      module still powers active rankings, tiers, APIs, and downstream
+      consumers across the product," and gives its "Long-term destination"
+      as remaining in core "because it still powers active product
+      surfaces" pending a later-stage extraction. TIBER-Ops#13's more
+      specific claims (e.g. exact route-file wiring) are issue-only context
+      per fail_closed_items FC2, not governed fact, and must not be
+      presented as such by R4. Not superseded by TIBER-FORGE;
+      canonical-implementation determination is R2's job, not pre-decided
+      here.
   - id: fantasy_rankings_v2_contract
     repo: Prometheus-Frameworks/TIBER-Fantasy
     path: server/contracts/rankingsV2.ts
@@ -579,9 +601,13 @@ requirements:
       forecast_ownership_boundaries, and forge_player_static_v1's
       score_source_policy.
     blocked_evidence: >
-      Any governed_dependency input to this requirement found stale or
-      inaccessible at execution time (re-verify, do not reuse this
-      contract's authoring-time pins beyond a reasonable staleness window).
+      Immediately before the first substantive R2 action, every
+      governed_dependency input to this requirement is re-verified per
+      step0_mandatory_invariants — this contract's authoring-time pins are
+      never reused without that re-verification, regardless of elapsed
+      time. A mismatch, an inaccessible repository, or an unresolved
+      conflict discovered by that re-verification keeps R2 blocked pending
+      either successful re-verification or an operator-approved amendment.
     excluded_actions:
       - drafting the full architecture document (that is R5)
       - modifying any source repository
@@ -620,11 +646,23 @@ requirements:
         fantasy_embedded_forge_module
     named_evidence_gaps:
       - "FC1 (Fantasy's pinned FORGE static mirror does not match the producer's current artifact) must be disclosed, not silently assumed current, wherever R4 discusses that mirror"
+      - "FC2 (TIBER-Ops#13 exists only as issue text) bounds R4's migration-status statement: TIBER-Ops#13's specific route-wiring claims may be mentioned as unverified context but never presented as governed fact"
     completion_evidence: >
       Explicit boundary statements for Data/FORGE, Forecast/FORGE, and
-      Fantasy/FORGE, plus an honest (not aspirational) migration-status
-      statement distinguishing documented plan from live code state.
-    blocked_evidence: "Migration status cannot be determined without inspecting live route wiring beyond the pinned dependency snapshots."
+      Fantasy/FORGE, plus an honest migration-status statement grounded
+      only in the pinned fantasy_embedded_forge_module and
+      fantasy_forge_externalization_transition_spec documents (their
+      LEGACY_CORE_TEMP classification, stated live product dependency, and
+      externalization target/plan) distinguishing documented plan from
+      pinned documented state.
+    blocked_evidence: >
+      If resolving migration status appears to require inspecting
+      TIBER-Fantasy code or routes beyond the pinned governed_dependencies,
+      R4 does not perform that inspection. It stops, records in the ledger
+      that a separately authorized registry or contract amendment is
+      required to pin the additional evidence, and enters blocked pending
+      that amendment. It does not expand scope under this authoring issue
+      (#25) and does not modify the merged #21 registry.
     excluded_actions:
       - deprecating or removing the embedded Fantasy FORGE engine
       - migrating Fantasy routes
