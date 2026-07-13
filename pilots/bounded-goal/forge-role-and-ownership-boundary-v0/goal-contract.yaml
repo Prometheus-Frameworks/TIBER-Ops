@@ -543,10 +543,13 @@ requirements:
     completion_evidence: >
       All 7 governed-source repositories re-fetched from origin and confirmed
       unchanged at the commits pinned in the merged registry. All 26
-      governed_dependency file hashes and 5 policy_pin file hashes
-      independently recomputed and matched. Both policy absences
-      reconfirmed. FC1 mismatch reconfirmed unchanged (not a new
-      discrepancy). Full command log in progress-ledger.md.
+      governed_dependency file hashes and all 6 file-backed policy_pin
+      hashes (Teamstate, Data, Fantasy, Rookies, FORGE, TIBER-Ops)
+      independently recomputed and matched; the remaining 2 policy_pins
+      entries are absence records (TIBER-Forecast, Role-and-opportunity-model)
+      reconfirmed by directory listing, not hashed. FC1 mismatch reconfirmed
+      unchanged (not a new discrepancy). Full command log in
+      progress-ledger.md.
     blocked_evidence: n/a — not blocked
     excluded_actions:
       - modifying any source repository

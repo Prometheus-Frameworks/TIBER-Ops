@@ -69,9 +69,13 @@ verified 2026-07-13 during PR #23). No repository advanced between the
 registry's verification and this contract's authoring.
 
 **Artifact/contract hash re-verification:** all 26 `governed_dependencies`
-entries and 8 `policy_pins` entries in the goal contract were independently
+entries and all 6 file-backed `policy_pins` entries (Teamstate, Data,
+Fantasy, Rookies, FORGE, TIBER-Ops) in the goal contract were independently
 recomputed via `sha256sum` against the current working tree and matched
-their pinned values with zero mismatches. See Entry 4 for the full list.
+their pinned values with zero mismatches. The remaining 2 `policy_pins`
+entries (TIBER-Forecast, Role-and-opportunity-model) are absence records,
+not file hashes — their absence was reconfirmed by directory listing, per
+Entry 5. See Entry 4 for the full list.
 
 **Fail-closed items re-checked:**
 - **FC1** (TIBER-Fantasy pinned FORGE static mirror,
@@ -247,6 +251,20 @@ any #15 architectural decision.
 
 - **YAML validation command:**
   `python3 -c "import yaml; yaml.safe_load(open('pilots/bounded-goal/forge-role-and-ownership-boundary-v0/goal-contract.yaml'))"`
+- **Parser dependency (not added to the repo):** this command requires
+  PyYAML, which is not part of the Python standard library and is not
+  declared anywhere in TIBER-Ops (a docs-only repo with no package
+  manifest). In this authoring session's environment, PyYAML `6.0.1` is
+  present as the system package `python3-yaml`
+  (`/usr/lib/python3/dist-packages/yaml/`), so the command above ran without
+  installing anything. A reviewer whose environment lacks PyYAML must
+  install it first (e.g. `pip install pyyaml` or `apt install python3-yaml`)
+  to reproduce this exact command, or substitute any other standard YAML
+  parser already available to them (e.g. `ruby -ryaml -e`) and confirm the
+  same structural facts below. No parser dependency was added to the
+  TIBER-Ops repository itself — this is an ambient tool requirement of the
+  reviewer's own environment, consistent with #25's "validate with an
+  available standard parser" instruction.
 - **Result:** parses successfully. Top-level keys, 5 requirements (`R1`–`R5`),
   26 `governed_dependencies`, 8 `policy_pins`, 8 `repository_revisions`,
   `frontier.current_requirement: R2`, and
