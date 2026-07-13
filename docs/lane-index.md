@@ -79,7 +79,7 @@ of TIBER work. The active lane is chosen weekly — see
 | 2024 full-league Teamstate artifacts + PPM consumption boundaries | ML / modeling | **Active first step** — audit/spec (work likely in Teamstate) |
 | PPM model (#49, #265) | ML / modeling | Indexed under active lane |
 | TIBER-Fantasy #277 | Governance | **Parked** — audit/spec ticket; not authorized |
-| TIBER-Ops #21 freshness preflight + registry v0 (PR #23) | Governance | **Authorized docs-only exception under #22** — PR #23 pending operator merge |
+| TIBER-Ops #21 freshness preflight + registry v0 (PR #23) | Governance | **Authorized docs-only exception under #22** — delivered via PR #23; effective as merged to `main` (see the registry's effective condition) |
 | Freshness fail-closed | Governance | Documented future work, **not opened** |
 | FLF paper / docs | Research / writing | **Parked / indexed** research-lane material |
 | TIBER-Ops automation | Parked / incubation | **Parked, not started** |
