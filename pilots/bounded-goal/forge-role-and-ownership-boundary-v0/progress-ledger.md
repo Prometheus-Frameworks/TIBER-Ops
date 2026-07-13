@@ -43,7 +43,8 @@ review feedback, with the commit that applied it.
 | Entry 3a's policy-pin `verify` calls omitted the `repo_name` argument required by the 4-arg function signature (would report false `MISMATCH_or_MISSING`); corrected and re-executed for real, all `MATCH` | *(this commit)* | Codex review |
 | Entry 3a's repository-currency loop compared against `origin/$def` without an explicit `git fetch` first, so it could pass on stale remote-tracking refs; added `git fetch origin --quiet` to the logged loop and re-executed, still zero drift | `907c90e` | Codex review |
 | The `[INDEPENDENT REVIEW]` comment attributed the four preceding corrections to "Operator independent review." The comment was subsequently edited to disclose it was Codex-authored, posted through the operator's authenticated account at Joseph's request — not a human/operator decision. Relabeled those four rows above accordingly. No technical content of those corrections was affected: each was independently verified against the actual file contents and re-executed commands before being applied, not accepted on the strength of any claimed authority. | *(this commit)* | Codex-authored review + operator `[PROVENANCE]` clarification comment |
-| Entry 3a's repository-currency loop compared `local_head` to `remote_head` only, never against the commit actually pinned in `repository_revisions`; a rerun where both local and remote had drifted together from the pin would still print `match=YES`. Added an explicit `expected` pin per repo and a third comparison against it. | *(this commit)* | Codex review |
+| Entry 3a's repository-currency loop compared `local_head` to `remote_head` only, never against the commit actually pinned in `repository_revisions`; a rerun where both local and remote had drifted together from the pin would still print `match=YES`. Added an explicit `expected` pin per repo and a third comparison against it. | `8e8c8c3` | Codex review |
+| Entry 3a's policy-absence `find` commands used `-maxdepth 1`, checking only the repository root; a nested policy file under `docs/`, `src/`, etc. in TIBER-Forecast or Role-and-opportunity-model would have been missed while still reporting "absence confirmed." Changed to an unbounded repo-wide search (excluding `.git`/`node_modules`) and re-executed for real: still zero results in either repository, so the R1 absence records are unchanged, but the log now proves that rather than assuming it. | *(this commit)* | Codex review |
 
 ---
 
@@ -225,9 +226,9 @@ verify TIBER-Rookies TIBER-Rookies AGENTS.md 77511e117eac207061d161e171f7d7b8cea
 verify TIBER-FORGE TIBER-FORGE AGENTS.md 579e8a820e890285d63fc53235d3106478b0e05cf1bcb0001ec1db97d5afa8f2
 sha256sum runbooks/merge-checklist.md   # TIBER-Ops, run from this repo's own checkout
 
-echo "--- absence checks ---"
-find /home/user/TIBER-Forecast -maxdepth 1 \( -iname "CLAUDE.md" -o -iname "AGENTS.md" -o -iname "MERGE_POLICY*" -o -iname "SECURITY_POLICY*" \)
-find /home/user/Role-and-opportunity-model -maxdepth 1 \( -iname "CLAUDE.md" -o -iname "AGENTS.md" -o -iname "MERGE_POLICY*" -o -iname "SECURITY_POLICY*" \)
+echo "--- absence checks (repo-wide, not root-only) ---"
+find /home/user/TIBER-Forecast -type f \( -iname "CLAUDE.md" -o -iname "AGENTS.md" -o -iname "MERGE_POLICY*" -o -iname "SECURITY_POLICY*" \) -not -path "*/node_modules/*" -not -path "*/.git/*"
+find /home/user/Role-and-opportunity-model -type f \( -iname "CLAUDE.md" -o -iname "AGENTS.md" -o -iname "MERGE_POLICY*" -o -iname "SECURITY_POLICY*" \) -not -path "*/node_modules/*" -not -path "*/.git/*"
 ```
 
 Observed: all 6 file-backed pins `MATCH` (using the 4-argument `verify()`
@@ -235,7 +236,11 @@ signature from block 2 above — `repo_dir repo_name path expected` — an
 earlier draft of this log omitted `repo_name` for these five calls, which
 would have hashed the wrong path and reported a false mismatch; corrected
 and re-executed for this entry); both `find` invocations returned empty
-output (absence confirmed).
+output — repo-wide, not just at the repository root (an earlier draft of
+this log used `-maxdepth 1`, which would have missed a nested policy file
+under e.g. `docs/` or `src/`; re-run unbounded and the result is unchanged:
+no policy file exists anywhere in either repository, so the absence
+records stand).
 
 **4. FC1 re-check:**
 
