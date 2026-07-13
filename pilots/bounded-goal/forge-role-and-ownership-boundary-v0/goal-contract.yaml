@@ -80,8 +80,16 @@ scope:
   permitted_write_paths_this_issue:
     - pilots/bounded-goal/forge-role-and-ownership-boundary-v0/goal-contract.yaml
     - pilots/bounded-goal/forge-role-and-ownership-boundary-v0/progress-ledger.md
-  permitted_write_paths_future_execution_r5_only:
-    - docs/architecture/forge-role-and-ownership-boundary-v0.md
+  permitted_write_paths_future_execution:
+    - path: pilots/bounded-goal/forge-role-and-ownership-boundary-v0/progress-ledger.md
+      writable_during: R2-R5
+      note: >
+        Append-oriented campaign-state entries only (frontier changes,
+        completion/blocked evidence, checkpoints, audits), per this
+        contract's amendment_protocol and the ledger's own no-rewrite rule.
+    - path: docs/architecture/forge-role-and-ownership-boundary-v0.md
+      writable_during: R5 only
+      note: "The #15 required deliverable document; assembled only once R1-R4 are complete."
   cross_repository_writes: none
   governed_read_source_repositories:
     - Prometheus-Frameworks/TIBER-Data
@@ -549,7 +557,7 @@ requirements:
       entries are absence records (TIBER-Forecast, Role-and-opportunity-model)
       reconfirmed by directory listing, not hashed. FC1 mismatch reconfirmed
       unchanged (not a new discrepancy). Full command log in
-      progress-ledger.md.
+      progress-ledger.md Entry 3a.
     blocked_evidence: n/a — not blocked
     excluded_actions:
       - modifying any source repository
@@ -698,8 +706,7 @@ blocked_conditions:
       operator-approved frontier transition or contract amendment
 
 anti_wandering_triggers:
-  - about to write to a path outside permitted_write_paths_this_issue (or,
-    once activated, outside docs/architecture/forge-role-and-ownership-boundary-v0.md)
+  - "about to write to a path outside permitted_write_paths_this_issue (or, once activated, outside the paths and R-scoped conditions listed in scope.permitted_write_paths_future_execution)"
   - about to write to any repository other than Prometheus-Frameworks/TIBER-Ops
   - about to treat a repository or artifact not listed in
     governed_dependencies as a campaign dependency

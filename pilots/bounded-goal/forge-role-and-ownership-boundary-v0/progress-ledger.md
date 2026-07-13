@@ -93,6 +93,104 @@ Entry 5. See Entry 4 for the full list.
 unresolved policy conflict, no unknown-currency dependency was found. Input
 freeze for R1's scope is now in effect as of this timestamp.
 
+## Entry 3a — R1 full command log
+
+Verbatim commands executed to produce Entry 3's results, run from
+`/home/user/TIBER-Ops` (write repo checkout) against sibling checkouts of
+the 7 governed-source repositories at `/home/user/<repo-name>`. Included
+here because R1's `completion_evidence` in `goal-contract.yaml` references
+a "full command log in progress-ledger.md" — this entry is that log, not a
+paraphrase of it. A fresh reviewer without those exact sibling checkouts
+must substitute their own clone paths but can reuse these commands
+verbatim otherwise.
+
+**1. Repository currency (7 governed-source repos):**
+
+```bash
+for d in TIBER-Data TIBER-Forecast TIBER-Teamstate Role-and-opportunity-model TIBER-FORGE TIBER-Fantasy TIBER-Rookies; do
+  echo "=== $d ==="
+  cd /home/user/$d
+  def=$(git remote show origin 2>/dev/null | sed -n 's/.*HEAD branch: //p')
+  local_head=$(git rev-parse HEAD)
+  remote_head=$(git rev-parse origin/$def 2>/dev/null)
+  echo "default=$def local_head=$local_head remote_head=$remote_head match=$([ "$local_head" = "$remote_head" ] && echo YES || echo NO)"
+  git status --porcelain | head -2
+  cd /home/user
+done
+```
+
+Observed: `match=YES` for all 7 repos, empty `git status --porcelain` for
+each (no local drift). Exact HEADs are in Entry 3's table.
+
+**2. Governed-dependency file hashes (26 entries) — verify function and
+invocations:**
+
+```bash
+verify() {
+  repo_dir=$1; repo_name=$2; path=$3; expected=$4
+  actual=$(sha256sum "/home/user/$repo_dir/$path" 2>/dev/null | cut -d' ' -f1)
+  if [ "$actual" = "$expected" ]; then st="MATCH"; else st="MISMATCH_or_MISSING actual=$actual"; fi
+  echo "$repo_name|$path|$st"
+}
+verify TIBER-Data TIBER-Data exports/promoted/identity_crosswalk/tiber_identity_crosswalk_v1.json 5ce5cd3f5dc8fd27c28c5a5fb283431ac648f764c3f8f2b645f6ad924338f263
+verify TIBER-Data TIBER-Data schemas/tiber_identity_crosswalk_v1.schema.json da7189ce7d067556b9b7a7510151fb0e0d775fe8feeebc3f18a97951104660c0
+verify TIBER-Data TIBER-Data exports/promoted/nfl/player_season_coverage_v0.json d45f612b207085df00b4b080e4f55ce1abbd060dcbf30b0bee777ff833ddd8ac
+verify TIBER-Data TIBER-Data exports/promoted/nfl/PLAYER_SEASON_COVERAGE_V0_PROMOTION_MANIFEST.json 5e9a382db0681e7a808a1d5fdf4334653cf2f0b26314c45425b333aa2024d154
+verify TIBER-Data TIBER-Data src/contracts/v1/forgeWeeklyPlayerInput.ts e8b354675aa160fb3c14d8f695c4e4146ed6367098494f7f3671b84e6b2919e4
+verify TIBER-Data TIBER-Data docs/contracts/evidence-layer-v0.md 48c0949811e69f81bb51c6f84e5af394469838b9bc713991c437599c0b89e148
+verify TIBER-Teamstate TIBER-Teamstate docs/contracts/team-environment-profile-v0.md 255b7f954b6ebab550ec811a4047dcd87238e541750ae628249f4ef157c9870a
+verify TIBER-Teamstate TIBER-Teamstate src/contracts/teamEnvironmentProfile.ts 75295dd955ee71527af6e3b3e707da5fbc490e7af6918fd8996e616d5725dd15
+verify TIBER-Teamstate TIBER-Teamstate docs/contracts/team-environment-movement-v1.md ee3ac8ba16a10fb13d98d86effdafe9c4ab605bbeb27a8a047d60219a498e0ee
+verify TIBER-Teamstate TIBER-Teamstate src/contracts/teamEnvironmentMovementV1.ts b0a1308bb4b31493c09bdf4ae5ab70f6b5cf100991172951c8acae8586ba544a
+verify Role-and-opportunity-model Role-and-opportunity-model docs/contracts/role-opportunity-profile-v0.md a156ff5e9f7d335a3a45e76dda8765aaa4883b158c62bc4da02eb9cf4d634bdb
+verify Role-and-opportunity-model Role-and-opportunity-model src/types/roleOpportunityProfileV0.ts 2fca35020d3cf4830a54f932dcbb47520792177eaef1f699032dac16bcde9498
+verify TIBER-FORGE TIBER-FORGE src/contracts/forge.ts ceeb45ee9833166d1192b25919b9b3ee24612f38af8a39ecea638656a45689a5
+verify TIBER-FORGE TIBER-FORGE src/contracts/football.ts 453693f1bd069326b4266ed3346443bdee729a109face215c8d8a3c7f8adc68d
+verify TIBER-FORGE TIBER-FORGE exports/promoted/forge_player_static/forge_player_static_v1.json 2020a52b2e941fbcd7a78130399380351da914959663ff9f1abf15affece1041
+verify TIBER-Fantasy TIBER-Fantasy docs/architecture/FORGE_EXTERNALIZATION_TRANSITION_SPEC.md 7b9b0362048d2d9dbe42fa801fb3f75236709fc56e8b0186723c0306ae66b3ba
+verify TIBER-Fantasy TIBER-Fantasy server/modules/forge/MODULE.md 32cf08fd7bb6b28813ce2f56a8608d62a1700024d1e0b734df926af40c88cc0b
+verify TIBER-Fantasy TIBER-Fantasy server/contracts/rankingsV2.ts af7f56ffdb578254438c52c56dfd482d164d1fa42f415c2b7b00518322729c39
+verify TIBER-Rookies TIBER-Rookies exports/promoted/rookie-transition-profile/2026_rookie_transition_profile_v0.json c95b941c7855612daccfc2226fc51e0e34dbb2ebe8a2487596675d2522a22f37
+verify TIBER-Rookies TIBER-Rookies exports/promoted/rookie-transition-profile/2026_rookie_transition_profile_v0.csv 3005bcd6ad4ffc87a312c6926e20c5e3658747012855aa9d8ccfa33d898545e6
+verify TIBER-Rookies TIBER-Rookies exports/promoted/rookie-transition-profile/2026_manifest.json 0acf361c6d2d8cc6f684026481a5aa279e9f7fa718256fad78da0366d5804413
+verify TIBER-Rookies TIBER-Rookies docs/rookie-transition-profile-contract.md 187fb0c68b8a9d30d7e4db0f130ceb98009af4cffb878394dded540d3d6b285b
+verify TIBER-Forecast TIBER-Forecast src/contracts/projectionArtifacts.ts a11f3030ada3b9fa932915978b8de2b9a1a353275496819c439b926b597fd012
+verify TIBER-Forecast TIBER-Forecast docs/ownership-boundaries.md 4790a90461b2025000f726df3ba2aac2f31bbe6b6c3fee454b217c706ed85f6b
+verify TIBER-Forecast TIBER-Forecast docs/experiments/rookie-transition-profile-forecast-consumption-design-2026-07-11.md 3792da358b92011df04b21819e59b117a1c242a652baa74c813727df42355090
+verify TIBER-Forecast TIBER-Forecast data/fixtures/tiberRookies/ROOKIE_TRANSITION_PROFILE_V0_MIRROR_PROVENANCE.json 2639d5acb11e8d77400700e814ad9c50dba9bf0a46f3f80413e4f0d51860aaa6
+```
+
+Observed: all 26 invocations printed `MATCH`, zero mismatches.
+
+**3. Policy pins (6 file-backed) and absence confirmation (2 repos):**
+
+```bash
+verify TIBER-Teamstate CLAUDE.md 9449e317936b0289b1e627e598c45b6a68b6d68e1ce852306b3af3bef630e55b
+verify TIBER-Data AGENTS.md b3cddcc42a6f0f9f7e46a4bdec56194bf25cf29d12a29c0f98d2d47828fc7f85
+verify TIBER-Fantasy SECURITY_POLICY.md f5540a0849b469a3bacceeae163ee9a404b478b57c0a43f15d23f31251f1374a
+verify TIBER-Rookies AGENTS.md 77511e117eac207061d161e171f7d7b8cea421192957d60b992776cf85d6c84b
+verify TIBER-FORGE AGENTS.md 579e8a820e890285d63fc53235d3106478b0e05cf1bcb0001ec1db97d5afa8f2
+sha256sum runbooks/merge-checklist.md   # TIBER-Ops, run from this repo's own checkout
+
+echo "--- absence checks ---"
+find /home/user/TIBER-Forecast -maxdepth 1 \( -iname "CLAUDE.md" -o -iname "AGENTS.md" -o -iname "MERGE_POLICY*" -o -iname "SECURITY_POLICY*" \)
+find /home/user/Role-and-opportunity-model -maxdepth 1 \( -iname "CLAUDE.md" -o -iname "AGENTS.md" -o -iname "MERGE_POLICY*" -o -iname "SECURITY_POLICY*" \)
+```
+
+Observed: all 6 file-backed pins `MATCH`; both `find` invocations returned
+empty output (absence confirmed).
+
+**4. FC1 re-check:**
+
+```bash
+sha256sum /home/user/TIBER-Fantasy/server/artifacts/external/forge/forge_player_static_v1.json
+# compare against producer: /home/user/TIBER-FORGE/exports/promoted/forge_player_static/forge_player_static_v1.json
+```
+
+Observed: Fantasy mirror sha256 `cc2254a8d712976184ce370ecc2f932831d65925773b9e5dde924948d9b5cf14`,
+unchanged from the value recorded during #21; still does not equal the
+TIBER-FORGE producer's current sha256 `2020a52b2e941fbcd7a78130399380351da914959663ff9f1abf15affece1041`.
+
 ## Entry 4 — Dependency and policy pins (full list)
 
 All entries below were independently re-verified at `2026-07-13T22:36:33Z`
