@@ -4,7 +4,11 @@
 - **Program authority:** [TIBER-Ops #22](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22) (approved decision of 2026-07-13)
 - **Scope:** confirmed dependencies of the selected #20 pilot campaign ([TIBER-Ops #15](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/15)) only
 - **Registry file:** [`registry/tiber-current-state.v0.json`](../../registry/tiber-current-state.v0.json)
-- **Status:** v0, proposed; effective for the pilot only after operator merge
+- **Status:** v0, pilot-scoped
+- **Effective condition:** this document and the registry are usable by the #20
+  pilot's freshness preflight only as merged to `main` by the operator; on any
+  other branch or unmerged revision they are proposals. `main` is the sole
+  effective location, before and after merge.
 
 ## Doctrine
 

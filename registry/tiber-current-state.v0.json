@@ -1,7 +1,8 @@
 {
   "registry_id": "tiber-current-state",
   "registry_version": "v0",
-  "status": "proposed_pending_operator_merge",
+  "status": "pilot_scoped_v0",
+  "effective_condition": "Entries are usable by the #20 pilot's freshness preflight only from this file as merged to main of Prometheus-Frameworks/TIBER-Ops by the operator. On any other branch or unmerged revision this file is a proposal. This condition remains true after merge: main is the sole effective location.",
   "authority_statement": "This registry is descriptive, not a promotion gate and not merge authority. Listing an item does not promote it; absence does not demote it. It answers exactly one question: what is the current version of X, and where does it live? See docs/architecture/cross-repo-freshness-and-current-state-registry-v0.md.",
   "scope": "Confirmed dependencies of the TIBER-Ops #15 pilot campaign only, per the approved decision on TIBER-Ops #22 (2026-07-13). Expansion beyond these dependencies is not authorized in v0.",
   "governing_issues": {
