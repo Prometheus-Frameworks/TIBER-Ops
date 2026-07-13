@@ -764,7 +764,7 @@ requirements:
 
 frontier:
   current_requirement: R2
-  current_requirement_status: execution_gated_pending_human_confirmation
+  current_requirement_status: execution_gated_pending_registry_sync_and_human_confirmation
   gating_condition: >
     R2 (and therefore R3-R5) may not begin substantive execution until BOTH
     of the following are satisfied.
