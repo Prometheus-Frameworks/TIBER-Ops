@@ -163,14 +163,17 @@
       "content_sha256": "ee3ac8ba16a10fb13d98d86effdafe9c4ab605bbeb27a8a047d60219a498e0ee",
       "last_modified_commit": "822e96e898b431ab47f681dd8b60904429371d21",
       "superseded_by": null,
-      "supersedes": null,
+      "supersedes": {
+        "description": "team_environment_movement_v0 (issue Teamstate#34). Migration complete per the v1 contract's Migration section: TIBER-Fantasy PR #225 merged, Fantasy's default artifact resolution prefers v1, and output/team_environment_movement_v0.json is no longer tracked. v0 survives only as a dormant transition-safety fallback acceptance in the Fantasy consumer (its removal is separately-scoped future cleanup) and as shared TypeScript types/computation imported by v1 (a live code dependency, not a stale contract).",
+        "pointer_location": "docs/contracts/team-environment-movement-v1.md (Migration section, 'done')"
+      },
       "companions": [
         {
           "path": "src/contracts/teamEnvironmentMovementV1.ts",
           "content_sha256": "b0a1308bb4b31493c09bdf4ae5ab70f6b5cf100991172951c8acae8586ba544a"
         }
       ],
-      "notes": "Successor design to team_environment_movement_v0 but NOT a completed supersession: the v1 contract explicitly keeps v0 unchanged for the current TIBER-Fantasy consumer during migration (issue Teamstate#34). Both versions are intentionally live; no superseded_by pointer is applied, fail-closed. Committed output/team_environment_movement_v1.json (sha256 208e5b19ff5eb353e01d9b3f8cc22f8fe36f8a1ea37ae0e7007f3e045682dec9) is fixture_scaffold, not governed truth."
+      "notes": "v1 is the CURRENT movement contract; a preflight must pin v1, never v0. No superseded_by marker is required: no standalone v0 contract document exists and the v0 output artifact is untracked, so no stale co-resident item remains to mark (see confirmed_supersessions S2). Committed output/team_environment_movement_v1.json (sha256 208e5b19ff5eb353e01d9b3f8cc22f8fe36f8a1ea37ae0e7007f3e045682dec9) is fixture_scaffold, not governed truth."
     },
     {
       "id": "role_opportunity_profile_v0",
@@ -423,6 +426,13 @@
       "superseded": "player_season_coverage_v0 promotion TIBER-Data#192 output (sha256 29f8e378...)",
       "pointer_status": "already_compliant_no_edit_required",
       "rationale": "The successor replaced the predecessor in place at the same canonical path, and the promotion manifest already carries an explicit machine-readable backward pointer (prior_promoted_artifact with sha256, review reference, and supersedes note). No stale co-resident document exists that fails to point forward, so no new pointer edit is required or proposed."
+    },
+    {
+      "id": "S2",
+      "successor": "team_environment_movement_v1 (TIBER-Teamstate docs/contracts/team-environment-movement-v1.md, sha256 ee3ac8ba...)",
+      "superseded": "team_environment_movement_v0 (issue Teamstate#34)",
+      "pointer_status": "no_edit_required_no_stale_coresident_item",
+      "rationale": "The v1 contract's Migration section declares the migration done: TIBER-Fantasy PR #225 merged, default resolution prefers v1, and output/team_environment_movement_v0.json is no longer tracked. No standalone v0 contract document exists and the v0 output artifact is untracked, so there is no stale co-resident item to mark superseded_by; the v1 contract itself documents the supersession at point of read. The v0 TypeScript module (src/contracts/teamEnvironmentMovement.ts) is a live shared dependency imported by v1, not a stale contract. Initially misclassified in this PR as a parallel-version migration based on the contract's intro line; corrected against the Migration section after PR review."
     }
   ],
   "known_drift_instances": [

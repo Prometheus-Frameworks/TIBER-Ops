@@ -79,9 +79,9 @@ version or content sha256 when the counterpart is a versioned or promoted artifa
 ### Supersession determinations for the #15 dependency set (2026-07-13)
 
 Every candidate named in #21's problem statement was examined against source
-repositories. Result: **exactly one confirmed supersession, already compliant; zero
-new pointer edits required.** Evidence for each determination is in the registry
-(`confirmed_supersessions`, `known_drift_instances`).
+repositories. Result: **two confirmed supersessions, both already discoverable at
+point of read; zero new pointer edits required.** Evidence for each determination
+is in the registry (`confirmed_supersessions`, `known_drift_instances`).
 
 | Candidate | Determination |
 |---|---|
@@ -89,7 +89,7 @@ new pointer edits required.** Evidence for each determination is in the registry
 | Embedded TIBER-Fantasy FORGE vs standalone TIBER-FORGE | **Not a supersession.** Both are live (embedded: `LEGACY_CORE_TEMP`, wired into live routes; standalone: bootstrap-demo). Designating the canonical implementation is #15's required decision 10. Applying a pointer now would prejudge the campaign — fail closed. |
 | Identity crosswalk (slug) vs player-season artifact (GSIS) | **Not a supersession.** Coherence gap between two current artifacts that never replaced each other. |
 | Fantasy `sourceStack` label `promoted_artifact` on a live service call | **Not a supersession.** Vocabulary drift; product code change out of #21 scope. |
-| Teamstate `team_environment_movement` v0 → v1 | **Not a completed supersession.** The v1 contract explicitly keeps v0 unchanged for the current TIBER-Fantasy consumer during migration. Both intentionally live — fail closed, no pointer. |
+| Teamstate `team_environment_movement` v0 → v1 | **Confirmed supersession — v1 is the current contract.** The v1 contract's Migration section declares the migration done (Fantasy PR #225 merged; default resolution prefers v1; the v0 output artifact is no longer tracked; the v0 fallback is dormant pending separately-scoped cleanup). No stale co-resident item exists to mark: there is no standalone v0 contract document, and the v0 TypeScript module is a live shared dependency imported by v1. A preflight must pin v1, never v0. |
 
 ## 2. Current-state registry v0
 
