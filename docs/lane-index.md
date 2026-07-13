@@ -26,8 +26,16 @@ of TIBER work. The active lane is chosen weekly — see
 - **Anchor:** TIBER-Fantasy #277.
 - **State:** **Parked.** Governance-convergence audit / spec ticket. Not to be
   started unless separately authorized.
+- **Authorized exception:** TIBER-Ops #21 — cross-repo freshness preflight and
+  #15-scoped current-state registry v0 (PR #23). Docs-only doctrine/governance
+  work separately authorized under TIBER-Ops #22 (approved decision
+  2026-07-13). This exception does not change the active implementation lane;
+  ML / modeling remains the sole active implementation lane.
 - **Related future work:** Freshness fail-closed — documented as future work,
-  **not opened.**
+  **not opened.** This item means **artifact/product-surface enforcement** (do
+  not show users stale data) and is distinct from #21's delivered
+  **agent-context** freshness protocol (preflight + registry for long-horizon
+  runs); delivering #21 does not open it.
 
 ## Research / writing lane
 
@@ -74,6 +82,7 @@ of TIBER work. The active lane is chosen weekly — see
 | 2024 full-league Teamstate artifacts + PPM consumption boundaries | ML / modeling | **Active first step** — audit/spec (work likely in Teamstate) |
 | PPM model (#49, #265) | ML / modeling | Indexed under active lane |
 | TIBER-Fantasy #277 | Governance | **Parked** — audit/spec ticket; not authorized |
-| Freshness fail-closed | Governance | Documented future work, **not opened** |
+| TIBER-Ops #21 freshness preflight + registry v0 (PR #23) | Governance | **Authorized docs-only exception under #22** — delivered via PR #23; effective as merged to `main` (see the registry's effective condition) |
+| Freshness fail-closed (artifact/product-surface enforcement — distinct from #21's agent-context protocol) | Governance | Documented future work, **not opened** |
 | FLF paper / docs | Research / writing | **Parked / indexed** research-lane material |
 | TIBER-Ops automation | Parked / incubation | **Parked, not started** |
