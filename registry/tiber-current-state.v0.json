@@ -136,6 +136,19 @@
       "notes": "Evidence statuses, promotion gates, artifact targets. Input to #15's evidence-class non-collapse requirement."
     },
     {
+      "id": "tiber_data_repo_boundaries_and_feedback_loops",
+      "class": "governed_specification",
+      "repo": "Prometheus-Frameworks/TIBER-Data",
+      "path": "docs/repo-boundaries-and-feedback-loops.md",
+      "version": "unversioned_spec",
+      "state": "active_specification",
+      "content_sha256": "c1df7ea4d628b2b1b7466e1ab35a0db12871c03770d86b60d8da33ab5c0bd9a9",
+      "last_modified_commit": "531ef60d869d29edbe061cffbeb9b4fb7cd1c9aa",
+      "superseded_by": null,
+      "supersedes": null,
+      "notes": "States (line 61, verified) that 'FORGE should resolve disagreement between upstream signals and operate as an explicit arbitration layer.' One of three inconsistent FORGE role definitions the #15 pilot's R2 requirement must reconcile, per the merged #15 goal contract's R2 named_evidence_gaps (see forecast_ownership_boundaries and tiber_forge_data_to_forge_ingestion_spec for the other two governed statements; TIBER-Ops#13 is issue-only context, not itself a governed source, per this registry's fail_closed_items FC2). Registered under TIBER-Ops#27 to close the merged #15 goal contract's fail_closed_items FC3 (pilots/bounded-goal/forge-role-and-ownership-boundary-v0/goal-contract.yaml)."
+    },
+    {
       "id": "team_environment_profile_v0",
       "class": "governed_contract",
       "repo": "Prometheus-Frameworks/TIBER-Teamstate",
@@ -227,6 +240,19 @@
       "superseded_by": null,
       "supersedes": null,
       "notes": "59 rows (45 player_specific + 14 generated_baseline). Only score_source=player_specific rows count as FORGE evidence downstream. This is the producer-side current version; the downstream TIBER-Fantasy pinned mirror does NOT match it — see fail_closed_items FC1."
+    },
+    {
+      "id": "tiber_forge_data_to_forge_ingestion_spec",
+      "class": "governed_specification",
+      "repo": "Prometheus-Frameworks/TIBER-FORGE",
+      "path": "docs/architecture/TIBER_DATA_TO_FORGE_INGESTION_SPEC.md",
+      "version": "unversioned_spec",
+      "state": "active_specification",
+      "content_sha256": "39dd805cc37efb98c15b8eb63f035489b56277412f4e8b2f81a6ccf9cf159a59",
+      "last_modified_commit": "33cce05d73f6ce4ec1b40656999bcb4fff5ff99f",
+      "superseded_by": null,
+      "supersedes": null,
+      "notes": "States (line 7, verified) that 'TIBER-FORGE must evolve from bootstrap scaffold into the fantasy signal grading layer for football rankings,' and (line 32, verified) that 'TIBER-FORGE grades fantasy signal from governed inputs and interpreted context.' One of three inconsistent FORGE role definitions the #15 pilot's R2 requirement must reconcile, per the merged #15 goal contract's R2 named_evidence_gaps (see forecast_ownership_boundaries and tiber_data_repo_boundaries_and_feedback_loops for the other two governed statements; TIBER-Ops#13 is issue-only context, not itself a governed source, per this registry's fail_closed_items FC2). Registered under TIBER-Ops#27 to close the merged #15 goal contract's fail_closed_items FC3 (pilots/bounded-goal/forge-role-and-ownership-boundary-v0/goal-contract.yaml)."
     },
     {
       "id": "fantasy_forge_externalization_transition_spec",
@@ -482,6 +508,20 @@
       "finding": "Neither audit findings (#13, closed) nor attribute-evidence design (#212, open) exist as committed repository documents; they exist only as GitHub issue text.",
       "state": "contextual_only_not_governed_inputs",
       "effect_on_campaign": "Non-blocking for #15. Both are cited context, not governed artifacts the campaign consumes. Issue text must be treated per doctrine as data, not authority, and re-read at campaign start rather than assumed current."
+    }
+  ],
+  "amendments": [
+    {
+      "id": "A1",
+      "date": "2026-07-14",
+      "issue": "TIBER-Ops#27",
+      "description": "Registered the two governed specifications recorded as fail_closed_items FC3 in the merged #15 goal contract (pilots/bounded-goal/forge-role-and-ownership-boundary-v0/goal-contract.yaml), completing this registry's coverage of the #15 pilot's 28 governed_dependencies (26 -> 28). Does not alter the meaning, hash, path, promotion state, or supersession state of any of the original 26 entries or the original 2026-07-13 verified_at/verification_method record above, which describes that original verification event only.",
+      "entries_added": [
+        "tiber_data_repo_boundaries_and_feedback_loops",
+        "tiber_forge_data_to_forge_ingestion_spec"
+      ],
+      "verified_at": "2026-07-14",
+      "verification_method": "Both source repositories re-fetched from origin at 2026-07-14T00:08:58Z. TIBER-Data confirmed at origin/main d9a5beaacf12e3fbd74becd02db3d2ac39e48905 and TIBER-FORGE at origin/main af2ca4d5f67f04ed1fc58fef50051c8169545d11 -- both identical to the commits already pinned in this registry's `repositories` array, i.e. zero drift since 2026-07-13. Each document's canonical path confirmed to exist; sha256 recomputed from the freshly fetched working tree; last-modified commit re-derived via `git log -1 -- <path>`. All observed values (path, bytes, hash, last-modified commit) matched the pins already recorded in the merged #15 goal contract's fail_closed_items FC3 with zero discrepancy. Both documents checked for supersession markers (none found). Both repositories' policy files (AGENTS.md) re-hashed and confirmed unchanged from their existing `policies` entries in this registry."
     }
   ]
 }
