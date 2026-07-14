@@ -233,9 +233,25 @@ step0_mandatory_invariants:
       repo: Prometheus-Frameworks/TIBER-Ops
       role: pilot_scoped_current_state_registry
   binding_location_note: >
-    Both documents are binding only as present on Prometheus-Frameworks/
-    TIBER-Ops main (merged via PR #23, commit e0497a0). This contract
-    references them there, not on any unmerged branch.
+    Both documents are binding only as CURRENTLY present on
+    Prometheus-Frameworks/TIBER-Ops main -- never a frozen historical
+    commit, and never any unmerged branch. main has advanced since this
+    contract was first authored: PR #23 merge (e0497a0, registry at
+    26/28 coverage of this contract's governed_dependencies) -> PR #26
+    merge (6b773ab, this contract itself landed) -> PR #28 merge
+    (eb4651b, registry brought to 28/28 coverage via registry amendment
+    A1) -> this TIBER-Ops#22 amendment. Before relying on either document
+    at step0, re-fetch main and confirm the registry's current coverage
+    directly -- do not assume any commit named in this contract (past or
+    present, including those listed here) remains main's latest state.
+    This is the same principle already stated in the registry's own
+    effective_condition: main is the sole effective location, always
+    re-verified at the point of use, never a frozen snapshot. (This note
+    was itself corrected during review of the TIBER-Ops#22 amendment,
+    which had initially left a stale e0497a0 pin here even while
+    declaring gate B satisfied against the later, more-complete
+    registry -- see progress-ledger.md Entry 13 and its review-correction
+    follow-up for that history.)
 
 # ---------------------------------------------------------------------------
 # Dependency and policy pins — freshly re-verified during authoring of this

@@ -588,3 +588,27 @@ Means only that these two control-artifact edits are ready for Joseph's
 independent review and merge decision. Does not authorize merge, R2
 activation, or any further program-state change beyond what is recorded
 above.
+
+## Entry 14 — Review correction: stale binding-location commit pin (PR #29)
+
+An automated Codex review of PR #29 (head `bb433c4c0f`) found that Entry
+13's gate-B-satisfied claim was undermined by
+`step0_mandatory_invariants.binding_location_note`, which still pinned
+the freshness preflight documents to PR #23's merge commit `e0497a0` --
+the 26-entry registry, containing neither FC3 dependency. An executor
+following Step 0 literally at that pinned commit would re-fetch the
+stale registry, find both FC3 dependencies missing, and re-block R2
+against Entry 13's own "satisfied" claim.
+
+**Fix:** `binding_location_note` no longer pins to a frozen historical
+commit. It now states the binding principle directly (documents are
+binding only as *currently* present on TIBER-Ops `main`, re-verified at
+the point of use, never assumed from any commit named anywhere in this
+contract, past or present) and narrates the commit history
+(`e0497a0` -> `6b773ab` -> `eb4651b` -> this amendment) as context, not
+as the binding pointer.
+
+Re-validated after the fix: YAML parses; the 28-of-28 reconciliation
+still passes against current `main`; only `goal-contract.yaml` changed
+for this correction (this ledger entry is the sole change to
+`progress-ledger.md`, itself a pure append after Entry 13).
