@@ -490,3 +490,101 @@ any #15 architectural decision.
   — the contract and ledger are ready for independent fresh-context review
   and the operator's merge/gate decision. This does not authorize merge or
   any substantive `#15` execution.
+
+## Entry 13 — Post-merge registry synchronization recorded (TIBER-Ops#22 amendment)
+
+Appended per a Joseph-signed `[DECISION — APPROVED]` on TIBER-Ops#22
+(2026-07-14T11:40:51Z), approving a Codex-authored `[AMENDMENT PROPOSAL]`
+to align this contract and ledger with the already-merged registry state.
+Entries 1-12 above are untouched (byte-for-byte); this entry only appends.
+
+**Approval chain:**
+- Joseph's PR #28 merge approval: https://github.com/Prometheus-Frameworks/TIBER-Ops/pull/28#issuecomment-4964564637
+- Amendment proposal (Codex-authored via Joseph's account, not itself a
+  decision): https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-4967610950
+- Joseph's signed approval of that proposal: https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-4968743572
+
+**PR #28 merge facts:**
+- Approved head: `73530e3b73b865dff9e2149738f9420c73694928`
+- Merge commit: `eb4651bc025a8571d6a0b058e084327fd7d4ee1d`
+- Registry amendment record: `A1` in `registry/tiber-current-state.v0.json`
+
+**Fresh 28-of-28 reconciliation, re-run against current TIBER-Ops `main`
+at `eb4651bc025a8571d6a0b058e084327fd7d4ee1d`:**
+
+```bash
+python3 - <<'PY'
+import yaml, json
+contract = yaml.safe_load(open('pilots/bounded-goal/forge-role-and-ownership-boundary-v0/goal-contract.yaml'))
+registry = json.load(open('registry/tiber-current-state.v0.json'))
+flat = {}
+for e in registry['entries']:
+    flat[(e['repo'], e['path'])] = e['content_sha256']
+    for c in e.get('companions', []):
+        flat[(e['repo'], c['path'])] = c['content_sha256']
+deps = contract['governed_dependencies']
+matched = [d['id'] for d in deps if flat.get((d['repo'], d['path'])) == d['content_sha256']]
+print(f"contract governed_dependencies: {len(deps)}")
+print(f"registry flattened (entries+companions): {len(flat)}")
+print(f"matched: {len(matched)}/28")
+ids = [e['id'] for e in registry['entries']]
+print(f"registry top-level entry IDs unique: {len(ids) == len(set(ids))} ({len(ids)} entries)")
+PY
+```
+
+Observed output:
+
+```
+contract governed_dependencies: 28
+registry flattened (entries+companions): 28
+matched: 28/28
+registry top-level entry IDs unique: True (18 entries)
+```
+
+**#21 and #27 terminal states:** both closed.
+- `#21` (`state_reason: completed`, `closed_by: Prometheus-Frameworks`,
+  `closed_at: 2026-07-14T01:38:58Z`) — independently re-audited against
+  all 8 original acceptance criteria in the [PR #28 post-merge
+  checkpoint](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-4964576928);
+  all 8 confirmed satisfied.
+- `#27` — closed by this agent after confirming its acceptance criteria
+  were satisfied by the merged PR #28.
+
+**Gate status, current:**
+- **Gate A** (the `#22` approved decision's six-condition pilot execution
+  gate): all 6 conditions satisfied. Condition 3 (governed dependencies
+  pinned and registered) is satisfied now that gate B (below) resolved;
+  condition 4 (contract + ledger exist) satisfied since PR #26 merged.
+- **Gate B** (registry synchronization, `fail_closed_items` FC3):
+  satisfied as of the PR #28 merge above. Resolution text recorded
+  directly on FC3 and on both affected `governed_dependencies` entries in
+  `goal-contract.yaml` (this same TIBER-Ops#22 amendment).
+
+**R2 status: still `pending_execution_gated`, not activated.** This entry
+records that both gates are satisfied; it is explicitly **not** a human
+activation decision. Per `frontier.no_substantive_15_work_before_gate` and
+the `#22` approved decision, R2 may not begin substantive execution until
+the human decision owner records a separate, explicit, signed
+`[DECISION — APPROVED]` on `#22` confirming both gates and explicitly
+authorizing R2 to begin. No such decision has been recorded as of this
+entry.
+
+**Validation for this amendment:**
+- YAML re-parses successfully after all `goal-contract.yaml` edits (see
+  PR description for this issue's amendment for the exact command and
+  output).
+- `git diff --name-only` against the pre-amendment `main` confirms only
+  `pilots/bounded-goal/forge-role-and-ownership-boundary-v0/goal-contract.yaml`
+  and this ledger file changed.
+- Entries 1-12 above confirmed unchanged (this entry is a pure append).
+
+**Terminal decision for this amendment:**
+
+```
+contract_state_sync_ready_for_human_merge_review
+```
+
+Means only that these two control-artifact edits are ready for Joseph's
+independent review and merge decision. Does not authorize merge, R2
+activation, or any further program-state change beyond what is recorded
+above.
