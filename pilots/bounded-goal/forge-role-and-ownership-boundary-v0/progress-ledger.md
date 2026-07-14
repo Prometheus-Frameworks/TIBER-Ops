@@ -612,3 +612,125 @@ Re-validated after the fix: YAML parses; the 28-of-28 reconciliation
 still passes against current `main`; only `goal-contract.yaml` changed
 for this correction (this ledger entry is the sole change to
 `progress-ledger.md`, itself a pure append after Entry 13).
+
+## Entry 15 — R2 activation recorded; mandatory Step 0 freshness re-verification executed (PASS)
+
+Appended 2026-07-14 by Claude Code (delegated execution agent,
+execution-only authority) as the required activation record and Step 0
+evidence, before any substantive R2 action. Entries 1–14 above are
+untouched (pure append). This entry records evidence and a human
+decision's permanent link; it is not itself a human decision.
+
+**Human activation decision (permanent link):** Joseph
+(`@Prometheus-Frameworks`), signed
+[`[DECISION — APPROVED] 2026-07-14 — Activate R2`](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-4972885214)
+(2026-07-14T19:00:13Z). R2 is thereby the sole active frontier;
+R3–R5 remain inactive. Activation checkpoint:
+[`[CHECKPOINT] 2026-07-14 — R2 activated; mandatory Step 0 pending`](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-4972897991).
+
+**Step 0 execution window:** 2026-07-14T19:20:48Z – 2026-07-14T19:23:27Z,
+run per `step0_mandatory_invariants` and section 3 of the merged
+`docs/architecture/cross-repo-freshness-and-current-state-registry-v0.md`,
+from sibling checkouts at `/home/user/<repo-name>`, reusing the verbatim
+command shapes from Entry 3a (fetch-first currency loop with explicit
+pin comparison; 4-arg `verify()` hash function; repo-wide absence
+`find`; Entry 13's 28-of-28 reconciliation script).
+
+**1. Repository currency (all 8 repos, freshly fetched from origin):**
+
+| Repo | origin default HEAD (fresh) | local_eq_remote | vs contract `repository_revisions` pin |
+|---|---|---|---|
+| TIBER-Ops | `530b4fb4f1270c1247f67180483e115fab39cb1a` | YES | matches PR #29 merge commit (Entry 13/14 state) |
+| TIBER-Data | `a7c059412806470a9e0b89889cd85f01cf7aace9` | YES | **ADVANCED** from `d9a5bea...` (see below) |
+| TIBER-Forecast | `49208472539bd11789b88ca8b3eb20c56a7d0db5` | YES | **ADVANCED** from `478489b...` (see below) |
+| TIBER-Teamstate | `3ec1d78e10fccf203239c88b905e3cf744d21c48` | YES | matches pin |
+| Role-and-opportunity-model | `6435d8d3c2c4e53dc45ab57a05a2716e2b47598d` | YES | matches pin |
+| TIBER-FORGE | `af2ca4d5f67f04ed1fc58fef50051c8169545d11` | YES | matches pin |
+| TIBER-Fantasy | `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` | YES | matches pin |
+| TIBER-Rookies | `2ef92faf9a9c91a393f53e9140428451529a1c48` | YES | matches pin |
+
+`git status --porcelain` empty for all 8 (no local drift). The two
+advances were examined commit-by-commit (`git log --stat` over the
+pin..HEAD range) before being accepted as non-blocking:
+
+- **TIBER-Data** `d9a5bea..a7c0594` — one commit, `a7c0594` "Implement
+  source-backed formation_summary_v0 2024 team-season candidate
+  (#215)". Strictly additive (12 new files: candidate export +
+  validation, manifest, schema, scripts, tests, audit docs). No
+  governed-dependency path touched. The new `formation_summary_v0`
+  artifact family is NOT a campaign dependency and does not enter scope
+  (per `scope.scope_addition_rule`).
+- **TIBER-Forecast** `478489b..4920847` — one commit, `4920847` "Design
+  record-bound availability evidence schema v2 for
+  rookie_transition_profile_v0.2.0 (#164)". Strictly additive (2 new
+  design-only documents under `docs/experiments/`). No
+  governed-dependency path touched. The new design doc explicitly
+  declares itself design-only and does not supersede the pinned
+  `forecast_rookie_transition_profile_consumption` document (its single
+  "superseded" mention is an internal open item about TIBER-Rookies
+  band-table documentation, not a supersession marker on any governed
+  dependency).
+
+Per the merged preflight protocol, repository-HEAD advance with all
+governed content hashes verifying is currency re-established at the new
+HEADs, not a failure. The HEADs in the table above are the Step 0
+verified revisions for R2's input freeze.
+
+**2. Governed dependencies (28/28):** every `governed_dependencies`
+entry re-hashed via `sha256sum` against the freshly-fetched working
+trees; all 28 `MATCH` their pinned `content_sha256`, zero mismatches,
+zero missing files (verbatim invocation list identical to Entry 3a
+block 2).
+
+**3. Policy pins:** all 6 file-backed pins re-hashed, all `MATCH`
+(Teamstate CLAUDE.md, Data AGENTS.md, Fantasy SECURITY_POLICY.md,
+Rookies AGENTS.md, FORGE AGENTS.md, TIBER-Ops
+runbooks/merge-checklist.md). Both absence records reconfirmed by
+repo-wide `find` (TIBER-Forecast, Role-and-opportunity-model): zero
+policy files anywhere in either repo.
+
+**4. Registry reconciliation (Entry 13 script, re-run against current
+`main` at `530b4fb`):** contract governed_dependencies: 28; registry
+flattened (entries+companions): 28; **matched: 28/28**; registry
+top-level entry IDs unique: True (18 entries).
+
+**5. Supersession sweep:** no `superseded_by` marker present in or on
+any of the 28 governed dependency files; no successor promotion event
+found at any canonical location.
+
+**6. Fail-closed items re-checked:**
+- **FC1** — unchanged. Fantasy mirror still
+  `cc2254a8d712976184ce370ecc2f932831d65925773b9e5dde924948d9b5cf14`;
+  producer still
+  `2020a52b2e941fbcd7a78130399380351da914959663ff9f1abf15affece1041`.
+  Still not current / provenance unverified; still non-blocking (R4
+  must disclose, not consume).
+- **FC2** — still true. No committed repository document has appeared
+  for TIBER-Ops#13 or TIBER-Data#212 (the sole new TIBER-Data commit is
+  the #215 formation-summary candidate, unrelated to the #212 attribute
+  methodology). Both remain contextual issue text, re-read at execution
+  time, never governed fact.
+- **FC3** — remains `resolved_registered` (reconfirmed by check 4).
+
+**7. Contract validation:** `goal-contract.yaml` parses (PyYAML), 28
+governed_dependencies, frontier `R2` /
+`execution_gated_pending_human_confirmation` — that stored status field
+is the pre-activation text; Joseph's signed decision linked above is
+the activation record that supersedes it operationally, per the
+contract's own rule that activation is recorded on #22 rather than by
+editing the contract (no contract edit is authorized under R2).
+
+**Step 0 result: PASS.** No drift in any governed dependency, no
+inaccessible repository, no policy conflict, no unresolved
+contradiction, no currency failure. Input freeze for R2 is in effect
+as of this entry against the repository revisions in the table above
+and the 28 pinned content hashes. Discovered upstream advances
+(TIBER-Data#215 formation-summary candidate; TIBER-Forecast#164
+schema-v2 design) are recorded here as observed, additive,
+out-of-scope repo evolution — not new dependencies, not parked work
+items, and not blockers.
+
+**Frontier after this entry:** R2 — active, Step 0 complete;
+substantive R2 work is now authorized within the merged contract's
+`authorized_actions_when_unblocked` for R2 only. R3–R5 remain pending
+and inactive. This entry does not claim any R2 completion.
