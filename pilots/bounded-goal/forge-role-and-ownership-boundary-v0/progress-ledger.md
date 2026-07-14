@@ -734,3 +734,271 @@ items, and not blockers.
 substantive R2 work is now authorized within the merged contract's
 `authorized_actions_when_unblocked` for R2 only. R3–R5 remain pending
 and inactive. This entry does not claim any R2 completion.
+
+## Entry 16 — R2 substantive evidence: canonical FORGE role selection, reconciliation, and non-responsibilities
+
+Appended 2026-07-14 by Claude Code (delegated execution agent,
+execution-only authority), immediately after Entry 15's passing Step 0,
+under Joseph's signed R2 activation decision (linked in Entry 15).
+Entries 1–15 untouched (pure append). This entry produces R2's
+completion evidence; it does **not** self-certify R2 as complete —
+per the `independent_completion_verification` invariant, completion
+requires a fresh-context verification that is not performed by this
+executing agent. This entry drafts no part of the R5 architecture
+document and modifies no source repository.
+
+All inputs below were consumed at the revisions and content hashes
+frozen by Entry 15 (Step 0 input freeze). TIBER-Ops#15 issue text was
+re-read at execution time as contextual data per FC2, not as governed
+fact; every load-bearing claim cites a pinned governed dependency.
+
+### 16.1 The three inconsistent governed role definitions (verbatim anchors)
+
+1. **`tiber_data_repo_boundaries_and_feedback_loops`**
+   (TIBER-Data `docs/repo-boundaries-and-feedback-loops.md`, sha256
+   `c1df7ea4d628...`): section "3) Adjudication / grading layers"
+   names FORGE as its example and states (line 61): "FORGE should
+   resolve disagreement between upstream signals and operate as an
+   explicit **arbitration layer**. It must not blindly echo one repo's
+   output or collapse multi-signal adjudication into model-copy
+   behavior." Layer requirements: multi-signal reasoning and conflict
+   resolution; traceability of which inputs influenced final grades;
+   reject circular evidence paths.
+2. **`forecast_ownership_boundaries`**
+   (TIBER-Forecast `docs/ownership-boundaries.md`, sha256
+   `4790a9046192...`): section 5 "What this repo does not own":
+   "**Deterministic grading/tiering policy (owned by TIBER-FORGE)**";
+   section 7 flags "deterministic grading/tiering behavior that may
+   belong in TIBER-FORGE" as a boundary-risk area. Forecast owns
+   scoring/projection logic, expected points, ranges, confidence,
+   replacement/VORP outputs (sections 2/4).
+3. **`tiber_forge_data_to_forge_ingestion_spec`**
+   (TIBER-FORGE `docs/architecture/TIBER_DATA_TO_FORGE_INGESTION_SPEC.md`,
+   sha256 `39dd805cc37e...`): "TIBER-FORGE must evolve from bootstrap
+   scaffold into the **fantasy signal grading layer** for football
+   rankings" (§A); "TIBER-FORGE **grades fantasy signal** from governed
+   inputs and interpreted context" (§B); FORGE owns "scoring formulas
+   and weighting policies over supplied inputs; penalties/boosts and
+   tier derivation; deterministic fallback behavior that exposes
+   missing upstream features without fabricating them; confidence
+   scoring logic; explanation primitives and reason generation;
+   evaluation/rankings outputs and deterministic execution behavior"
+   (§C).
+
+### 16.2 Reconciliation
+
+The three definitions are not three roles; they are one role described
+from three vantage points, and they nest without contradiction:
+
+- The Forecast doc assigns the **ownership**: deterministic
+  grading/tiering policy belongs to FORGE (and to no other repo).
+- The FORGE ingestion spec assigns the **domain scope**: the thing
+  being graded is fantasy signal for football rankings, computed from
+  governed inputs and interpreted context that FORGE does not itself
+  produce.
+- The TIBER-Data doc constrains the **operating discipline**: FORGE's
+  grading must be adjudicative — multi-signal, conflict-resolving,
+  traceable, and non-circular — rather than single-source echo. Note
+  the Data doc's own section heading places FORGE in an
+  "Adjudication / **grading**" layer: even the source of the
+  "arbitration layer" phrasing classifies FORGE as a grading layer
+  whose grading takes arbitration form.
+
+No pinned source contradicts another on any concrete boundary: all
+three place FORGE strictly downstream of TIBER-Data source truth,
+Teamstate/Role-and-opportunity interpreted context, and Forecast
+modeled outputs, and strictly upstream of TIBER-Fantasy product
+presentation; all three deny FORGE ownership of source truth,
+interpretation, projection, and presentation. The inconsistency named
+by #15 is vocabulary ("arbiter, grader, auditor, fantasy-signal
+layer"), not contractual conflict.
+
+### 16.3 Selected canonical primary role
+
+From the four #15 candidate concepts (deterministic grading layer;
+evidence arbitration layer; signal synthesis layer; audit and
+validation layer), R2 selects:
+
+> **TIBER-FORGE is the deterministic grading layer of TIBER** — the
+> sole owner of evaluative judgment over fantasy signal: scores,
+> grades, tiers, rankings, confidence, and their machine-readable
+> explanations, computed by explicit, reproducible, versioned policy
+> over governed source truth, interpreted context, and modeled
+> forecasts supplied by upstream repositories. Its grading is
+> adjudicative by obligation: where multiple governed upstream signals
+> disagree, FORGE must resolve the disagreement explicitly and
+> traceably (evidence arbitration is a retained secondary
+> responsibility and a required property of the grading policy, not a
+> separate role). FORGE creates no truth: every FORGE output is
+> derived evaluative judgment, never source-grounded evidence.
+
+**Rationale, cross-referenced against the six sources required by R2's
+`completion_evidence`:**
+
+- **`forge_core_contract`** (TIBER-FORGE `src/contracts/forge.ts`,
+  sha256 `ceeb45ee9833...`): the machine contract is a grading
+  contract — `EvaluationScore` (overall, tier, rankHint, weighted
+  `ScoreComponent[]` each carrying a `reason`), `Confidence` with the
+  literal type `deterministic: true`, `reasons[]`, and `SourceMetadata`
+  that discloses mode/parity (`bootstrap-demo`,
+  `parityStatus: 'bootstrap-scaffold' | 'football-lane-v1'`). Both
+  determinism and per-component traceability are load-bearing in the
+  type system, matching "deterministic grading" and the Data doc's
+  traceability requirement simultaneously.
+- **`forge_football_lane_contract`** (TIBER-FORGE
+  `src/contracts/football.ts`, sha256 `453693f1bd06...`):
+  `ForgeWeeklyPlayerInput` is input-only and carries provenance/support
+  fields (`sourceSetId`, `sourceUpdatedAt`, `asOf`, `featureCoverage`,
+  `qualityFlags`, `dataConfidenceHint`);
+  `NormalizedFootballScoringInput` keeps input classes structurally
+  distinct (opportunity / efficiency / environment / stability /
+  provenance) rather than collapsing them into one generic signal;
+  season grading types again hard-code `deterministic: true`
+  confidence. The grading layer's own contracts preserve the
+  evidence-class distinctions FORGE is required not to blur.
+- **`forecast_ownership_boundaries`**: explicitly assigns
+  "deterministic grading/tiering policy" to TIBER-FORGE. Selecting
+  "evidence arbitration layer" as the primary role instead would leave
+  the grading/tiering policy that Forecast disclaims formally unowned;
+  selecting deterministic grading honors the only explicit cross-repo
+  ownership assignment in the pinned set.
+- **`tiber_data_repo_boundaries_and_feedback_loops`**: satisfied by
+  making arbitration an obligation of the grading policy: multi-signal
+  reasoning and conflict resolution are required wherever multiple
+  governed inputs exist; traceability is discharged through the
+  component/reason primitives noted above; circular evidence paths are
+  rejected by classifying prior FORGE outputs as a distinct input
+  class that is never evidence (16.4). The doc's own "Adjudication /
+  grading layers" heading confirms grading-with-arbitration-discipline
+  is a faithful reading, not a demotion of its "arbitration layer"
+  phrase.
+- **`tiber_forge_data_to_forge_ingestion_spec`**: "fantasy signal
+  grading layer" is the selected role's domain scope verbatim; the
+  spec's FORGE-responsibilities list (scoring formulas, weighting,
+  penalties/boosts, tier derivation, deterministic fallback that
+  exposes rather than fabricates missing features, confidence,
+  explanation primitives, deterministic execution) is precisely the
+  content of "deterministic grading policy."
+- **`forge_player_static_v1` `score_source_policy`** (TIBER-FORGE
+  `exports/promoted/forge_player_static/forge_player_static_v1.json`,
+  sha256 `2020a52b2e94...`): the promoted artifact's policy block
+  distinguishes `player_specific` ("the only score_source that counts
+  as player-specific FORGE evidence") from `fallback_default` and
+  `generated_baseline` (which "must not be interpreted as
+  player-specific FORGE evidence... confidence input... or
+  player-specific alpha"). FORGE's own promoted output already
+  practices row-level evidence-class honesty — grading that labels the
+  evidentiary standing of its own rows rather than laundering
+  fallbacks into judgments, consistent with the selected role and
+  inconsistent with none.
+
+**Why not the other three candidates:**
+
+- **Evidence arbitration layer (as primary):** arbitration presumes
+  multiple governed upstream signals to arbitrate. At the pinned
+  revisions, FORGE's only defined ingestion seam is the single
+  `ForgeWeeklyPlayerInput` lane (mode `bootstrap-demo`,
+  `parityStatus: bootstrap-scaffold` per `forge_core_contract` and the
+  ingestion spec §B); Forecast/Teamstate/Role-and-opportunity inputs
+  are contract-anticipated but not yet wired. A primary role FORGE
+  cannot yet exercise would misdescribe the pinned reality, and it
+  would leave deterministic grading/tiering policy — which Forecast
+  explicitly disclaims to FORGE — unowned. Arbitration is retained as
+  a defining obligation of the grading policy instead.
+- **Signal synthesis layer:** no pinned governed source uses this
+  concept for FORGE. Worse, "synthesis" names exactly the failure mode
+  the TIBER-Data doc guards against: producing a blended signal that
+  can be mistaken for evidence. FORGE's output is evaluative judgment,
+  which must never be relabeled as a source-grounded signal
+  (anti-recursion rule; projection-layer rule "never relabel...
+  outputs as source-grounded facts" applies a fortiori to judgment).
+- **Audit and validation layer:** validation of source truth,
+  schemas, and provenance is TIBER-Data's assigned responsibility
+  (ingestion spec §C: source adapters, freshness, normalization,
+  contract versioning; Data boundaries doc: "schema semantics and
+  validation boundaries"). FORGE's related-but-narrower duty is
+  deterministic fallback behavior that *exposes* missing upstream
+  features without fabricating them, plus disclosure metadata — an
+  obligation of honest grading, not an audit mandate over upstream
+  repos. No pinned source assigns FORGE an audit role.
+
+### 16.4 Explicit FORGE non-responsibilities
+
+Grounded per source; FORGE does **not** own:
+
+1. **Source truth, provenance, identity, or normalization** — owned by
+   TIBER-Data (ingestion spec §C; Data boundaries doc "Ownership and
+   scope"). FORGE must not mutate upstream artifacts (spec §H) and
+   must not fabricate usage, routes, PPR outcomes, identity, source
+   metadata, team context, or role context (spec §D notes, §H).
+2. **Team-environment interpretation** — owned by TIBER-Teamstate
+   (spec §A/§C).
+3. **Player-role interpretation** — owned by Role-and-opportunity-model
+   (spec §A/§C).
+4. **Modeled projection: expected points, ranges, replacement/VORP,
+   projection confidence** — owned by TIBER-Forecast
+   (`forecast_ownership_boundaries` §2/§4). FORGE consumes modeled
+   facts as one input class; it does not compute projections.
+5. **Product presentation, filtering, comparison UX, and
+   product-facing explanation rendering** — owned by TIBER-Fantasy as
+   cockpit (spec §A/§C; Data boundaries doc layer 4). Long-term
+   ranking math does not belong in Fantasy (spec §A), and presentation
+   does not belong in FORGE.
+6. **Final player opinions as upstream truth.** FORGE outputs are
+   terminal derived judgments for downstream consumption; they re-enter
+   upstream modeling only via the Data doc's exception path (converted
+   into a new source-backed artifact with independent provenance and
+   governed ingestion), never automatically (anti-recursion rule,
+   "Bad loop" example — which names "FORGE boosts player" as a link in
+   the invalid loop). Prior FORGE outputs are a distinct input class,
+   never evidence.
+7. **Promotion, merge, or governance authority** — operator-owned
+   across all repos (policy_pins; `no_autonomous_irreversible_action`
+   invariant). Listing in any registry or export is descriptive, not
+   promotive.
+8. **Candidate discovery (GOBLIN)** — read-only inspection context
+   only when a contract explicitly provides it; candidates must not
+   silently alter weights, tiers, confidence, or reasons (spec §E).
+
+### 16.5 Preserved distinction: source truth / transformation lineage / modeled facts / evaluative judgment
+
+Required by R2's third authorized action; preserved as follows:
+
+- **Source truth** — TIBER-Data governed artifacts and contracts (and
+  Teamstate/Role-and-opportunity interpreted context as governed,
+  provenance-labeled *interpretations* of reality, per spec §B/§C).
+- **Transformation lineage** — carried, not owned: provenance fields
+  (`sourceSetId`, `sourceUpdatedAt`, `asOf`, `featureCoverage`,
+  `qualityFlags`) travel through `ForgeWeeklyPlayerInput` into
+  `NormalizedFootballScoringInput.provenance` and surface in output
+  `SourceMetadata`; FORGE must propagate lineage through grading, never
+  sever or re-originate it.
+- **Modeled facts** — Forecast's expected points, ranges, confidence,
+  VORP: derived opinions conditioned on assumptions (Data doc layer 2),
+  a distinct FORGE input class, never source truth.
+- **Evaluative judgment** — FORGE's exclusive output class: score,
+  grade, tier, rank, confidence, explanation. Judgment cites its
+  evidence (component reasons, score_source labels) and is never
+  reclassified as any of the other three. The `score_source_policy`
+  demonstrates the discipline inside a promoted FORGE artifact today.
+
+These four classes are pairwise non-interchangeable; #15's finer
+six-class input taxonomy (direct observations, normalized evidence,
+modeled forecasts, contextual state, external opinions, prior FORGE
+outputs) refines the first three classes plus prior-output exclusion
+and is R3/R4 material, not collapsed here.
+
+### 16.6 R2 state after this entry
+
+R2's three authorized actions are executed: role selected and
+justified (16.3), three definitions reconciled (16.2),
+non-responsibilities defined (16.4), distinctions preserved (16.5),
+cross-referenced against all six sources named in
+`completion_evidence`. **R2 state: evidence_complete_pending_independent_verification.**
+Per the `independent_completion_verification` invariant and
+`evidence_standards`, R2 may be recorded `complete` only after a
+fresh-context verification (not this executing agent) reproduces this
+entry's claims from the pinned sources; the frontier does not advance
+to R3 by this entry. No amendment, no scope change, no source-repo
+modification, no R5 drafting occurred. FC1/FC2 obligations remain
+owned by R4 and are unaffected by this entry.
