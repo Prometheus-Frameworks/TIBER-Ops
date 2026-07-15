@@ -33,6 +33,7 @@ Its correctable FAIL findings were resolved as follows:
 | Two Forecast capability documents and four contract/artifact rows used unsupported authority bases | Downgraded all six to `historical_implementation_evidence`; narrowed both authority-bound columns and cited the frozen source commits rather than treating the descriptive registry or path naming as promotion | Independent audit finding 2 |
 | Directly relevant Teamstate, Role-and-opportunity, and Rookies contracts were absent | Added all three to Entry 4.5 with full hashes and conservative authority records | Independent audit finding 3 |
 | Control comments used bare or incorrectly located identifiers | Replaced them with permanent repo/issue comment URLs in Entries 1 and 3; Decision A is correctly located on #22 | Independent audit finding 4 |
+| The first correction checkpoint omitted Forecast's root-README-linked Run 1 path audit | Added `docs/run1-path-audit-for-run2.md` to Entry 4.1 with its frozen pin and bounded canonical-documentation authority record | Second independent audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986401086` |
 
 No registry or source repository was changed, and D2 was not activated by
 these corrections.
@@ -120,6 +121,11 @@ the sole write location. The newly added #15 control and three architectural
 files were independently hashed and matched the pins recorded below. This
 recheck did not change the frozen source revisions.
 
+At `2026-07-15T23:53:11Z`, the same eight-repository fetch comparison was
+repeated after the second audit. All source revisions still matched the
+original freeze. The newly added Forecast Run 1 path audit hash matched its
+frozen source, so the original evidence freeze remains valid.
+
 ---
 
 ## Entry 3 — Control-authority inventory
@@ -142,6 +148,7 @@ as a stable pin.
 | #15 progress-ledger lifecycle control | TIBER-Ops `pilots/bounded-goal/forge-role-and-ownership-boundary-v0/progress-ledger.md` at `530b4fb4f1270c1247f67180483e115fab39cb1a`; last source change `42bc75e8ed84e0eb2acfa74d164f06a377c21381` | `974b6990c387de4bec813f6a061678afc80f3a24a0e600dce7b982f7824c1bf6` | Required two-phase lifecycle, pre-merge correction-log, and post-merge no-rewrite rule inherited by this ledger |
 | Merge checklist | `runbooks/merge-checklist.md`; last source change `59933bb...` | `069630473cbf56200dd9870a468038181985ce0d30467b17b83a1d07e9a6d9c3` | Repository merge policy |
 | First independent D1 audit | `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986180583`; created/updated `2026-07-15T23:15:15Z` | `d65510b0d21637dc1bf5de1919aa2195c336757a82c0d2f19c0d6513edb4abd3` | Fresh-context technical correction requirements; not human approval and not D2 activation |
+| Second independent D1 audit | `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986401086`; created/updated `2026-07-15T23:51:51Z` | `362f9b6c3f72a1b7151a2ab11dd3dc0e7fba26cf029cae07cfed4e47f0de83ec` | Fresh-context omission finding for the root-linked Run 1 path audit; not human approval and not D2 activation |
 
 ---
 
@@ -163,13 +170,15 @@ was found in the frozen source, not that future evidence cannot supersede it.
 | `docs/forecast-lane.md` @ `4920847...`; SHA-256 `616e4ea6d21c277268386ab6536204893144b584f63f64d17e9651d07b4b0466` | `canonical_repo_documentation` | linked by current README | Forecast-lane vocabulary and operating shape | Proof of #59 approval or future FORGE ownership | `none_found` |
 | `docs/run-manifest-spec.md` @ `4920847...`; SHA-256 `612600b7adf1620b319f30b489909e9ad1ea06c9ab8c39b5f629d5d041f1c233` | `canonical_repo_documentation` | linked by current README | Run manifest, cutoff, and input-governance semantics | Cross-repository doctrine beyond its stated contract | `none_found` |
 | `docs/run2-tts-feature-contract.md` @ `4920847...`; SHA-256 `dae837dfc4c0b38b63ff5d2901c746b9fbfc3215bae2688e99724c30b0e26227` | `canonical_repo_documentation` | linked by current README | The model-legible Teamstate feature gate for Run 2 | General FORGE architecture or approval provenance | `none_found` |
+| `docs/run1-path-audit-for-run2.md` @ `49208472539bd11789b88ca8b3eb20c56a7d0db5`; SHA-256 `530bbc5d6e134eb9cf1ba4e2cc4437da1c8a9dda4764913e24b389aca904f9db` | `canonical_repo_documentation` | linked from the root README's Forecast architecture lane at the frozen revision; file last changed in `0f17f92bf9364c73115a0701efed8cd73ad6af8f` | The documented Run 1 pipeline map, manifest distinction, cutoff invariants, and proposed Run 2 attachment seam at the frozen revision | Proof that Run 2 is implemented, executable conformance beyond the audit, a D2 ownership conclusion, or activation authority | `none_found` |
 | TIBER-Forecast#59; retrieved `2026-07-15T22:41:29Z`; SHA-256 `2b9d4a1e065939a1761944753360bd06a9ee248750c0357a2cb0176890e2f6b7` | `contextual_only` | open issue, updated `2026-06-22T21:07:08Z` | Historical problem framing and themes to investigate | Governed fact, accepted requirements, or approval | `none_found` |
 
-The three additional Forecast documents (`forecast-lane`, `run-manifest-spec`,
-and `run2-tts-feature-contract`) were added because the current README links
-them and their content instantiates #59's model-legible architecture themes.
-No file explicitly cites #59, so this is content continuity plus current
-repository linkage, not issue-reference provenance.
+The four additional Forecast documents (`forecast-lane`, `run-manifest-spec`,
+`run2-tts-feature-contract`, and `run1-path-audit-for-run2`) were added because
+the current README links them in the same architecture lane and their content
+instantiates #59's model-legible architecture themes. No file explicitly cites
+#59, so this is content continuity plus current repository linkage, not
+issue-reference provenance.
 
 **PR #164 authority gap:** the PR is merged, but the available review history
 contains only a Codex `COMMENTED` review and comments posted through the
@@ -229,8 +238,8 @@ directly pinned repository evidence.
 
 - Mandatory Step 0: **complete**.
 - Control-authority inventory: **complete for the D1 sources named by #31**.
-- Architectural-evidence inventory: **complete for 22 file-backed sources
-  and five contextual issues, comprising the named minimum plus six directly
+- Architectural-evidence inventory: **complete for 23 file-backed sources
+  and five contextual issues, comprising the named minimum plus seven directly
   relevant additional documents**.
 - Authority record: **present for every architectural dependency**.
 - Source-repository changes: **none**.
@@ -254,7 +263,7 @@ directly pinned repository evidence.
 
 ### Checkpoint state
 
-`d1_corrections_complete_pending_independent_reverification`
+`d1_second_correction_complete_pending_independent_reverification`
 
 D1 evidence has been corrected in response to the first fresh-context audit
 and is ready for a different fresh-context independent verifier. Until that
