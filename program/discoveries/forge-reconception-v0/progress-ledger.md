@@ -1604,3 +1604,116 @@ authority classification, analysis, or terminal changed.
 F0 remains `d3f_f0_pass`; D3-F remains the sole frontier with F1 next; #15 R2
 remains parked; D4-D6 remain inactive; and no direction or implementation is
 selected.
+
+---
+
+## Entry 19 — F1 partial inventory and source-universe block
+
+### Authority and method
+
+F1 began only after mandatory F0 passed at
+`7863a1a07c62060f360a3314b013aacb62b35fe0` with independent review recorded
+in TIBER-Ops#31 comment `4996566565`. The executing analysis stayed read-only
+in all seven source repositories and traced only the F0-admitted paths,
+fixed-token matches, exact imports, route registrations, and service calls.
+
+F1 applied the amendment's definition of an evidenced current consumer:
+committed F0-revision code with a reproducible static chain to a mounted entry
+point. It did not treat path names, similar field names, a route definition,
+an import, documentation, or current runtime behavior as sufficient by itself.
+
+### Exact stopping objects
+
+One raw-byte replay batch completed at `2026-07-16T21:38:28.687240665Z` at
+the F0-frozen revisions and reproduced these ten known necessary but
+unadmitted objects reached before the fail-closed stop:
+
+| Repository | Revision | Excluded path | SHA-256 | Prevented trace |
+|---|---|---|---|---|
+| TIBER-Forecast | `49208472539bd11789b88ca8b3eb20c56a7d0db5` | `src/server.ts` | `a8887606440c063f52c4b6b5fd4824e25534ea8b7c18859fa2b542512cc1d44c` | Served application entry |
+| TIBER-Forecast | same | `src/api/app.ts` | `b671266a530de60cc418b18d1c56ed709cc7a92b1140c3d7552d745fd799f1ff` | Route registration/mount middle |
+| TIBER-Forecast | same | `src/api/routes/scoring.ts` | `dfbc18342b74e31961e814c3288df52856e90e3b9bc5ddaa489b9c37fb8db953` | Five raw scoring questions and adapters |
+| TIBER-Fantasy | `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` | `client/src/main.tsx` | `77de0b5e8dabac65fc1390a8e472bc971e0644dbf570def9f589562972d5ec28` | Client-to-`App.tsx` root |
+| TIBER-Fantasy | same | `server/index.ts` | `30a729ac29e4b6dec298a4c127b059e4a39a387f7255534951000fa5136cd86e` | `/api/v1` and `registerRoutes` server mounts |
+| TIBER-Fantasy | same | `server/routes/playerIdentityRoutes.ts` | `91a4f0381d0b2411280739bdd9d7e6660e589a84af2cf87506cdb12675a75e9b` | PlayerPage weekly/ROS scoring middle |
+| TIBER-Fantasy | same | `server/routes/tiberRoutes.ts` | `47aa2f19b0446a1f55e8b4c030c3be4055715947931c5cd0fd8e1d29928a9028` | TIBER chat to `forgeContextLoader` middle |
+| TIBER-Fantasy | same | `client/src/lib/queryClient.ts` | `3e231529f0006b18d0bdf0fcaf18d96cf22f029a1c3e1055485d6aa7ae1dc0cb` | Query-key default fetch for ranking/Management paths |
+| TIBER-Fantasy | same | `server/routes/adminForge.ts` | `ea4ca01f599f3166dc39fc9cb681bd6a57aee247f19dfca08955ffd40ae88c69` | Admin FORGE rebuild route/service middle |
+| TIBER-Fantasy | same | `server/routes/leagueDashboardRoutes.ts` | `7bfb6630130c5c4dad38f795b8cdbd7ee2253e036c5e0c23ff83270dd1cd4c8b` | Management league-dashboard route/service middle |
+
+These objects are outside §4.1. Their hashes and boundary roles are recorded
+only to make the stop reproducible; they were not admitted as consumer
+evidence. Forecast `src/public/index.ts` at the same revision reproduced
+`be218977001224765af49e08b98af0e60534e3e31a52cd398e47ef76ca9db99c`
+but was nonessential export-only context, so it remains parked rather than
+joining the blocking set.
+
+Amendment §7 permits this terminal before normal F1 completion. This is the
+exact known set reached during completed partial work, not a claim that
+forbidden transitive expansion produced an exhaustive repository closure.
+
+This finding prospectively supersedes Entry 15's statement that no necessary
+material dependency was discovered outside §4.1. It does not alter F0's
+fetched revisions, identities, hashes, manifests, search counts, policies,
+controls, or accepted bytes.
+
+### Completed partial work
+
+- **Forecast:** admitted `tiberScoring.ts` and
+  `buildTiberViewsService.ts` support four internal route questions—weekly
+  card, weekly ranking, ROS card, and weekly compare—but their application and
+  served-process mounts are unproved. The excluded raw scoring router prevents
+  complete enumeration of five additional scoring questions.
+- **Fantasy:** the admitted App, page, route, FORGE, scoring, and compatibility
+  code supports route-declared tiers, schedule, TIBERClaw, FORGE inspection,
+  PlayerPage, Management, ranking-sandbox, admin rebuild, delta API, and API-v1
+  rows. Missing roots and middles prevent the required current-consumer
+  classifications and several request/service chains, including Management's
+  league-dashboard route and the admin rebuild route.
+- **Player Research:** admitted code supports two UI compositions of the same
+  route-declared player/season research question through one service that
+  combines signal validation, role/opportunity, age curves, point scenarios,
+  and ownership.
+  It is question-specific composition with mixed grains and unresolved
+  cutoff/correction/ownership semantics, not direct evidence of a neutral
+  shared profile.
+- **Shared demand:** no admitted current Forecast-to-Research, Forecast-to-
+  FORGE, or common neutral-profile consumption edge was established. Similar
+  names do not align identity, grain, cutoff, correction, and semantic-owner
+  contracts.
+- **Accounting:** Entry 15's fixed-token disposition remains `90/90` with
+  `15` mounted-product, `19` server-internal, `12` compatibility, `16`
+  admin/experimental, `12` unmounted, `12` test-only, and `4` docs-only
+  file labels. F1 cannot promote those labels into complete consumer evidence
+  without the excluded mount/service middles.
+
+The missing objects prevent normal F1 completion, all-three-class accounting,
+complete scan-hit disposition under the mounted-chain rule, the F2 viability
+gate, and honest execution of F2-F6 or synthesis. Under amendment §§4.1, 7,
+and 8, the decision document therefore records the single blocked terminal
+and zero recommendation before later requirements begin.
+
+### Unknowns, scope accounting, and frontier state
+
+Runtime/deployment traffic, environment configuration, data/cache/artifact
+population, off-repository consumers, product priorities, survival
+requirements, future owners, and option weighting remain unchanged unknowns.
+They are not used as the block rationale.
+
+Relative to F0 `7863a1a07c62060f360a3314b013aacb62b35fe0`, the candidate
+changes only:
+
+- `docs/architecture/forge-reconception-v0.md`; and
+- `program/discoveries/forge-reconception-v0/progress-ledger.md`.
+
+Both changes are append-only with zero deletion. No source repository,
+registry, #15/#20 state, implementation, prototype, model run, runtime query,
+issue in a source repository, PR, merge, deployment, migration, cutover,
+deprecation, or repository disposition changed.
+
+D3-F remains #31's sole discovery frontier in a stopped state. F2-F6 did not
+begin. #15 R2 remains `r2_parked_pending_forge_reconception`; D4-D6 remain
+inactive; A-D remain unresolved; and no FORGE direction is selected or
+implemented. Fresh-context verification of the exact published head is
+required before this executing-agent record may be treated as a technically
+verified checkpoint.

@@ -919,3 +919,185 @@ and no necessary source was found outside the closed amendment universe.
 - #15 R2 remains parked; D4-D6 remain inactive.
 - No source repository, registry, #15/#20 record, implementation, prototype,
   model run, production query, deployment, PR, merge, or cutover was changed.
+
+---
+
+## 12. D3-F F1 partial inventory and source-universe block
+
+This is a labelled supplemental append. It leaves the accepted D3 material and
+the completed F0 records byte-immutable. It records the first stopping
+condition discovered while applying F1's stricter definition of an evidenced
+current consumer.
+
+### 12.1 Prospective correction to F0 sufficiency
+
+F0's identity, currentness, manifest, hash, policy, and control-object checks
+remain valid. Its prospective conclusion that no necessary source was outside
+the closed amendment universe did not survive F1's route/import/service-call
+trace. F1 found committed middle and mount files that §4.1 does not admit but
+that are necessary to establish material consumer edges. The earlier F0 text
+is preserved as the historical checkpoint; this append supersedes only that
+forward sufficiency conclusion.
+
+At the F0-frozen revisions, the following known necessary raw bytes reached
+before the fail-closed stop were reverified as one batch completed at
+`2026-07-16T21:38:28.687240665Z`. They are boundary diagnostics, not admitted
+evidence, and none was silently added to the inventory:
+
+| Repository and revision | Out-of-universe path | Raw-byte SHA-256 | Material F1 edge prevented |
+|---|---|---|---|
+| TIBER-Forecast `49208472539bd11789b88ca8b3eb20c56a7d0db5` | `src/server.ts` | `a8887606440c063f52c4b6b5fd4824e25534ea8b7c18859fa2b542512cc1d44c` | Served-process entry that creates the admitted application; without it, a route definition cannot be traced to the listening service. |
+| TIBER-Forecast, same revision | `src/api/app.ts` | `b671266a530de60cc418b18d1c56ed709cc7a92b1140c3d7552d745fd799f1ff` | Application mount middle that registers both the admitted TIBER scoring router and the unadmitted raw scoring router. |
+| TIBER-Forecast, same revision | `src/api/routes/scoring.ts` | `dfbc18342b74e31961e814c3288df52856e90e3b9bc5ddaa489b9c37fb8db953` | Defines the five raw scoring questions and their route-to-service adapters, which F1 must inventory. |
+| TIBER-Fantasy `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` | `client/src/main.tsx` | `77de0b5e8dabac65fc1390a8e472bc971e0644dbf570def9f589562972d5ec28` | Client root that renders admitted `App.tsx`; without it, client route declarations cannot be classified as statically mounted current consumers. |
+| TIBER-Fantasy, same revision | `server/index.ts` | `30a729ac29e4b6dec298a4c127b059e4a39a387f7255534951000fa5136cd86e` | Server root that mounts admitted `server/api/v1/routes.ts` and invokes admitted `server/routes.ts::registerRoutes`. |
+| TIBER-Fantasy, same revision | `server/routes/playerIdentityRoutes.ts` | `91a4f0381d0b2411280739bdd9d7e6660e589a84af2cf87506cdb12675a75e9b` | Required middle between the PlayerPage identity request and admitted weekly/ROS scoring service and mapper code. |
+| TIBER-Fantasy, same revision | `server/routes/tiberRoutes.ts` | `47aa2f19b0446a1f55e8b4c030c3be4055715947931c5cd0fd8e1d29928a9028` | Required middle between the admitted TIBER router mount and admitted `forgeContextLoader` consumer. |
+| TIBER-Fantasy, same revision | `client/src/lib/queryClient.ts` | `3e231529f0006b18d0bdf0fcaf18d96cf22f029a1c3e1055485d6aa7ae1dc0cb` | Supplies the default query-key fetch behavior needed to reproduce the QB/WR ranking sandbox and Management request chains. |
+| TIBER-Fantasy, same revision | `server/routes/adminForge.ts` | `ea4ca01f599f3166dc39fc9cb681bd6a57aee247f19dfca08955ffd40ae88c69` | Required route middle between admitted `server/routes.ts` and the admitted `forgeRebuildService.ts` admin consumer. |
+| TIBER-Fantasy, same revision | `server/routes/leagueDashboardRoutes.ts` | `7bfb6630130c5c4dad38f795b8cdbd7ee2253e036c5e0c23ff83270dd1cd4c8b` | Required route/adapter for Management's admitted `/api/league-dashboard` query and admitted `leagueDashboardService.ts`. |
+
+Forecast `src/public/index.ts`, SHA-256
+`be218977001224765af49e08b98af0e60534e3e31a52cd398e47ef76ca9db99c`,
+was also inspected as a boundary diagnostic. It is an export-only edge and is
+not necessary to establish a mounted consumer, so it remains parked and is not
+part of the blocking set.
+
+The contents above are cited only to identify the exact excluded objects and
+why the bounded trace stops. They do not count as evidence for consumer
+demand, profile viability, option weighting, or current deployment.
+Because amendment §7 permits the blocked terminal before F1 completion, this
+is the exact known set reached during completed partial work, not a claim that
+forbidden transitive expansion produced an exhaustive repository closure.
+
+### 12.2 Requirements prevented
+
+F1 requires every Forecast, Fantasy, and committed Player Research question to
+have a reproducible static chain to a mounted entry point, and requires every
+eligible scan hit to receive a complete evidence-class disposition. The
+excluded objects prevent:
+
+- mounted-versus-route-declared classification for the Fantasy client
+  surfaces and server-backed paths;
+- complete enumeration of Forecast's raw scoring questions and proof that the
+  admitted TIBER scoring routes reach the served application;
+- the PlayerPage weekly/ROS scoring composition edge;
+- the default-fetch edges for the QB/WR ranking sandboxes and Management;
+- the TIBER-chat-to-FORGE-context consumer edge;
+- the admin FORGE rebuild and Management league-dashboard route/service
+  edges; and
+- a complete F1 disposition that can honestly support the F2 profile gate or
+  any later F3-F6 comparison.
+
+The F0 fixed-token manifest remains a reproducible historical `90/90`
+accounting record with totals `15/19/12/16/12/12/4`. Those file-level labels
+do not substitute for F1's required mounted-chain evidence. Because normal F1
+cannot complete, F2-F6 and option-neutral synthesis did not begin.
+
+### 12.3 Completed partial Forecast inventory
+
+The admitted Forecast paths support the following partial, route-declared
+inventory. Their application and served-process mounts remain unproved inside
+the bounded universe:
+
+| Admitted consumer path / question | Producer, output, and current composition | F1 classification |
+|---|---|---|
+| `src/api/routes/tiberScoring.ts` — weekly player card | `buildWeeklyPlayerCardService` composes weekly scoring into a player-card view from one player, league context, comparison pool, and optional replacement override. | Internal route definition; mount unproved. |
+| same path — weekly rankings | `buildWeeklyRankingsViewService` composes batch scoring and orders expected points, VORP, then player name. | Internal route definition; mount unproved. |
+| same path — ROS player card | `buildRosPlayerCardService` composes ROS scoring using players, league context, and remaining weeks. | Internal route definition; mount unproved. |
+| same path — weekly comparison | `buildWeeklyCompareViewService` compares two weekly player results using expected points plus one-half VORP and emits a question-specific verdict. | Internal route definition; mount unproved. |
+| excluded `src/api/routes/scoring.ts` — weekly player, batch, replacement, weekly rankings, and ROS | The route/output adapters are necessary to enumerate these five questions. | Mandatory row group blocked at the source-universe boundary. |
+| `src/api/routes/decisionBoard.ts` and `docs/decision-board.md` | Mock/policy-candidate decision-board evidence only. | Experimental/documentation; does not count as current consumer demand. |
+| admitted seasonal PPR, Teamstate, Rookies, and future-FORGE references | Capability, planning, mirror/audit, or documentation evidence only. | Compatibility/planned/docs; no mounted current shared-profile demand established. |
+
+The admitted weekly inputs identify player, name, team, position, sampled
+games, opportunity values, and league context; many opportunity fields default
+or remain optional. Season/week are optional in relevant contracts. The
+admitted path does not establish a consumer cutoff, public-availability proof,
+correction identifier, complete input lineage, or future semantic owner.
+Request-time `generated_at` is operational metadata, not typed availability.
+The four TIBER view transformations answer scoring/ranking/comparison
+questions; they are not evidenced as a neutral shared profile.
+
+### 12.4 Completed partial Fantasy and Player Research inventory
+
+The admitted Fantasy paths support the following partial inventory, subject to
+the missing client/server roots and consumer-specific middles:
+
+| Route-declared surface / exact consumer path | Current question or dependency evidenced by admitted code | Bounded classification |
+|---|---|---|
+| `/tiers` — `client/src/pages/TiberTiers.tsx` | Weekly scoring/ranking through `/api/rankings/v2/weekly`, with a compatibility fallback to `forge_grade_cache`. | Product route declaration; client/server mount chain incomplete. |
+| `/schedule` — `client/src/pages/SchedulePage.tsx` | Embedded FORGE preview and strength-of-schedule-adjusted alpha. | Product route declaration; client root unproved. |
+| `/tiberclaw` — `client/src/pages/TiberClawPage.tsx` | Offensive and IDP alpha/tier views. | Product route declaration; client root unproved. |
+| `/forge/inspect` — `client/src/pages/ForgeTransparency.tsx` | Embedded FORGE pillars, recursion, transparency, and history. | Product route declaration; client root unproved. |
+| `/player/:playerId` — `client/src/pages/PlayerPage.tsx` | Tier neighbors, FORGE comparison, Player Research, and weekly/ROS scoring. | Product route declaration; scoring middle and roots excluded. |
+| `/management` — `client/src/pages/TiberManagementDashboard.tsx` | Team Direction consumes the pinned `FORGE_PLAYER_STATIC_V1` compatibility artifact and fails closed when player-specific evidence is absent; the page also requests `/api/league-dashboard`. | Product route declaration; default fetch, league-dashboard route, and roots excluded. |
+| `/admin/qb-rankings-sandbox` and `/admin/wr-rankings-sandbox` — `QBRankingsSandbox.tsx` / `WRRankingsSandbox.tsx` | Internal ranking requests expressed through query keys. | Admin/internal route declarations; default fetch and client root excluded. |
+| `server/modules/forge/routes.ts` — `/api/delta/*` | Combined FIRE/FORGE server API. | Server route definition; served mount unproved. |
+| `server/api/v1/routes.ts` — `/api/v1/forge/*` | Compatibility/public API surface. | Compatibility route definition; `server/index.ts` mount excluded. |
+| `client/src/pages/ForgeWorkbench.tsx` | Admin workbench inspection calls. | Admin route declaration; two referenced workbench handlers are absent from the closed tree. |
+| admitted `server/services/forgeContextLoader.ts` | Loads FORGE context for TIBER chat. | Material consumer edge blocked by excluded `tiberRoutes.ts` and server root. |
+| `/admin/forge-hub` — `client/src/pages/admin/ForgeHub.tsx` and admitted `server/services/forgeRebuildService.ts` | Admin FORGE rebuild/inspection question. | Admin route declaration; excluded `adminForge.ts` and roots prevent the route/service mount chain. |
+
+Two admitted UI compositions ask the same route-declared Player Research
+question: what promoted research exists for a player/season.
+
+1. `App.tsx` -> `PlayerResearchLab.tsx` ->
+   `PlayerResearchWorkspaceView.tsx` -> `/api/data-lab/player-research` ->
+   `server/routes.ts` -> `dataLabPlayerResearchRoutes.ts` ->
+   `playerResearchService.ts`.
+2. `App.tsx` -> `PlayerPage.tsx` -> `PlayerResearchSummaryBlock.tsx` ->
+   `/api/data-lab/player-research` -> `server/routes.ts` ->
+   `dataLabPlayerResearchRoutes.ts` -> `playerResearchService.ts`.
+
+The middle composition is admitted; the client and served-server roots are
+not. The service composes committed signal validation, role/opportunity, age
+curves, point scenarios, and Data ownership records. Fantasy owns this
+question-specific orchestration only; the source modules retain their own
+semantics. Matching uses an identity-union index with exact identifiers and
+normalized-name fallbacks, while the top-level request names a season and the
+modules retain mixed player-season and player-week grains. The admitted code
+does not establish a consumer cutoff, record-level public availability,
+correction manifest, complete snapshot/rollback boundary, or future owner.
+Missing modules degrade to partial results. Operational fetch/generation times
+do not close those gaps.
+
+The admitted Player Research code contains no FORGE dependency. Reuse of one
+question-specific research service by two UI surfaces is not two independent
+demands for a neutral profile. Forecast and Fantasy use some similarly named
+identity, scoring, alpha, tier, or context fields, but the admitted evidence
+does not align their subject, grain, cutoff, correction, and semantic-owner
+contracts. No directly evidenced neutral shared transformation was therefore
+established by the completed partial work.
+
+### 12.5 Unchanged unknowns, scope, and state
+
+Deployment, traffic, environment configuration, database/cache/artifact
+population, and off-repository callers remain
+`unknown_requires_runtime_or_human_evidence`. Product priority, required
+feature survival, future owner roles, and option weighting also remain
+unresolved. Those unknowns are not the stopping condition; the stopping
+condition is the approved source universe excluding known committed evidence
+needed for F1.
+
+Relative to F0 commit `7863a1a07c62060f360a3314b013aacb62b35fe0`,
+this checkpoint appends only this section and the matching ledger entry to the
+two permitted TIBER-Ops paths, with no deletion or accepted-base rewrite. No
+source repository, registry, #15/#20 record, implementation, scaffold,
+prototype, model run, production query, runtime inspection, PR, merge,
+deployment, migration, cutover, deprecation, or repository disposition was
+changed.
+
+D3-F remains #31's sole discovery frontier but has no executable later
+sub-frontier after this stop. #15 R2 remains
+`r2_parked_pending_forge_reconception`; D4-D6 remain inactive; A-D remain
+unresolved; and this package makes zero recommendations.
+
+### 12.6 D3-F terminal
+
+**D3-F terminal:** `forge_reconception_blocked`.
+
+This early terminal is permitted by amendment §7 and required by §4.1 and §8.
+It requests no implicit scope expansion. Resuming would require a separately
+signed human amendment that explicitly admits the necessary objects, followed
+by a new bounded evidence freeze and fresh F1 trace.
