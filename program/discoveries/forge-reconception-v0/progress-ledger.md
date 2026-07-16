@@ -37,9 +37,10 @@ Its correctable FAIL findings were resolved as follows:
 | The second correction checkpoint omitted TIBER-Data's canonical architecture baseline and TIBER-Rookies' authoritative producer export contract | Added both with frozen pins and bounded canonical-documentation authority records; preserved the Data architecture document's conflicting FORGE identity as evidence to reconcile rather than silently selecting it | Third independent audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986483766` |
 | The first D2 checkpoint promoted three historical contract records into ownership allocations, omitted P01's explicit D2-conclusion exclusion, and duplicated an uncited decomposition table | Downgraded D2-R02, D2-R03, and the full D2-R04 job allocation to `unresolved — D3 input`; restored P01's authority bound; removed the duplicate ledger table and made the deliverable's fully cited §2 table the sole decomposition table | Fresh-context audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4987499236` |
 | The first corrected D2 checkpoint left the superseded candidate-state string in the deliverable while the ledger recorded the correction state | Synchronized the deliverable and current ledger checkpoint to `d2_second_audit_state_sync_complete_pending_new_independent_verification`; retained both failed checkpoints as superseded audit history | Fresh-context re-audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4987578172` |
+| The first D3 checkpoint did not explicitly identify Option C as the operator's prior, and each Q6 named confidence owners without fully stating every qualified claim and derivation | Disclosed C as a non-evidentiary, non-weighting prior that the comparison may defeat; expanded A–D Q6 so coverage, source reliability, classification confidence, Forecast uncertainty, and evaluative confidence each name qualified claim, owner, and derivation | Fresh-context audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4991694618` |
 
-No registry or source repository was changed, and D2 was not activated by
-these corrections.
+No registry or source repository was changed, and no later frontier was
+activated by these corrections.
 
 ---
 
@@ -642,3 +643,48 @@ This executing-agent checkpoint is not self-approval. D3 remains the sole
 active discovery frontier pending a different fresh-context verifier. #15 R2
 remains parked and D4-D6 remain inactive. A PASS would validate the comparison
 only; it would not select a FORGE direction or activate D4.
+
+---
+
+## Entry 14 — First D3 audit FAIL and bounded correction
+
+The candidate at
+`cfb75191f9f53f981596e1ae9ffcdedf682f35f9` received a fresh-context
+independent **FAIL** at
+`https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4991694618`.
+The synchronized program record is
+`https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-4991695926`.
+
+The audit passed the four-option/32-cell structure, Q1-Q5 and Q7-Q8, evidence
+and citation treatment, honest Option D comparison, two-path scope, and the
+zero-recommendation `forge_reconception_requires_followup` terminal. It found
+two specification-level omissions:
+
+1. Option C was not explicitly identified as the operator's prior.
+2. Each Q6 assigned confidence owners but did not fully identify every
+   confidence value's qualified claim and derivation.
+
+The bounded correction:
+
+- explicitly records Option C as the operator's prior while stating that it is
+  not evidence, a weight, tie-breaker, or conclusion and may be defeated; and
+- expands all four Q6 answers so evidence coverage, source reliability,
+  classification confidence, Forecast uncertainty, and evaluative-projection
+  confidence each name the exact qualified claim, owner, and derivation class.
+
+No option topology, recursion choice, recommendation, terminal result,
+evidence pin, dependency, authority bound, or follow-up finding changed.
+
+### Corrected deliverable
+
+- **Path:** `docs/architecture/forge-reconception-v0.md`
+- **SHA-256:** `d2902444c9508cb7520653d4e2c1cb015f1fba5a75263271d14fbd9ff255fc6e`
+- **Terminal result:** `forge_reconception_requires_followup`
+- **Positive recommendations:** zero
+
+Corrected state:
+`d3_first_audit_corrections_complete_pending_new_independent_verification`.
+
+D3 remains the sole active discovery frontier pending a new different
+fresh-context verifier. #15 R2 remains parked, D4-D6 remain inactive, and no
+direction, implementation, migration, or deprecation is authorized.
