@@ -866,10 +866,9 @@ accepted the comparison at
 `5a3c8747e92d99902484a059da778726f3e68900`, including the terminal
 `forge_reconception_requires_followup`, and authorized amendment drafting only.
 The bounded D3-F amendment v0.1 was then proposed at comment `4993464413`,
-independently audited 3/3 PASS at comment `4993473639`, signed as approved but
-inactive at comment `4995866746`, and separately activated at comment
-`4996111440`. The independently reproduced amendment boundary is 37,420 UTF-8
-bytes with SHA-256
+signed as approved but inactive at comment `4995866746`, and separately
+activated at comment `4996111440`. The independently reproduced amendment
+boundary is 37,420 UTF-8 bytes with SHA-256
 `9412d3970a7b014c2f17cf3060f29450609d58e4bc64f739c36948804edaff60`.
 
 The activation makes D3-F #31's sole discovery frontier and requires F0 before

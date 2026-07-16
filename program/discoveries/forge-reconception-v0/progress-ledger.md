@@ -751,10 +751,8 @@ returned by GitHub with no newline addition, removal, or normalization.
 | #31 D3 PASS, `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4991760192` (ID `4991760192`) | `Prometheus-Frameworks`; created/updated `2026-07-16T12:22:16Z` | 1,578 | `94a8e7721741887738f783039727a8d7bca88fef14b6b298331c455435c9d79b` |
 | #31 D3 acceptance, `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4992880223` (ID `4992880223`) | `Prometheus-Frameworks`; created/updated `2026-07-16T14:10:37Z` | 1,817 | `1ae3b270276d760750cd9441e0a5de638855520e6055f57fd8353510aedcc5b0` |
 | #31 amendment proposal, `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4993464413` (ID `4993464413`) | `Prometheus-Frameworks`; created/updated `2026-07-16T15:07:18Z` | 38,582 | `8790e9ef2df8201fb67b136f4a2d21e4d522a0997d8342586240a1d50a2d2b38` |
-| #31 amendment audit, `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4993473639` (ID `4993473639`) | `Prometheus-Frameworks`; created/updated `2026-07-16T15:08:14Z` | 1,684 | `b43f215e04af1d6b037b29476d5f9d6ce7abc93117c8ffb8622bfd905f3e0f37` |
 | #31 amendment approval, `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4995866746` (ID `4995866746`) | `Prometheus-Frameworks`; created/updated `2026-07-16T19:37:08Z` | 1,803 | `fd9deee5d46364b0450338693775be1df0e8fc88da6399bbb89d65d2963ebe2b` |
 | #31 D3-F activation, `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4996111440` (ID `4996111440`) | `Prometheus-Frameworks`; created/updated `2026-07-16T20:07:40Z` | 1,780 | `706458ee7d00fa56361edc6269da5ac66d2e803c92f5dfdbe1f059e67e826692` |
-| #22 activation checkpoint, `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-4996128792` (ID `4996128792`) | `Prometheus-Frameworks`; created/updated `2026-07-16T20:09:47Z` | 1,040 | `b8025e6021e122f25fe487a5a64ead22c0167655afe6748bfe408361fcc945ca` |
 
 The live #31 approved specification boundary was also re-extracted and remains
 41,563 bytes with the
@@ -1567,3 +1565,25 @@ Post-correction artifact SHA-256 values before this record was appended were:
 F0 remains `d3f_f0_pass`; D3-F remains the sole frontier with F1 next. #15 R2
 remains parked, D4-D6 remain inactive, and no direction or implementation is
 selected.
+
+---
+
+## Entry 17 — F0 closed-control-universe correction record
+
+Fresh-context pre-review found that candidate `8ff6a283e7d12d862a62034b5ed7469122596d97`
+included two additional useful records in the F0 live-control table: the
+amendment-audit comment `4993473639` and the #22 activation-checkpoint comment
+`4996128792`. The amendment's §4.1 Ops-control universe uses “plus only” and
+does not enumerate either object. Neither is required to verify the proposal,
+signed approval, signed activation, accepted D3 state, or live #22/#31 bodies.
+
+Both rows were therefore removed from the F0 evidence inventory, and the
+supplemental decision document no longer cites the amendment-audit comment as
+an admitted control. No GitHub comment was edited or deleted. The amendment
+proposal, signed approval, signed activation, accepted D3 PASS/decision, live
+issue bodies, accepted files, #21 procedure, and registry remain pinned.
+
+No source path, raw hash, manifest, search result, authority classification,
+analysis, or F0 terminal changed. F0 remains `d3f_f0_pass`; D3-F remains the
+sole frontier with F1 next; #15 R2 remains parked; D4-D6 remain inactive; and
+no direction or implementation is selected.
