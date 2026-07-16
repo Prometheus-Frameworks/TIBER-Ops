@@ -1,7 +1,7 @@
 # FORGE reconception decision document v0
 
-> **Status:** D3 candidate checkpoint — pending fresh-context independent
-> verification. D3 is the sole active discovery frontier under
+> **Status:** D3 first-audit corrections complete — pending new fresh-context
+> independent verification. D3 is the sole active discovery frontier under
 > [the signed frontier decision](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4991320938).
 > D4–D6 remain inactive, and TIBER-Ops#15 R2 remains
 > `r2_parked_pending_forge_reconception`.
@@ -259,6 +259,12 @@ the others on every material dimension, or every alternative to fail a
 mandatory gate. Otherwise the required terminal is
 `forge_reconception_requires_followup`. [C1]
 
+The approved specification records **Option C as the operator's current
+prior**. [C1] That prior is disclosed here so it cannot operate invisibly: it
+is not evidence, a comparison weight, a tie-breaker, or a conclusion. The
+comparison is explicitly permitted to defeat it, and the terminal below does
+not recommend C.
+
 The following statements are common constraints, not hidden preference for an
 option:
 
@@ -353,10 +359,25 @@ bound to a declared question, population, scoring assumptions, horizon,
 cutoff, policy version, and derivation. Unqualified `forge_alpha` is retired.
 [G04][G05]
 
-Evidence coverage remains with the artifact producer; source reliability with
-the domain owner; classification confidence with the classifier/Role owner;
-Forecast uncertainty with Forecast; and evaluative-projection confidence with
-FORGE. Existing generic confidence fields do not satisfy that taxonomy.
+The five confidence records are separate and each names claim, owner, and
+derivation:
+
+- **Evidence coverage** qualifies whether the projection's declared required
+  inputs are present and cutoff-eligible; each input-artifact producer owns it
+  and derives it deterministically from eligible, missing, and not-ready fields.
+- **Source reliability** qualifies the provenance/reliability of a particular
+  source claim; the originating domain owner owns and derives it from its
+  governed source/provenance classification, and A carries it unchanged.
+- **Classification confidence** qualifies a versioned role/classifier label;
+  the classifier or Role owner owns it and derives it from declared validation
+  or calibration over eligible evidence.
+- **Forecast uncertainty** qualifies Forecast's outcome distribution and
+  calibration; Forecast owns and derives it from the pinned model and run.
+- **Evaluative-projection confidence** qualifies A's declared-question grade,
+  tier, or rank; FORGE owns and derives it from declared evidence coverage,
+  policy sensitivity/robustness, and ruleset—not recursive prior output.
+
+Existing generic confidence fields do not satisfy these records.
 
 #### Q7 — Cutoff and typed availability
 
@@ -460,10 +481,24 @@ question-bound grades, tiers, and ranks. Every evaluation names question,
 assumptions, horizon, cutoff, owner, ruleset, and input hashes. There is no
 contract-global Alpha or confidence. [F01][Y05]
 
-Profile owner records evidence coverage; originating domains retain source
-reliability; classifier owner records classification confidence; Forecast
-retains forecast uncertainty; evaluation owner records projection confidence.
-One contract does not collapse or transfer those claims.
+The five confidence records remain typed despite the shared contract:
+
+- **Evidence coverage** qualifies `profile_core` completeness against its
+  declared eligible fields; the profile owner owns and derives it
+  deterministically from present, missing, conflicting, and not-ready inputs.
+- **Source reliability** qualifies a specific carried source claim; the
+  originating domain owns and derives it from governed provenance/reliability
+  classification, and B preserves it without reinterpretation.
+- **Classification confidence** qualifies a versioned archetype/class label;
+  the classifier owner owns and derives it from declared validation or
+  calibration over eligible profile evidence.
+- **Forecast uncertainty** qualifies the outcome distribution/calibration of
+  run F; Forecast owns and derives it from the pinned model/run.
+- **Evaluative-projection confidence** qualifies a declared-question E value;
+  the evaluation owner owns and derives it from declared coverage, policy
+  sensitivity/robustness, P/F inputs, and ruleset—not prior E.
+
+One contract does not collapse or transfer these claims.
 
 #### Q7 — Cutoff and typed availability
 
@@ -570,10 +605,26 @@ name question/horizon, league/scoring/policy assumptions, owner, ruleset,
 cutoff, and input profile/Forecast hashes. Forecast does not acquire dynasty or
 best-ball policy; Fantasy does not create it by sorting. [F01][Y05]
 
-Profile owner records evidence coverage; source owners retain reliability;
-classifier owner records classification confidence; Forecast retains forecast
-uncertainty; projection owner records evaluative confidence. Owners and
-derivations for the new classifier/projections remain unresolved.
+The profile and projection contracts keep five explicit records:
+
+- **Evidence coverage** qualifies profile completeness against declared
+  cutoff-eligible fields; the profile owner owns and derives it
+  deterministically from present, missing, conflicting, and not-ready inputs.
+- **Source reliability** qualifies an originating source claim; the source
+  owner owns and derives it from governed provenance/reliability classification,
+  and the profile carries it unchanged.
+- **Classification confidence** qualifies the proposed archetype label; the
+  classifier owner owns and derives it from a versioned classifier's declared
+  validation or calibration over eligible profile evidence.
+- **Forecast uncertainty** qualifies an outcome distribution/calibration;
+  Forecast owns and derives it from the exact pinned model/run.
+- **Evaluative-projection confidence** qualifies the declared-question verdict;
+  the projection owner owns and derives it from declared coverage, policy
+  sensitivity/robustness, exact profile/Forecast inputs, and ruleset—not prior
+  projection output.
+
+The exact future owners, algorithms, and thresholds are not established, but
+these required qualified claims and derivation classes are.
 
 #### Q7 — Cutoff and typed availability
 
@@ -678,10 +729,25 @@ question, assumptions, horizon, cutoff, version, derivation, and owner; absent
 that owner/contract, the surface retires. Forecast ordering stays forecast
 inference, and Fantasy presentation cannot silently become policy. [F01][Y05]
 
-Domain owners retain coverage/reliability; any local classifier owns
-classification confidence; Forecast owns forecast uncertainty; each declared
-projection owns evaluative confidence. Current projection owners and consumer
-tolerance for retirement remain unresolved.
+The distributed records retain explicit claim, owner, and derivation:
+
+- **Evidence coverage** qualifies completeness of each admitted domain artifact
+  against its declared cutoff-eligible fields; that artifact's producer owns
+  and derives it deterministically from present, missing, and not-ready fields.
+- **Source reliability** qualifies an individual domain claim; the domain owner
+  owns and derives it from governed provenance/reliability classification, and
+  consumers carry it unchanged.
+- **Classification confidence** qualifies any consumer-local versioned class;
+  that classifier's named owner owns and derives it from declared validation or
+  calibration over its eligible evidence.
+- **Forecast uncertainty** qualifies Forecast's outcome distribution and
+  calibration; Forecast owns and derives it from the exact pinned model/run.
+- **Evaluative-projection confidence** qualifies a surviving question-specific
+  verdict; its projection owner derives it from declared coverage, policy
+  sensitivity/robustness, exact inputs, and ruleset—not legacy recursion.
+
+Current classifier/projection owners and consumer tolerance for retirement
+remain unresolved; a generic confidence value cannot bridge that gap.
 
 #### Q7 — Cutoff and typed availability
 
@@ -778,8 +844,8 @@ strictly dominant option.
   prototype, PR, merge, or deprecation was created.
 - #15 R2 remains `r2_parked_pending_forge_reconception`; D4–D6 remain inactive.
 
-Candidate checkpoint state:
-`d3_comparison_complete_forge_reconception_requires_followup_pending_independent_verification`.
+Corrected checkpoint state:
+`d3_first_audit_corrections_complete_pending_new_independent_verification`.
 
 This executing-agent checkpoint is not self-approval. Fresh-context independent
 verification is required before D3 can be accepted. A PASS would validate this
