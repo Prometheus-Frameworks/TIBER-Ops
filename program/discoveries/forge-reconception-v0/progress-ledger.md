@@ -786,10 +786,6 @@ applicable at `5a3c8747e92d99902484a059da778726f3e68900`.
 | Forecast formal-policy absence | zero matches | Forecast `4920847...`; repository-wide tracked-tree search |
 | Role formal-policy absence | zero matches | Role `6435d8d...`; repository-wide tracked-tree search |
 
-Forecast `README.md` (`fb932020e46c99742b317ba2bcd284109ca32c1f09b19c45b9b0c6eb204c4584`)
-and Role `README.md`
-(`182c5797c5c9ddf3f5a941bc3006027c0923e8d623ad7ade1351dcc2df75d37d`)
-were read as informal repository guardrails, not elevated to formal policy.
 Forecast's formal-policy absence was reverified at
 `2026-07-16T20:20:40Z`; Role's was reverified at
 `2026-07-16T20:17:28.183740318Z`.
@@ -865,10 +861,10 @@ records. Every added row receives one of these deterministic group records:
   not for current production traffic, future ownership, survival, or
   direction; supersession `none_found`.
 - `FC-CURRENT`: `current_implementation_self_description`; authority ref
-  Forecast `49208472539bd11789b88ca8b3eb20c56a7d0db5` and its repository
-  entrypoint; authoritative only for current committed scoring/admission
-  code and contracts; not for future cross-repository ownership, admission
-  completion, policy adoption, or direction; supersession `none_found`.
+  Forecast `49208472539bd11789b88ca8b3eb20c56a7d0db5` and each exact manifest
+  path; authoritative only for current committed scoring/admission code and
+  contracts; not for future cross-repository ownership, admission completion,
+  policy adoption, or direction; supersession `none_found`.
 - `FC-HIST`: `historical_implementation_evidence`; same commit; applies
   to `docs/**`, `data/fixtures/**`, and
   `src/api/routes/decisionBoard.ts`; authoritative only for mock,
@@ -1587,3 +1583,24 @@ No source path, raw hash, manifest, search result, authority classification,
 analysis, or F0 terminal changed. F0 remains `d3f_f0_pass`; D3-F remains the
 sole frontier with F1 next; #15 R2 remains parked; D4-D6 remain inactive; and
 no direction or implementation is selected.
+
+---
+
+## Entry 18 — F0 policy-absence boundary clarification
+
+Pre-review of candidate `98387821ed324d15c935766af574dabbe10dfecf`
+questioned whether pinning the Forecast and Role root READMEs as “informal
+guardrails” added files outside §4.1. Neither README is needed to establish the
+two formal-policy absence records: those are reproducible tracked-tree search
+results at exact revisions. The two optional README pins and the Forecast
+authority group's repository-entrypoint reference were therefore removed.
+
+Forecast and Role still retain their accepted D1 architectural evidence and
+their exact policy-absence searches/times. Forecast supplemental code is
+grounded by exact commit plus exact manifest path, not by the removed root
+README. No evidence path required by §4.1, hash, manifest, search match,
+authority classification, analysis, or terminal changed.
+
+F0 remains `d3f_f0_pass`; D3-F remains the sole frontier with F1 next; #15 R2
+remains parked; D4-D6 remain inactive; and no direction or implementation is
+selected.
