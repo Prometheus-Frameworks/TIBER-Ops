@@ -491,3 +491,154 @@ completion.
 
 D2 remains the sole active discovery frontier pending another different
 fresh-context verifier. D3-D6 remain inactive, and #15 R2 remains parked.
+
+---
+
+## Entry 11 — D2 acceptance, D3 activation, and resume preflight
+
+### Authority transition
+
+The operator's exact signed decision is recorded at
+`https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4991320938`.
+Its decoded body SHA-256 is
+`c82688980fb02577f85047ade0ee4e5912db54bc7d6e7d5e6062c3957d5746e2`.
+It accepts D2 complete at exact commit
+`1c141b39616972cb67c663d025a78edad0414046` based on the independent PASS,
+activates D3 as the sole discovery frontier, keeps #15 R2 parked, and leaves
+D4-D6 inactive. It does not select a FORGE direction or authorize D4.
+
+The synchronized #22 program body was retrieved at
+`2026-07-16T11:51:27Z`, had been updated `2026-07-16T11:34:33Z`, and had
+decoded SHA-256
+`90d9a04c28450ab292e1c6fea3025f3dcdb20eb1a7a9555f154107b98058571e`.
+
+The accepted D2 artifacts at `1c141b3…` were byte-verified before D3:
+
+| Accepted artifact | SHA-256 |
+|---|---|
+| `docs/architecture/forge-reconception-v0.md` | `89a69603966c8e26072672b6a0f8fc3d46283df2428f562f8630b64aab97c99f` |
+| `program/discoveries/forge-reconception-v0/progress-ledger.md` | `3fff8ca9cd2239efae4b1627b9897f5758e50738eca095ed896127c90f2d6fc2` |
+
+### D3 resume preflight
+
+At `2026-07-16T11:51:27Z`, the seven governed source repositories were fetched
+and rechecked. Each `origin/main` still equaled the D1 frozen revision and each
+worktree was clean:
+
+| Repository | Reverified frozen revision |
+|---|---|
+| TIBER-Data | `a7c059412806470a9e0b89889cd85f01cf7aace9` |
+| TIBER-Forecast | `49208472539bd11789b88ca8b3eb20c56a7d0db5` |
+| TIBER-Teamstate | `3ec1d78e10fccf203239c88b905e3cf744d21c48` |
+| Role-and-opportunity-model | `6435d8d3c2c4e53dc45ab57a05a2716e2b47598d` |
+| TIBER-FORGE | `af2ca4d5f67f04ed1fc58fef50051c8169545d11` |
+| TIBER-Fantasy | `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` |
+| TIBER-Rookies | `2ef92faf9a9c91a393f53e9140428451529a1c48` |
+
+All 25 file-backed architectural dependency hashes were recomputed from the
+exact frozen Git trees and matched D1: **PASS 25/25**. No dependency was added.
+
+### Frontier state
+
+- D3: sole active discovery frontier.
+- #15 R2: `r2_parked_pending_forge_reconception`.
+- D4-D6: inactive.
+- Source/registry/#15/#20 writes: none.
+- Implementation, prototype, migration, and deprecation: none.
+
+---
+
+## Entry 12 — D3 four-option comparison
+
+### Method and independent challenge
+
+D3 applied the approved four-options-by-eight-questions rubric from #31. The
+comparison used non-compensating safety/authority gates followed by an
+unweighted Pareto comparison. It did not invent numeric weights or treat the
+operator's prior, contextual issue text, repository names, path labels, or
+historical implementations as future authority.
+
+Three independent read-only fresh-context analyses were commissioned before
+authoring:
+
+1. Options A and B were tested against all Q1-Q8 requirements and D1 authority
+   bounds.
+2. Options C and D were tested independently, with D preserved as a genuine
+   null hypothesis rather than a strawman.
+3. An adversarial rubric review checked 32-cell completeness, topology,
+   recursion, confidence, cutoff, coherence, admission, migration, and whether
+   a positive recommendation was evidentially supportable.
+
+All three analyses were read-only and made no file, branch, commit, or GitHub
+change. The adversarial result was that the frozen evidence does not select
+exactly one positive recommendation. It identified underdetermination rather
+than inaccessible evidence, so the correct terminal is
+`forge_reconception_requires_followup`, not `forge_reconception_blocked`.
+
+### Comparison result
+
+- Exactly four option sections are present.
+- Each option has exactly one non-empty Q1-Q8 answer.
+- Every topology is acyclic after typed stage expansion.
+- Every option selects Q2(a), prohibited self-reference; legacy recursion is
+  quarantined rather than legitimized.
+- Every Q3 supplies a counterfactual archetype/role test.
+- Every Q4 addresses FC1 and minimal snapshot-bound, provenance-preserving,
+  non-authoritative copies.
+- Every Q5 preserves the full admission path and separate human sign-off; D
+  names direct Forecast inputs.
+- Every Q6 separates coverage, reliability, classification confidence,
+  Forecast uncertainty, and evaluative-projection confidence.
+- Every Q7 uses subject/record-bound typed availability, maximum dependency
+  availability for derived values, prohibited timestamp substitutes, and
+  fail-closed ambiguity.
+- Every Q8 dispositions embedded and standalone FORGE without declaring either
+  superseded or performing deprecation.
+
+The decisive unresolved tradeoff is whether a canonical cross-source profile
+provides reusable synthesis worth its ownership, joins, correction semantics,
+and coherence cost, versus distributed composition's repeated adapters,
+admissions, and hidden-divergence risk. The evidence also does not establish
+which universal verdicts should survive, their owners, complete typed-
+availability coverage, or the full consumer/migration graph.
+
+### Scope accounting
+
+- Permitted deliverable paths changed: the architecture document and this
+  ledger only.
+- Dependency additions: none.
+- Source-repository or registry writes: none.
+- #15/#20 writes or state transitions: none.
+- Implementation, scaffolding, or prototypes: none.
+- PR, merge, promotion, migration, cutover, or deprecation: none.
+- D4-D6 activation: none.
+
+---
+
+## Entry 13 — D3 candidate checkpoint
+
+### Deliverable
+
+- **Path:** `docs/architecture/forge-reconception-v0.md`
+- **SHA-256:** `dfcaa1f1fc92bb031da54d01871d99cd3afbce9d491c1950981c9127cee0304a`
+- **Scope represented:** accepted D2 plus D3 comparison only
+- **Terminal result:** `forge_reconception_requires_followup`
+- **Positive recommendations:** zero
+
+### Named follow-up evidence
+
+The deliverable requires a separately authorized package covering shared
+consumer demand, a bounded profile-viability contract sketch, the matching
+distributed-composition map/cost, typed-availability coverage, surviving
+question-specific projection consumers/owners, and the complete
+embedded/standalone compatibility and migration graph. This entry does not
+activate or execute that work.
+
+### Frontier state
+
+`d3_comparison_complete_forge_reconception_requires_followup_pending_independent_verification`
+
+This executing-agent checkpoint is not self-approval. D3 remains the sole
+active discovery frontier pending a different fresh-context verifier. #15 R2
+remains parked and D4-D6 remain inactive. A PASS would validate the comparison
+only; it would not select a FORGE direction or activate D4.
