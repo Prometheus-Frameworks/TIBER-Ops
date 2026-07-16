@@ -280,3 +280,156 @@ review is recorded and the human decision owner explicitly advances the
 frontier, D1 is not promoted to a completed program gate and D2 remains
 inactive. Claude may later receive bounded implementation work only under a
 separately activated implementation step.
+
+---
+
+## Entry 6 — D2 activation and resume preflight
+
+### Authority transition
+
+- **Accepted D1 checkpoint:**
+  `5161b4c80e01771ff5830ad1c200fc410902a755`
+- **Independent D1 PASS:**
+  `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986598174`
+- **D2 frontier decision:**
+  `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4987203347`
+- **D2 decision decoded-body SHA-256:**
+  `5d2b142aa6ff29dfd230fa555fe5b2893f6097283c50181189d6e3b928f5921c`
+- **Executing branch:** `work/tiber-ops-31-d2-decomposition`
+- **Executing agent:** ChatGPT Work / Codex
+- **Active frontier:** D2 only
+- **Inactive frontiers:** D3-D6
+- **R2 state:** `r2_parked_pending_forge_reconception`
+
+The D2 frontier decision is a step-local frontier gate required by the program
+invariant. It is **not** Decision C in #31 §11; Decision C remains the future
+human selection of a FORGE direction after the full discovery deliverable.
+
+### Resume freshness comparison
+
+At `2026-07-16T02:00:16Z`, all eight remotes were fetched before D2 evidence
+was used. Each of the seven read-only source repositories still matched its D1
+frozen `origin/main` revision, and each worktree was clean.
+
+| Repository | D1 frozen revision | Fresh `origin/main` match | Worktree before D2 writes |
+|---|---|---:|---:|
+| TIBER-Data | `a7c059412806470a9e0b89889cd85f01cf7aace9` | yes | clean |
+| TIBER-Forecast | `49208472539bd11789b88ca8b3eb20c56a7d0db5` | yes | clean |
+| TIBER-Teamstate | `3ec1d78e10fccf203239c88b905e3cf744d21c48` | yes | clean |
+| Role-and-opportunity-model | `6435d8d3c2c4e53dc45ab57a05a2716e2b47598d` | yes | clean |
+| TIBER-FORGE | `af2ca4d5f67f04ed1fc58fef50051c8169545d11` | yes | clean |
+| TIBER-Fantasy | `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` | yes | clean |
+| TIBER-Rookies | `2ef92faf9a9c91a393f53e9140428451529a1c48` | yes | clean |
+
+TIBER-Ops `origin/main` remained
+`530b4fb4f1270c1247f67180483e115fab39cb1a`; the remote D1 branch and the new
+D2 worktree both resolved exactly to the accepted checkpoint before D2 writes.
+All 25 file-backed D1 dependencies were independently re-hashed and matched
+the full SHA-256 values recorded in Entry 4.
+
+The live #22 body was retrieved after program synchronization. It was updated
+at `2026-07-16T01:45:08Z`; its exact decoded-body SHA-256 was
+`48795f7d6a55c0db9217fa5b355c8459ebd1421fcfb117bdc163985d92520cd4`.
+It records `d2_active`, D1 complete at the accepted checkpoint, #15 R2 parked,
+and D3-D6 inactive.
+
+**Resume result:** no freshness, hash, authority, or frontier mismatch. D2 may
+use the frozen inventory without adding dependencies.
+
+---
+
+## Entry 7 — D2 semantic-job verification
+
+### Method
+
+The nine hypotheses from #31 were tested in their fixed order against D1's
+authority-bounded pins. The executing context split the evidence read across
+three read-only passes: domain/Forecast ownership, historical FORGE/Fantasy
+implementation, and presentation/agent-context boundaries. Those passes were
+contributors to the executing context and are **not** the later independent
+completion verifier.
+
+Every result in
+`docs/architecture/forge-reconception-v0.md` is either cited to a D1 pin or
+marked exactly `unresolved — D3 input`. Source authority and D2 assertion
+status remain separate.
+
+### Nine-row result
+
+| Row | Semantic job | D2 result |
+|---|---|---|
+| D2-R01 | Preserve observations and lineage | TIBER-Data plus bounded domain producers; verified with qualification |
+| D2-R02 | Interpret team environment | TIBER-Teamstate; verified historical contract boundary |
+| D2-R03 | Interpret player role/opportunity | Role-and-opportunity-model; verified historical contract boundary |
+| D2-R04 | Maintain prospect/transition priors | TIBER-Rookies producer boundary verified; transition/admission semantics bounded |
+| D2-R05 | Synthesize cross-source player-state representation | `unresolved — D3 input` |
+| D2-R06 | Produce outcome forecasts and uncertainty | TIBER-Forecast; verified current repository boundary |
+| D2-R07 | Apply evaluation policy | `unresolved — D3 input` |
+| D2-R08 | Present information to users | TIBER-Fantasy; verified product boundary, externalization not executed |
+| D2-R09 | Assemble agent operating context | verified Ops control floor; complete ownership is `unresolved — D3 input` |
+
+### Historical/current distinction
+
+D2 kept the following evidence classes distinct:
+
+1. The embedded Fantasy module's current legacy acronym and evaluation role.
+2. `forgeGrading.ts`'s 80% current / 20% prior-Alpha blend plus bounded
+   momentum.
+3. `recursiveAlphaEngine.ts`'s separate persisted two-pass
+   expected/surprise/stability mechanism. The two-pass engine was not
+   misreported as the 80/20 blend.
+4. Standalone TIBER-FORGE's current early grading/static-compiler
+   self-description and bootstrap limitations.
+5. Fantasy's canonical externalization plan, recorded as a documented target
+   rather than executed or globally approved architecture.
+
+Current architectural needs were then stated independently: typed provenance
+and lineage; separately accountable domain interpretation; cutoff-bounded
+forecasts with uncertainty; presentation separated from evaluation policy; and
+reproducible, governed agent control context. No historical implementation was
+allowed to define the ontology by default.
+
+### Preserved conflicts and parked questions
+
+D2 did not resolve the incompatible pinned FORGE identities or topology. It
+parked for D3 the owner and contract for cross-source synthesis, future
+evaluation-policy ownership, topology, recursion safeguards, downstream
+admission gates, and complete agent-context assembly.
+
+- Dependencies added: **none**.
+- Source-repository writes: **none**.
+- Registry writes: **none**.
+- #15/#20 writes or state changes: **none**.
+- Implementation, scaffolding, or prototypes: **none**.
+- D3-D6 activation: **none**.
+
+---
+
+## Entry 8 — D2 candidate checkpoint
+
+### Deliverable
+
+- **Path:** `docs/architecture/forge-reconception-v0.md`
+- **SHA-256:**
+  `d00e2dc0be0c78efb3d4f8e7a05741c3e6016341b60d916a48c8e2859acf750d`
+- **Scope represented:** D2 only
+
+### Candidate acceptance evidence
+
+- Exactly nine ordered semantic-job rows are present.
+- Every table allocation cites a D1 pin and authority bound, or uses the exact
+  literal `unresolved — D3 input`.
+- Historical FORGE intent and implementation are separated from current
+  architectural needs.
+- The two legacy temporal mechanisms are distinguished accurately.
+- All D3-reserved choices remain unresolved.
+- Only the two #31-permitted TIBER-Ops paths were written.
+
+### Frontier state
+
+`d2_decomposition_candidate_complete_pending_independent_verification`
+
+This executing-agent checkpoint is not self-approval. D2 remains the sole
+active discovery frontier pending a different fresh-context verifier. D3-D6
+remain inactive, and #15 R2 remains parked. A PASS would return the evidence
+to Joseph for a separate frontier decision; it would not itself activate D3.
