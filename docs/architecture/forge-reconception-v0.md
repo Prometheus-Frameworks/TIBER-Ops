@@ -182,7 +182,7 @@ D2 does not compare or score candidate architectures against these questions.
   implementation was created, and #15 R2 remains parked. [C2][L1]
 
 Candidate checkpoint state:
-`d2_decomposition_candidate_complete_pending_independent_verification`.
+`d2_second_audit_state_sync_complete_pending_new_independent_verification`.
 
 D2 is not promoted to a completed program gate by this authoring claim.
 Fresh-context independent verification and Joseph's subsequent frontier
