@@ -850,3 +850,73 @@ Corrected checkpoint state:
 This executing-agent checkpoint is not self-approval. Fresh-context independent
 verification is required before D3 can be accepted. A PASS would validate this
 comparison only; it would not select a FORGE direction or activate D4.
+
+---
+
+## 11. D3-F activation and mandatory F0 evidence freeze
+
+This section is a labelled supplemental append. It does not rewrite, replace,
+or reinterpret the accepted D3 comparison above.
+
+### 11.1 Authority and boundary
+
+Joseph's signed D3 acceptance at
+`https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4992880223`
+accepted the comparison at
+`5a3c8747e92d99902484a059da778726f3e68900`, including the terminal
+`forge_reconception_requires_followup`, and authorized amendment drafting only.
+The bounded D3-F amendment v0.1 was then proposed at comment `4993464413`,
+independently audited 3/3 PASS at comment `4993473639`, signed as approved but
+inactive at comment `4995866746`, and separately activated at comment
+`4996111440`. The independently reproduced amendment boundary is 37,420 UTF-8
+bytes with SHA-256
+`9412d3970a7b014c2f17cf3060f29450609d58e4bc64f739c36948804edaff60`.
+
+The activation makes D3-F #31's sole discovery frontier and requires F0 before
+F1-F6. It keeps #15 R2 `r2_parked_pending_forge_reconception`, leaves D4-D6
+inactive, and forbids selecting or implementing a FORGE direction.
+
+### 11.2 F0 result
+
+F0 freshly fetched TIBER-Ops and all seven read-only source repositories,
+re-read the live control objects and repository policies, reverified the
+accepted D1/D3 historical bytes, and froze the amendment's closed supplemental
+source universe. Every source default-branch head remained exactly equal to
+its D1-frozen revision:
+
+| Repository | F0-fetched revision |
+|---|---|
+| TIBER-Data | `a7c059412806470a9e0b89889cd85f01cf7aace9` |
+| TIBER-Forecast | `49208472539bd11789b88ca8b3eb20c56a7d0db5` |
+| TIBER-Teamstate | `3ec1d78e10fccf203239c88b905e3cf744d21c48` |
+| Role-and-opportunity-model | `6435d8d3c2c4e53dc45ab57a05a2716e2b47598d` |
+| TIBER-FORGE | `af2ca4d5f67f04ed1fc58fef50051c8169545d11` |
+| TIBER-Fantasy | `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` |
+| TIBER-Rookies | `2ef92faf9a9c91a393f53e9140428451529a1c48` |
+
+The current TIBER-Ops default head remained
+`530b4fb4f1270c1247f67180483e115fab39cb1a`; the D3-F worktree is instead
+intentionally anchored at the accepted D3 commit. All worktrees were clean.
+All 25 file-backed D1 architectural pins, all reused file-backed control and
+policy pins, both recorded policy absences, the accepted D3 document and
+ledger hashes, and all eight historical supplemental hashes printed in the
+amendment reproduced. Because every source head equals its historical freeze,
+there is no historical/current byte divergence to classify.
+
+The ledger records the deterministic GitHub body/comment pins, fetch times,
+policy applicability, complete supplemental manifests, fixed-token search,
+match dispositions, exclusions, confirmed absences, group authority records,
+and per-file raw-byte hashes. No required source is missing or inaccessible,
+and no necessary source was found outside the closed amendment universe.
+
+**F0 terminal:** `d3f_f0_pass`.
+
+### 11.3 Frontier state after F0
+
+- D3-F remains #31's sole active discovery frontier.
+- F0 is complete; F1 is the next permitted requirement.
+- No F1-F6 conclusion or option weighting is asserted by this F0 record.
+- No FORGE direction is selected or implemented.
+- #15 R2 remains parked; D4-D6 remain inactive.
+- No source repository, registry, #15/#20 record, implementation, prototype,
+  model run, production query, deployment, PR, merge, or cutover was changed.
