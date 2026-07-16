@@ -34,6 +34,7 @@ Its correctable FAIL findings were resolved as follows:
 | Directly relevant Teamstate, Role-and-opportunity, and Rookies contracts were absent | Added all three to Entry 4.5 with full hashes and conservative authority records | Independent audit finding 3 |
 | Control comments used bare or incorrectly located identifiers | Replaced them with permanent repo/issue comment URLs in Entries 1 and 3; Decision A is correctly located on #22 | Independent audit finding 4 |
 | The first correction checkpoint omitted Forecast's root-README-linked Run 1 path audit | Added `docs/run1-path-audit-for-run2.md` to Entry 4.1 with its frozen pin and bounded canonical-documentation authority record | Second independent audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986401086` |
+| The second correction checkpoint omitted TIBER-Data's canonical architecture baseline and TIBER-Rookies' authoritative producer export contract | Added both with frozen pins and bounded canonical-documentation authority records; preserved the Data architecture document's conflicting FORGE identity as evidence to reconcile rather than silently selecting it | Third independent audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986483766` |
 
 No registry or source repository was changed, and D2 was not activated by
 these corrections.
@@ -126,6 +127,11 @@ repeated after the second audit. All source revisions still matched the
 original freeze. The newly added Forecast Run 1 path audit hash matched its
 frozen source, so the original evidence freeze remains valid.
 
+At `2026-07-16T00:05:34Z`, the eight remotes were fetched again after the
+third audit. Every `origin/main` still matched the original freeze. The newly
+added Data architecture and Rookies export-contract hashes matched their
+frozen sources.
+
 ---
 
 ## Entry 3 — Control-authority inventory
@@ -149,6 +155,7 @@ as a stable pin.
 | Merge checklist | `runbooks/merge-checklist.md`; last source change `59933bb...` | `069630473cbf56200dd9870a468038181985ce0d30467b17b83a1d07e9a6d9c3` | Repository merge policy |
 | First independent D1 audit | `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986180583`; created/updated `2026-07-15T23:15:15Z` | `d65510b0d21637dc1bf5de1919aa2195c336757a82c0d2f19c0d6513edb4abd3` | Fresh-context technical correction requirements; not human approval and not D2 activation |
 | Second independent D1 audit | `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986401086`; created/updated `2026-07-15T23:51:51Z` | `362f9b6c3f72a1b7151a2ab11dd3dc0e7fba26cf029cae07cfed4e47f0de83ec` | Fresh-context omission finding for the root-linked Run 1 path audit; not human approval and not D2 activation |
+| Third independent D1 audit | `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986483766`; created/updated `2026-07-16T00:03:39Z` | `c930016430db8e0d3a82238e26f95d35726a5fcfc0a460245d0c661f1c632e48` | Fresh-context omission findings for the canonical Data architecture baseline and Rookies producer contract; not human approval and not D2 activation |
 
 ---
 
@@ -213,6 +220,7 @@ because the evidence remains usable within the narrower classification.
 | Dependency and pin | Primary authority basis | Authority ref | Authoritative for | Not authoritative for | Supersession status |
 |---|---|---|---|---|---|
 | TIBER-Data `docs/repo-boundaries-and-feedback-loops.md` @ `a7c0594...`; SHA-256 `c1df7ea4d628b2b1b7466e1ab35a0db12871c03770d86b60d8da33ab5c0bd9a9` | `canonical_repo_documentation` | linked from current README and AGENTS.md | Data's declared boundaries and feedback-loop responsibilities | Authority to assign another repository's future role | `none_found` |
+| TIBER-Data `docs/governance/architecture/tiber-architecture-document-v1.0.md` @ `a7c059412806470a9e0b89889cd85f01cf7aace9`; SHA-256 `76a9ae28e5210123996d683f51beeceb321a97a1d5c6f3b899dbad3db8d83e58` | `canonical_repo_documentation` | active approved canonical source linked by root `README.md`, `ARCHITECTURE.md`, and `AGENTS.md`; file last changed in `096d75d0b21ad02fcb0b710160743c7dbb986184` | The active cross-repository architecture baseline at the frozen revision, including its description of TIBER-FORGE as an engineering/integration workspace | A new human decision, automatic resolution of conflicting FORGE identities, implementation truth inside FORGE, or authority to activate D2 | `none_found` |
 | TIBER-Ops#24; retrieved `2026-07-15T22:41:29Z`; SHA-256 `c7beb935dd581881ab3dcde04f76b2bb55f391b0ee97e40f35ee33e7dbc2dbed` | `contextual_only` | open issue, updated `2026-07-13T16:51:38Z` | Additional problem/history context | Governed fact or accepted architecture | `none_found` |
 | TIBER-Ops#30; retrieved `2026-07-15T22:41:29Z`; SHA-256 `56fd6826f74d8f87d17e9a7da85ed5b71a34b76011b1417f6813b7be58438264` | `contextual_only` | open issue, updated `2026-07-14T15:10:29Z` | Additional problem/history context | Governed fact or accepted architecture | `none_found` |
 | TIBER-Ops#13; retrieved `2026-07-15T22:41:29Z`; SHA-256 `92ebf521911741407649fb1ab0cedf04ba14b1ee3547c78578e6232ae42c18cb` | `contextual_only` | closed issue, updated `2026-07-11T05:52:54Z` | Historical claims to cross-check against committed sources | Governed fact or proof of current route wiring | `none_found` |
@@ -229,6 +237,7 @@ directly pinned repository evidence.
 | TIBER-Teamstate `docs/contracts/team-environment-profile-v0.md` @ `3ec1d78e10fccf203239c88b905e3cf744d21c48`; SHA-256 `255b7f954b6ebab550ec811a4047dcd87238e541750ae628249f4ef157c9870a` | `historical_implementation_evidence` | frozen source commit `ed4e57c1d4a3bb28dc98db2d88b3b77391d083ca`; hash also verified by the descriptive registry | The team-environment profile contract semantics committed at the frozen revision | A D2 ownership conclusion, promotion status, runtime conformance, or human-approved doctrine | `none_found` |
 | Role-and-opportunity-model `docs/contracts/role-opportunity-profile-v0.md` @ `6435d8d3c2c4e53dc45ab57a05a2716e2b47598d`; SHA-256 `a156ff5e9f7d335a3a45e76dda8765aaa4883b158c62bc4da02eb9cf4d634bdb` | `historical_implementation_evidence` | frozen source commit `66296ed00f5fec091abcc9712cfcbd8cb94238ea`; hash also verified by the descriptive registry | The role-opportunity profile contract semantics committed at the frozen revision | A D2 ownership conclusion, promotion status, runtime conformance, or human-approved doctrine | `none_found` |
 | TIBER-Rookies `docs/rookie-transition-profile-contract.md` @ `2ef92faf9a9c91a393f53e9140428451529a1c48`; SHA-256 `187fb0c68b8a9d30d7e4db0f130ceb98009af4cffb878394dded540d3d6b285b` | `historical_implementation_evidence` | frozen source commit `2ef92faf9a9c91a393f53e9140428451529a1c48`; hash also verified by the descriptive registry | The rookie-transition profile contract semantics committed at the frozen revision | A D2 ownership conclusion, promotion status, downstream adoption, or human-approved doctrine | `none_found` |
+| TIBER-Rookies `docs/export-contract.md` @ `2ef92faf9a9c91a393f53e9140428451529a1c48`; SHA-256 `9b0cff08e40ac45f5bfc725e67f3b95a2a6200491af29da1af49beb4cb49c164` | `canonical_repo_documentation` | root README links the manifest/validation contract and identifies the repository as the authoritative Rookie Alpha producer; file last changed in `7bc4384991334eff73aedb9a73e73ae95431606c` | The repository's current documented Rookie Alpha producer output, manifest, scoring, and validation contract at the frozen revision | Canonical cross-repo data authority, a FORGE ownership conclusion, downstream adoption, or human approval of D2 | `none_found` |
 
 ---
 
@@ -238,8 +247,8 @@ directly pinned repository evidence.
 
 - Mandatory Step 0: **complete**.
 - Control-authority inventory: **complete for the D1 sources named by #31**.
-- Architectural-evidence inventory: **complete for 23 file-backed sources
-  and five contextual issues, comprising the named minimum plus seven directly
+- Architectural-evidence inventory: **complete for 25 file-backed sources
+  and five contextual issues, comprising the named minimum plus nine directly
   relevant additional documents**.
 - Authority record: **present for every architectural dependency**.
 - Source-repository changes: **none**.
@@ -263,7 +272,7 @@ directly pinned repository evidence.
 
 ### Checkpoint state
 
-`d1_second_correction_complete_pending_independent_reverification`
+`d1_third_correction_complete_pending_independent_reverification`
 
 D1 evidence has been corrected in response to the first fresh-context audit
 and is ready for a different fresh-context independent verifier. Until that
