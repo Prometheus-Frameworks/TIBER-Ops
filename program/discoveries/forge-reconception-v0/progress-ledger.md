@@ -35,6 +35,7 @@ Its correctable FAIL findings were resolved as follows:
 | Control comments used bare or incorrectly located identifiers | Replaced them with permanent repo/issue comment URLs in Entries 1 and 3; Decision A is correctly located on #22 | Independent audit finding 4 |
 | The first correction checkpoint omitted Forecast's root-README-linked Run 1 path audit | Added `docs/run1-path-audit-for-run2.md` to Entry 4.1 with its frozen pin and bounded canonical-documentation authority record | Second independent audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986401086` |
 | The second correction checkpoint omitted TIBER-Data's canonical architecture baseline and TIBER-Rookies' authoritative producer export contract | Added both with frozen pins and bounded canonical-documentation authority records; preserved the Data architecture document's conflicting FORGE identity as evidence to reconcile rather than silently selecting it | Third independent audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986483766` |
+| The first D2 checkpoint promoted three historical contract records into ownership allocations, omitted P01's explicit D2-conclusion exclusion, and duplicated an uncited decomposition table | Downgraded D2-R02, D2-R03, and the full D2-R04 job allocation to `unresolved — D3 input`; restored P01's authority bound; removed the duplicate ledger table and made the deliverable's fully cited §2 table the sole decomposition table | Fresh-context audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4987499236` |
 
 No registry or source repository was changed, and D2 was not activated by
 these corrections.
@@ -354,19 +355,20 @@ Every result in
 marked exactly `unresolved — D3 input`. Source authority and D2 assertion
 status remain separate.
 
-### Nine-row result
+### Cited nine-row result
 
-| Row | Semantic job | D2 result |
-|---|---|---|
-| D2-R01 | Preserve observations and lineage | TIBER-Data plus bounded domain producers; verified with qualification |
-| D2-R02 | Interpret team environment | TIBER-Teamstate; verified historical contract boundary |
-| D2-R03 | Interpret player role/opportunity | Role-and-opportunity-model; verified historical contract boundary |
-| D2-R04 | Maintain prospect/transition priors | TIBER-Rookies producer boundary verified; transition/admission semantics bounded |
-| D2-R05 | Synthesize cross-source player-state representation | `unresolved — D3 input` |
-| D2-R06 | Produce outcome forecasts and uncertainty | TIBER-Forecast; verified current repository boundary |
-| D2-R07 | Apply evaluation policy | `unresolved — D3 input` |
-| D2-R08 | Present information to users | TIBER-Fantasy; verified product boundary, externalization not executed |
-| D2-R09 | Assemble agent operating context | verified Ops control floor; complete ownership is `unresolved — D3 input` |
+The sole decomposition table is §2 of
+`docs/architecture/forge-reconception-v0.md`. The ledger does not duplicate
+its source-bearing cells. That table contains D2-R01 through D2-R09 in the
+approved order; every cell cites an evidence ID resolved to a full D1 pin in
+§6 or uses the exact literal `unresolved — D3 input`.
+
+After the first independent audit correction, only the observations/lineage,
+Forecast, and Fantasy allocations are supported within current D1 authority
+bounds. Teamstate, Role-and-opportunity, and the full prospect/transition-prior
+job retain verified historical or producer semantics but are
+`unresolved — D3 input` as ownership allocations. Synthesis, evaluation policy,
+and complete agent-context ownership also remain `unresolved — D3 input`.
 
 ### Historical/current distinction
 
@@ -411,7 +413,7 @@ admission gates, and complete agent-context assembly.
 
 - **Path:** `docs/architecture/forge-reconception-v0.md`
 - **SHA-256:**
-  `d00e2dc0be0c78efb3d4f8e7a05741c3e6016341b60d916a48c8e2859acf750d`
+  `db7aaa44270cf26848026567cdd7200d1d3a32867d39333b1650bed155164b04`
 - **Scope represented:** D2 only
 
 ### Candidate acceptance evidence
@@ -427,9 +429,39 @@ admission gates, and complete agent-context assembly.
 
 ### Frontier state
 
-`d2_decomposition_candidate_complete_pending_independent_verification`
+`d2_first_audit_corrections_complete_pending_new_independent_verification`
 
 This executing-agent checkpoint is not self-approval. D2 remains the sole
 active discovery frontier pending a different fresh-context verifier. D3-D6
 remain inactive, and #15 R2 remains parked. A PASS would return the evidence
 to Joseph for a separate frontier decision; it would not itself activate D3.
+
+---
+
+## Entry 9 — First D2 audit FAIL and bounded correction
+
+The candidate at
+`8d5041f56b0cdc7fcbdcfacbd44dd6eb2c3ab108` received a fresh-context
+independent **FAIL** at
+`https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4987499236`.
+The synchronized program record is
+`https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-4987501132`.
+
+The audit found:
+
+1. D2-R02, D2-R03, and part of D2-R04 asserted ownership using sources whose
+   D1 bounds explicitly prohibited a D2 ownership conclusion.
+2. The deliverable's P01 evidence row omitted that prohibition.
+3. Entry 7 repeated the nine-row result without source citations.
+
+The correction changed no evidence pin and added no dependency. It retained
+the historical semantics, downgraded the affected ownership allocations to
+`unresolved — D3 input`, restored P01's full bound, and removed the duplicate
+ledger decomposition table. The first checkpoint is superseded and cannot be
+used as D2 completion evidence.
+
+Corrected state:
+`d2_first_audit_corrections_complete_pending_new_independent_verification`.
+
+D2 remains active in correction. D3-D6 remain inactive, and #15 R2 remains
+parked.
