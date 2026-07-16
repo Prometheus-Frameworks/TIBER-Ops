@@ -698,7 +698,8 @@ direction, implementation, migration, or deprecation is authorized.
 The accepted D3 document and Entries 0-14 above are historical evidence and
 were not rewritten. This D3-F branch was created at exactly
 `5a3c8747e92d99902484a059da778726f3e68900`. Before this append, the accepted
-artifacts independently reproduced as:
+artifacts independently reproduced as raw Git blobs. They were reverified at
+`2026-07-16T20:47:39.166169091Z` as:
 
 | Accepted artifact | SHA-256 |
 |---|---|
@@ -762,8 +763,9 @@ approved SHA-256
 
 ### Repository-file controls and policy applicability
 
-All rows use raw bytes at the stated applicable ref and were verified during
-F0. The first five Ops controls are applicable at current `origin/main`
+All file rows use raw bytes at the stated applicable ref and were reverified at
+exact batch-completion time `2026-07-16T20:47:39.166169091Z`. The first five
+Ops controls are applicable at current `origin/main`
 `530b4fb4f1270c1247f67180483e115fab39cb1a`; the accepted D3 paths are
 applicable at `5a3c8747e92d99902484a059da778726f3e68900`.
 
@@ -790,6 +792,9 @@ Forecast `README.md` (`fb932020e46c99742b317ba2bcd284109ca32c1f09b19c45b9b0c6eb2
 and Role `README.md`
 (`182c5797c5c9ddf3f5a941bc3006027c0923e8d623ad7ade1351dcc2df75d37d`)
 were read as informal repository guardrails, not elevated to formal policy.
+Forecast's formal-policy absence was reverified at
+`2026-07-16T20:20:40Z`; Role's was reverified at
+`2026-07-16T20:17:28.183740318Z`.
 
 ### Historical identity recheck
 
@@ -803,8 +808,12 @@ were read as informal repository guardrails, not elevated to formal policy.
 - All required current paths exist. Because all seven current heads equal the
   historical freezes, every comparison is `byte_identical_no_divergence`.
 
-The 25 accepted architectural rows were compared individually; the SHA in the
-third column is both the historical recomputation and F0-current recomputation:
+The 25 accepted architectural rows were compared individually. Exact
+verification times were `2026-07-16T20:20:40Z` for Forecast/Fantasy,
+`2026-07-16T20:18:52Z` for FORGE/Data/Rookies,
+`2026-07-16T20:17:28.279108941Z` for Teamstate, and
+`2026-07-16T20:17:28.183740318Z` for Role. The SHA in the third column is both
+the historical recomputation and F0-current recomputation:
 
 | ID | Repository/path | Historical = current SHA-256 | Result |
 |---|---|---|---|
