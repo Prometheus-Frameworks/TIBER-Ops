@@ -36,6 +36,7 @@ Its correctable FAIL findings were resolved as follows:
 | The first correction checkpoint omitted Forecast's root-README-linked Run 1 path audit | Added `docs/run1-path-audit-for-run2.md` to Entry 4.1 with its frozen pin and bounded canonical-documentation authority record | Second independent audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986401086` |
 | The second correction checkpoint omitted TIBER-Data's canonical architecture baseline and TIBER-Rookies' authoritative producer export contract | Added both with frozen pins and bounded canonical-documentation authority records; preserved the Data architecture document's conflicting FORGE identity as evidence to reconcile rather than silently selecting it | Third independent audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4986483766` |
 | The first D2 checkpoint promoted three historical contract records into ownership allocations, omitted P01's explicit D2-conclusion exclusion, and duplicated an uncited decomposition table | Downgraded D2-R02, D2-R03, and the full D2-R04 job allocation to `unresolved — D3 input`; restored P01's authority bound; removed the duplicate ledger table and made the deliverable's fully cited §2 table the sole decomposition table | Fresh-context audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4987499236` |
+| The first corrected D2 checkpoint left the superseded candidate-state string in the deliverable while the ledger recorded the correction state | Synchronized the deliverable and current ledger checkpoint to `d2_second_audit_state_sync_complete_pending_new_independent_verification`; retained both failed checkpoints as superseded audit history | Fresh-context re-audit: `https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4987578172` |
 
 No registry or source repository was changed, and D2 was not activated by
 these corrections.
@@ -413,7 +414,7 @@ admission gates, and complete agent-context assembly.
 
 - **Path:** `docs/architecture/forge-reconception-v0.md`
 - **SHA-256:**
-  `db7aaa44270cf26848026567cdd7200d1d3a32867d39333b1650bed155164b04`
+  `89a69603966c8e26072672b6a0f8fc3d46283df2428f562f8630b64aab97c99f`
 - **Scope represented:** D2 only
 
 ### Candidate acceptance evidence
@@ -429,7 +430,7 @@ admission gates, and complete agent-context assembly.
 
 ### Frontier state
 
-`d2_first_audit_corrections_complete_pending_new_independent_verification`
+`d2_second_audit_state_sync_complete_pending_new_independent_verification`
 
 This executing-agent checkpoint is not self-approval. D2 remains the sole
 active discovery frontier pending a different fresh-context verifier. D3-D6
@@ -465,3 +466,28 @@ Corrected state:
 
 D2 remains active in correction. D3-D6 remain inactive, and #15 R2 remains
 parked.
+
+---
+
+## Entry 10 — Second D2 audit FAIL and state synchronization
+
+The corrected candidate at
+`9c32ea893e808d71ba88773485c230661e9277c3` received a fresh-context
+independent **FAIL** at
+`https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4987578172`.
+The synchronized program record is
+`https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-4987579546`.
+
+The authority allocations, evidence pins, single decomposition table, and
+scope boundaries passed. The sole defect was that the deliverable still used
+the first failed candidate's state string while the ledger used the first
+correction state.
+
+The correction synchronizes both current artifacts to:
+`d2_second_audit_state_sync_complete_pending_new_independent_verification`.
+No evidence, analysis, allocation, authority bound, dependency, or permitted
+path changed. Both prior checkpoints remain superseded and cannot establish D2
+completion.
+
+D2 remains the sole active discovery frontier pending another different
+fresh-context verifier. D3-D6 remain inactive, and #15 R2 remains parked.
