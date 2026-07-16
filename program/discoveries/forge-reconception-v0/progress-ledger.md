@@ -1532,3 +1532,38 @@ necessary out-of-universe source.
 - No source repository, registry, #15/#20 record, prototype, implementation,
   model run, production query, runtime traffic, deployment, PR, merge,
   migration, deprecation, cutover, or repository disposition was changed.
+
+---
+
+## Entry 16 — F0 pre-review verification-time correction record
+
+Remote candidate `1c3d98976e91bcf57c69d0be19c2d97e9f955637`
+contained exact refs, paths, and hashes for the repository-file controls and
+policies, but its shared table described their verification only as occurring
+"during F0." A fresh-context pre-review correctly identified that this did not
+satisfy the amendment's deterministic requirement for an exact verification
+time on every repository-file pin.
+
+The affected raw Git blobs were reverified as one batch with completion time
+`2026-07-16T20:47:39.166169091Z`. Entry 15 now records that exact time for all
+repository-file control and policy rows, exact per-repository verification
+times for the 25 D1 architectural rows, and exact recheck times for both formal
+policy absences. No path, revision, hash, manifest, authority classification,
+selection reason, search result, disposition, analysis, or terminal changed.
+
+The correction commit is
+`71a8436ec591b8a6432fef663b32fdf4e4a116c7`. The accepted D3 document and
+Entries 0-14 remain byte-immutable. This new entry records the correction here
+rather than modifying accepted Entry 0, as required by the D3-F amendment's
+stricter immutable-base boundary.
+
+Post-correction artifact SHA-256 values before this record was appended were:
+
+| Artifact | SHA-256 |
+|---|---|
+| `docs/architecture/forge-reconception-v0.md` | `aac2faee39579fae43e4f5d18f672ba0fb283095406f741ee3e2da18656a71bb` |
+| `program/discoveries/forge-reconception-v0/progress-ledger.md` | `14805e0f96a4be7041a44d841cf930bd26a8d3404be41024ceb97ac1fa00abfb` |
+
+F0 remains `d3f_f0_pass`; D3-F remains the sole frontier with F1 next. #15 R2
+remains parked, D4-D6 remain inactive, and no direction or implementation is
+selected.
