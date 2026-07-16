@@ -1,20 +1,22 @@
 # FORGE reconception decision document v0
 
-> **Status:** D2 candidate checkpoint — pending fresh-context independent
-> verification. D2 is the sole active discovery frontier under
-> [the signed frontier decision](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4987203347).
-> D3–D6 remain inactive, and TIBER-Ops#15 R2 remains
+> **Status:** D3 candidate checkpoint — pending fresh-context independent
+> verification. D3 is the sole active discovery frontier under
+> [the signed frontier decision](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4991320938).
+> D4–D6 remain inactive, and TIBER-Ops#15 R2 remains
 > `r2_parked_pending_forge_reconception`.
 >
 > **Evidence freeze:** D1 checkpoint
 > [`5161b4c80e01771ff5830ad1c200fc410902a755`](https://github.com/Prometheus-Frameworks/TIBER-Ops/commit/5161b4c80e01771ff5830ad1c200fc410902a755).
-> No source outside that freeze is used as D2 evidence.
+> D2 checkpoint
+> [`1c141b39616972cb67c663d025a78edad0414046`](https://github.com/Prometheus-Frameworks/TIBER-Ops/commit/1c141b39616972cb67c663d025a78edad0414046)
+> is the accepted semantic baseline. No source outside the D1 freeze is used as
+> architectural evidence.
 
-This document is the incremental deliverable governed by
-TIBER-Ops#31. This checkpoint contains D2 only: semantic-job decomposition
-and the distinction between historical FORGE implementations and current
-architectural need. It does not compare successor architectures, select a
-FORGE direction, or authorize implementation.
+This document is the incremental deliverable governed by TIBER-Ops#31. Sections
+1–6 preserve the accepted D2 semantic decomposition and evidence index.
+Sections 7–10 add D3's four-option comparison. The comparison does not
+authorize a FORGE direction, implementation, migration, deprecation, or D4.
 
 ## 1. D2 method and authority discipline
 
@@ -181,12 +183,12 @@ D2 does not compare or score candidate architectures against these questions.
 - No dependency was added, no source repository or registry was changed, no
   implementation was created, and #15 R2 remains parked. [C2][L1]
 
-Candidate checkpoint state:
-`d2_second_audit_state_sync_complete_pending_new_independent_verification`.
+Accepted checkpoint state:
+`d2_complete_at_1c141b39616972cb67c663d025a78edad0414046`.
 
-D2 is not promoted to a completed program gate by this authoring claim.
-Fresh-context independent verification and Joseph's subsequent frontier
-decision remain required; D3 is inactive.
+The signed D3 frontier decision records D2 complete at that exact commit based
+on an independent PASS and activates D3 only. [C3] D2 therefore remains a
+frozen input; this document does not reopen or revise its allocations.
 
 ## 6. Evidence pin index
 
@@ -197,7 +199,11 @@ classes and limits reproduce or conservatively narrow the D1 ledger [L1].
 |---|---|---|---|
 | C1 | Approved specification in [TIBER-Ops#31](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31), approved-proposal bytes frozen in D1 | `94c8a035d3363ed925f0a476f9d72568a5cf2f06199b509124f9f6fea4a81e9e` | Governing D1–D6 specification; the issue-local status metadata is outside the hashed boundary. |
 | C2 | [D2 frontier decision](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4987203347), exact decoded body | `5d2b142aa6ff29dfd230fa555fe5b2893f6097283c50181189d6e3b928f5921c` | Signed human authority to complete D1 and execute D2 only; not §11's future FORGE-direction Decision C. |
+| C3 | [D3 frontier decision](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/31#issuecomment-4991320938), exact decoded body | `c82688980fb02577f85047ade0ee4e5912db54bc7d6e7d5e6062c3957d5746e2` | Signed human authority accepting D2 at exact commit `1c141b3…` based on independent PASS and activating D3 only; not authority for D4 or a FORGE direction. |
+| C4 | [TIBER-Ops#22](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22) live program body, retrieved `2026-07-16T11:51:27Z`; body updated `2026-07-16T11:34:33Z` | `90d9a04c28450ab292e1c6fea3025f3dcdb20eb1a7a9555f154107b98058571e` | Program state synchronized to D3 as the sole frontier, R2 parked, and D4–D6 inactive; not authority for a direction choice. |
 | L1 | `Prometheus-Frameworks/TIBER-Ops:program/discoveries/forge-reconception-v0/progress-ledger.md` @ `5161b4c80e01771ff5830ad1c200fc410902a755` | `87b9154d0ab673724290c4c4e9d56aaa7fb736cae7f780e004d738a9791b564f` | D1 execution history, evidence inventory, and authority records at the independently accepted checkpoint. |
+| L2 | `Prometheus-Frameworks/TIBER-Ops:docs/architecture/forge-reconception-v0.md` @ `1c141b39616972cb67c663d025a78edad0414046` | `89a69603966c8e26072672b6a0f8fc3d46283df2428f562f8630b64aab97c99f` | Accepted D2 semantic decomposition and bounded D3 input queue; not a D3 conclusion. |
+| L3 | `Prometheus-Frameworks/TIBER-Ops:program/discoveries/forge-reconception-v0/progress-ledger.md` @ `1c141b39616972cb67c663d025a78edad0414046` | `3fff8ca9cd2239efae4b1627b9897f5758e50738eca095ed896127c90f2d6fc2` | Accepted D1/D2 execution history through the corrected D2 checkpoint. |
 | D01 | `Prometheus-Frameworks/TIBER-Data:docs/repo-boundaries-and-feedback-loops.md` @ `a7c059412806470a9e0b89889cd85f01cf7aace9` | `c1df7ea4d628b2b1b7466e1ab35a0db12871c03770d86b60d8da33ab5c0bd9a9` | `canonical_repo_documentation`; Data's declared boundary and anti-recursion doctrine, not authority to assign another repository's future role. |
 | D02 | `Prometheus-Frameworks/TIBER-Data:docs/governance/architecture/tiber-architecture-document-v1.0.md` @ `a7c059412806470a9e0b89889cd85f01cf7aace9` | `76a9ae28e5210123996d683f51beeceb321a97a1d5c6f3b899dbad3db8d83e58` | `canonical_repo_documentation`; active cross-repository architecture baseline, not implementation truth or automatic resolution of conflicting FORGE identities. |
 | F01 | `Prometheus-Frameworks/TIBER-Forecast:docs/ownership-boundaries.md` @ `49208472539bd11789b88ca8b3eb20c56a7d0db5` | `4790a90461b2025000f726df3ba2aac2f31bbe6b6c3fee454b217c706ed85f6b` | `canonical_repo_documentation`; Forecast's declared ownership boundary, not authority over other repositories or a reconception decision. |
@@ -205,6 +211,10 @@ classes and limits reproduce or conservatively narrow the D1 ledger [L1].
 | F03 | `Prometheus-Frameworks/TIBER-Forecast:docs/run-manifest-spec.md` @ `49208472539bd11789b88ca8b3eb20c56a7d0db5` | `612600b7adf1620b319f30b489909e9ad1ea06c9ab8c39b5f629d5d041f1c233` | `canonical_repo_documentation`; run manifest, cutoff, uncertainty, and input-governance semantics, not cross-repository doctrine beyond the stated contract. |
 | F04 | `Prometheus-Frameworks/TIBER-Forecast:docs/capabilities/README.md` @ `49208472539bd11789b88ca8b3eb20c56a7d0db5` | `c4993f4642cdeaa68f18a180cf92109ff73cc1e4d4f277210a05fa91ef9163ac` | `historical_implementation_evidence`; committed capability-admission path, not canonical doctrine, production activation, or a future FORGE mission. |
 | F05 | `Prometheus-Frameworks/TIBER-Forecast:docs/capabilities/player-history-production-only-v0.md` @ `49208472539bd11789b88ca8b3eb20c56a7d0db5` | `0908180e3889d852b623039ebb79f4ee590f85b62bfb40581fbdf08cd3c9ef37` | `historical_implementation_evidence`; the committed reference capability's recorded path and gates, not proof of current binding beyond its stated scope or precedent for another capability. |
+| F06 | `Prometheus-Frameworks/TIBER-Forecast:docs/experiments/rookie-transition-profile-forecast-availability-evidence-schema-v2-design-2026-07-13.md` @ `49208472539bd11789b88ca8b3eb20c56a7d0db5` | `5ea42362b2917e333be438b9499ed87d6e9c4b5363222601bfbcdb673c2d6c17` | `historical_implementation_evidence`; record-bound typed-availability design, not human-approved doctrine, populated evidence, implementation, or admission. |
+| F07 | `Prometheus-Frameworks/TIBER-Forecast:docs/experiments/rookie-transition-profile-forecast-availability-evidence-schema-v2-design-2026-07-13.json` @ `49208472539bd11789b88ca8b3eb20c56a7d0db5` | `7994e61c83d9ad1d5ddc937f42736a47d93175b3e19e80cb4c4169be83302b1c` | `historical_implementation_evidence`; machine-readable mechanics paired with F06, with the same authority limits. |
+| F08 | `Prometheus-Frameworks/TIBER-Forecast:docs/run2-tts-feature-contract.md` @ `49208472539bd11789b88ca8b3eb20c56a7d0db5` | `dae837dfc4c0b38b63ff5d2901c746b9fbfc3215bae2688e99724c30b0e26227` | `canonical_repo_documentation`; Forecast's model-legible Teamstate feature gate, not proof of a production-ready input or a general FORGE architecture. |
+| F09 | `Prometheus-Frameworks/TIBER-Forecast:docs/run1-path-audit-for-run2.md` @ `49208472539bd11789b88ca8b3eb20c56a7d0db5` | `530bbc5d6e134eb9cf1ba4e2cc4437da1c8a9dda4764913e24b389aca904f9db` | `canonical_repo_documentation`; pipeline audit, cutoff invariants, and a proposed attachment seam, not proof that Run 2 is implemented. |
 | T01 | `Prometheus-Frameworks/TIBER-Teamstate:docs/contracts/team-environment-profile-v0.md` @ `3ec1d78e10fccf203239c88b905e3cf744d21c48` | `255b7f954b6ebab550ec811a4047dcd87238e541750ae628249f4ef157c9870a` | `historical_implementation_evidence`; committed team-environment contract semantics, not promotion, runtime conformance, human doctrine, or a D2 conclusion. |
 | P01 | `Prometheus-Frameworks/Role-and-opportunity-model:docs/contracts/role-opportunity-profile-v0.md` @ `6435d8d3c2c4e53dc45ab57a05a2716e2b47598d` | `a156ff5e9f7d335a3a45e76dda8765aaa4883b158c62bc4da02eb9cf4d634bdb` | `historical_implementation_evidence`; committed role/opportunity contract semantics, not promotion, runtime conformance, a D2 ownership conclusion, or future architecture. |
 | R01 | `Prometheus-Frameworks/TIBER-Rookies:docs/rookie-transition-profile-contract.md` @ `2ef92faf9a9c91a393f53e9140428451529a1c48` | `187fb0c68b8a9d30d7e4db0f130ceb98009af4cffb878394dded540d3d6b285b` | `historical_implementation_evidence`; committed transition-profile semantics, not downstream adoption, promotion authority, or a D2 ownership conclusion. |
@@ -212,9 +222,565 @@ classes and limits reproduce or conservatively narrow the D1 ledger [L1].
 | G01 | `Prometheus-Frameworks/TIBER-FORGE:README.md` @ `af2ca4d5f67f04ed1fc58fef50051c8169545d11` | `c12bcd8e099474c09dc3ca51fba70a0c9e1f068dc2b0fb72d89fe5ace568173f` | `current_implementation_self_description`; current grading/compiler identity, not human-approved future mission. |
 | G02 | `Prometheus-Frameworks/TIBER-FORGE:docs/architecture/TIBER_DATA_TO_FORGE_INGESTION_SPEC.md` @ `af2ca4d5f67f04ed1fc58fef50051c8169545d11` | `39dd805cc37efb98c15b8eb63f035489b56277412f4e8b2f81a6ccf9cf159a59` | `historical_implementation_evidence`; stated ingestion/grading design, not proof of live ingestion, implementation, or approved doctrine. |
 | G03 | `Prometheus-Frameworks/TIBER-FORGE:exports/promoted/forge_player_static/forge_player_static_v1.json` @ `af2ca4d5f67f04ed1fc58fef50051c8169545d11` | `2020a52b2e941fbcd7a78130399380351da914959663ff9f1abf15affece1041` | `historical_implementation_evidence`; exact artifact bytes and shape, not promotion provenance, architectural intent, or consumer freshness. |
+| G04 | `Prometheus-Frameworks/TIBER-FORGE:src/contracts/forge.ts` @ `af2ca4d5f67f04ed1fc58fef50051c8169545d11` | `ceeb45ee9833166d1192b25919b9b3ee24612f38af8a39ecea638656a45689a5` | `historical_implementation_evidence`; exact service contract definitions, not promoted status or desired redesign. |
+| G05 | `Prometheus-Frameworks/TIBER-FORGE:src/contracts/football.ts` @ `af2ca4d5f67f04ed1fc58fef50051c8169545d11` | `453693f1bd069326b4266ed3346443bdee729a109face215c8d8a3c7f8adc68d` | `historical_implementation_evidence`; exact football-lane types, not promoted status or future mission. |
 | Y01 | `Prometheus-Frameworks/TIBER-Fantasy:server/modules/forge/MODULE.md` @ `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` | `32cf08fd7bb6b28813ce2f56a8608d62a1700024d1e0b734df926af40c88cc0b` | `current_implementation_self_description`; live legacy role and acronym, not desired end-state or proof of externalization. |
 | Y02 | `Prometheus-Frameworks/TIBER-Fantasy:server/modules/forge/forgeGrading.ts` @ `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` | `15c57e5489eac38ee830205a1c0b9f196675f34f2ce062f75f52892c001c7057` | `historical_implementation_evidence`; exact grading and prior-blend behavior, not approved architecture or cross-repository ownership. |
 | Y03 | `Prometheus-Frameworks/TIBER-Fantasy:server/modules/forge/recursiveAlphaEngine.ts` @ `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` | `1338f2d90ac06d8ae2076a99054deefa2f73ca2a1dfb833a87ecea41afba8c90` | `historical_implementation_evidence`; exact stateful two-pass behavior, not current doctrine or future mission. |
 | Y04 | `Prometheus-Frameworks/TIBER-Fantasy:docs/architecture/FORGE_EXTERNALIZATION_TRANSITION_SPEC.md` @ `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` | `7b9b0362048d2d9dbe42fa801fb3f75236709fc56e8b0186723c0306ae66b3ba` | `canonical_repo_documentation`; Fantasy's documented transition plan, not proof that the transition executed or received global approval. |
+| Y05 | `Prometheus-Frameworks/TIBER-Fantasy:server/contracts/rankingsV2.ts` @ `d35d440f24beaa275f6eb2f36cdd37a9c4989c3f` | `af7f56ffdb578254438c52c56dfd482d164d1fa42f415c2b7b00518322729c39` | `historical_implementation_evidence`; exact mode/lens/horizon contract scaffold, not live conformance, promotion, or future grading doctrine. |
 | O01 | `Prometheus-Frameworks/TIBER-Ops:docs/architecture/cross-repo-freshness-and-current-state-registry-v0.md` @ `530b4fb4f1270c1247f67180483e115fab39cb1a` | `a75aed0bbc8b4edcb9e71d518cc03478c2b42ea1683d39b47a4be65e089c0206` | Canonical freshness/pinning/authority procedure, not a Kernel implementation or complete agent-context architecture. |
+| FC1 | `Prometheus-Frameworks/TIBER-Ops:registry/tiber-current-state.v0.json` @ `530b4fb4f1270c1247f67180483e115fab39cb1a` | `de531ecb36176c8b5c858f6927d18eadfc8efcfe6d325fe449789faf35f8d88e` | Descriptive current-state record; establishes only that Fantasy's pinned FORGE mirror is stale and provenance-unverified, so it must fail closed and cannot prove producer/consumer parity. |
 | O30 | `Prometheus-Frameworks/TIBER-Ops#30`, retrieved `2026-07-15T22:41:29Z`; issue updated `2026-07-14T15:10:29Z` | `56fd6826f74d8f87d17e9a7da85ed5b71a34b76011b1417f6813b7be58438264` | `contextual_only`; problem and direction context, not governed fact, accepted architecture, or activation authority. |
+
+## 7. D3 comparison method
+
+D3 starts from the accepted D2 checkpoint [L2][L3] and the unchanged D1
+freeze. At resume preflight, all seven source repositories were clean at their
+frozen revisions and all 25 file-backed dependency hashes matched. The only
+new controls are the signed D3 activation and synchronized program state.
+[C3][C4]
+
+The comparison applies two stages:
+
+1. **Non-compensating admissibility gates:** authority honesty; an acyclic,
+   cutoff-safe topology; separation of source truth, contextual
+   interpretation, classification, forecast, evaluative projection, and
+   presentation; provenance/coherence safety; full Forecast admission; and
+   migration honesty. One failed gate cannot be offset by strengths elsewhere.
+2. **Unweighted Pareto comparison among admissible designs:** ownership and
+   contract clarity; duplication/coherence burden; new owners, joins, contracts,
+   and adapters; Forecast integration; migration/compatibility risk;
+   operational coupling; unverified design hypotheses; and reversibility.
+
+No approved evidence supplies weights for a numeric score. A positive
+recommendation therefore requires exactly one admissible option to dominate
+the others on every material dimension, or every alternative to fail a
+mandatory gate. Otherwise the required terminal is
+`forge_reconception_requires_followup`. [C1]
+
+The following statements are common constraints, not hidden preference for an
+option:
+
+- Domain owners retain source semantics; Forecast retains outcome inference and
+  forecast uncertainty; Fantasy retains presentation/orchestration. Carrying a
+  value never transfers ownership. [D01][D02][F01]
+- Operational timestamps do not establish public availability. Eligible
+  evidence is subject- and record-bound, uses a closed availability kind, and
+  fails closed when missing or contradictory. A derived value's availability
+  is the maximum of every required evidence, derivation, and cohort dependency.
+  [F03][F06][F07]
+- `coverage`, source reliability, classification confidence, Forecast
+  uncertainty, and evaluative-projection confidence qualify different claims
+  and cannot collapse into one generic confidence. [C1][G03][Y01]
+- The Fantasy mirror named by FC1 is quarantined; it is neither current truth
+  nor parity evidence. [FC1]
+- The embedded Fantasy engine remains a live `LEGACY_CORE_TEMP` dependency, and
+  standalone FORGE remains bootstrap/demo and non-production-complete. Neither
+  supersedes the other. No option below performs deprecation. [G01][Y01][Y04]
+
+Each option is a design hypothesis. “Commitment” describes what the option
+would mean if later selected; it is not an adoption claim.
+
+## 8. Four-option comparison
+
+### 8.1 Option A — standalone deterministic grading/tiering repository
+
+This is role continuity, not literal behavioral status quo. Current standalone
+FORGE is not production-complete, and Q2, Q6, and Q7 require a material
+refounding of its historical behavior. [G01][G02][G03]
+
+#### Q1 — Topology and Forecast relation
+
+**Commitment:** `domain artifacts → Forecast`; then `domain artifacts +
+cutoff-bound Forecast outputs → standalone FORGE projection → Fantasy`.
+Forecast is an input to FORGE and never consumes a FORGE output. This chooses
+Data's Forecast-then-adjudication direction and preserves Forecast's inference
+boundary, while rejecting the Forecast-absent standalone ingestion sketch as
+future doctrine. [D01][F01][G02]
+
+**Status/gap:** acyclic as designed, but no frozen source proves live
+Forecast-to-FORGE integration, promoted joins, or end-to-end conformance.
+
+#### Q2 — Recursion
+
+**Selection: (a), prohibited self-reference.** No prior FORGE grade, tier,
+Alpha, artifact, or persisted engine state may influence the current result;
+longitudinal features must be rederived from pinned observations. The 80/20
+prior blend and separate two-pass persisted engine lack the full approved
+safeguards and remain historical only. [D01][Y02][Y03]
+
+Legacy recursive fields may be displayed only as typed legacy output. A
+compatibility adapter cannot claim semantic parity with the nonrecursive
+successor, and confidence cannot grow merely from repetition.
+
+#### Q3 — Archetype versus role
+
+**Testable boundary:** a label that changes when only current team,
+depth-chart, or bounded usage-window facts change is a Role-and-opportunity
+interpretation; Option A emits no synthesis-layer archetype at all. It emits
+only declared-question evaluations. [P01]
+
+This preserves a clean boundary but provides no shared descriptive archetype;
+that absence is an explicit A consequence, not an omission.
+
+#### Q4 — Coherence cost and FC1
+
+A creates no canonical cross-source profile. Its artifact contains derived
+evaluation, declared question/policy/version, typed confidence, and exact
+upstream artifact/run references. Any copied input value must be minimal,
+immutable, snapshot-bound, reproducible, provenance-preserving, and marked
+`non_authoritative_copy`; mutable “latest” mirrors fail closed. [O01][FC1]
+
+This limits canonical duplication, but every evaluation still owns its joins
+and conflict handling. Existing static artifacts do not prove promotion
+provenance, consumer freshness, or this coherence contract. [G03]
+
+#### Q5 — Forecast admission
+
+A sends no FORGE output into Forecast, so no FORGE admission is instantiated.
+Forecast admits domain-owned inputs and retains ownership of its adapter only.
+If A were later amended to enter Forecast, the required path would be:
+`owned promoted source → identity-verified mirror/rehearsal → validation →
+threshold review → binding review → inert implementation → activation
+verification → distinct human sign-off`. Ownership would not transfer.
+[C1][F04][F05]
+
+#### Q6 — Verdict and confidence semantics
+
+Grades, tiers, and rankings survive only as FORGE-owned evaluative projections
+bound to a declared question, population, scoring assumptions, horizon,
+cutoff, policy version, and derivation. Unqualified `forge_alpha` is retired.
+[G04][G05]
+
+Evidence coverage remains with the artifact producer; source reliability with
+the domain owner; classification confidence with the classifier/Role owner;
+Forecast uncertainty with Forecast; and evaluative-projection confidence with
+FORGE. Existing generic confidence fields do not satisfy that taxonomy.
+
+#### Q7 — Cutoff and typed availability
+
+Every input binds exact subject, source record, repo/path/version/hash,
+`availability_time_kind`, validator-derived `available_at`, and the evaluation
+cutoff. Eligibility is strictly before cutoff; unknown, contradictory, or bare
+date evidence fails closed. `generated_at`, ingestion, retrieval, refresh,
+verification, file, and Git times are prohibited substitutes. [F03][F06][F07]
+
+Current `asOf`/`sourceUpdatedAt` fields do not prove compliance, so A is not
+production-ready under this rule. [G02][G04][G05]
+
+#### Q8 — Migration and implementation disposition
+
+Embedded Fantasy FORGE stays live as `LEGACY_CORE_TEMP`, frozen against new
+engine scope and available for compatibility/rollback. It can be superseded
+only after an authorized A contract, adapters, route-by-route dual run, consumer
+inventory and migration, acceptance criteria, rollback proof, and cutover.
+Standalone FORGE is a possible host, not an already promoted successor; its
+bootstrap/static state remains comparison and reproducibility evidence.
+[G01][Y01][Y04]
+
+FC1 cannot prove parity. Recursive parity is explicitly unavailable. No
+calendar retirement date or deprecation is claimed; unknown consumers and
+thresholds remain unresolved.
+
+**A assessment:** a simple acyclic evaluation boundary and low profile-copy
+burden, offset by substantial redesign hidden by the word “status quo,” absent
+Forecast integration evidence, consumer uncertainty, and no shared synthesis.
+A is coherent as a target hypothesis, not as an existing solution.
+
+### 8.2 Option B — unified synthesis/evaluation capability
+
+One owner and contract family would contain typed descriptive and evaluative
+stages. “Unified” cannot mean one cyclic record or one undifferentiated Alpha.
+
+#### Q1 — Topology and Forecast relation
+
+**Commitment:** domain artifacts produce immutable `profile_core P(cutoff)`;
+Forecast consumes an admitted subset of P and emits run F; the unified
+capability then consumes the unchanged P plus optional F to emit evaluations E;
+Fantasy presents P/E. Forecast is both consumer and input, but at different
+typed stages and run identities. Evaluation never feeds P or Forecast.
+[D01][F01][G02]
+
+The expanded DAG is acyclic. No frozen source establishes this staged unified
+contract, its owner, or same-run orchestration.
+
+#### Q2 — Recursion
+
+**Selection: (a), prohibited self-reference.** Neither prior P nor prior E may
+influence a new P/E merely because it is versioned. Temporal features are
+recomputed from pinned source snapshots; prior results may appear only in
+reporting/diff surfaces. [D01][Y02][Y03]
+
+Legacy recursive fields may be separately typed for compatibility but never
+enter `profile_core`, Forecast, evaluation, or confidence. Semantic parity with
+the recursive engine is not promised.
+
+#### Q3 — Archetype versus role
+
+**Testable boundary:** role states deployment/opportunity in a declared
+team/time window; a B archetype is a versioned cross-source classification that
+requires at least two independently owned domain blocks and must not change
+when only team, depth-chart, or bounded usage facts change. If it can be
+computed from Role fields alone, it is role interpretation, not archetype.
+[P01][R01]
+
+No frozen source supplies the archetype ontology, classifier, thresholds, or
+owner; this is a proposed contract test.
+
+#### Q4 — Coherence cost and FC1
+
+`profile_core` owns reconciliation and descriptive synthesis, not copied source
+truth. It preferentially stores derived fields plus exact source references.
+Any necessary copied field carries original owner, subject, artifact/version/
+hash, cutoff/availability, correction lineage, reproducibility rule, and
+`non_authoritative_copy`. Research snapshots are immutable and content
+addressed; mutable shadows are forbidden. [D02][O01][FC1]
+
+B centralizes joins/explanations but has the highest release coupling and
+stale-copy risk. No evidence establishes its join grain, correction rules, or
+minimal materialization boundary.
+
+#### Q5 — Forecast admission
+
+Only an allowlisted, promoted `profile_core` subset may enter Forecast:
+`owned promoted profile → identity-verified mirror/rehearsal → validation →
+threshold review → binding/leakage review → inert-by-default implementation →
+independent activation verification → distinct human sign-off`. Forecast owns
+the adapter and binding decision, never the profile; E, grades, tiers, ranks,
+and evaluative confidence are ineligible. [C1][F04][F05]
+
+No B profile or admission evidence exists at the freeze.
+
+#### Q6 — Verdict and confidence semantics
+
+The contract has hard namespaces: `profile_core` for descriptive synthesis;
+`forecast_refs` for Forecast-owned inference; and `evaluations[]` for
+question-bound grades, tiers, and ranks. Every evaluation names question,
+assumptions, horizon, cutoff, owner, ruleset, and input hashes. There is no
+contract-global Alpha or confidence. [F01][Y05]
+
+Profile owner records evidence coverage; originating domains retain source
+reliability; classifier owner records classification confidence; Forecast
+retains forecast uncertainty; evaluation owner records projection confidence.
+One contract does not collapse or transfer those claims.
+
+#### Q7 — Cutoff and typed availability
+
+P freezes only subject-bound records with closed typed availability strictly
+before its cutoff. A derived field's `available_at` is the maximum of all
+required source, derivation, and cohort dependencies. F pins the exact P hash
+and cutoff; E pins the exact P/F pair and may add no later evidence. Build,
+generation, event, retrieval, availability, and evaluation times stay distinct.
+[F03][F06][F07]
+
+Current inputs do not collectively demonstrate this coverage; B is a target
+contract, not a populatable production artifact.
+
+#### Q8 — Migration and implementation disposition
+
+Embedded FORGE stays live as `LEGACY_CORE_TEMP` through a separately authorized
+unified contract, Forecast admission, adapters, dual-read/dual-run evidence,
+consumer migration, acceptance gates, rollback, and cutover. Standalone FORGE
+remains bootstrap/historical evidence and perhaps a future host only after a
+separate repository decision; its static artifact cannot be relabeled P.
+[G01][G03][Y01][Y04]
+
+Fantasy's monolithic external-scoring plan does not cover B's added synthesis
+responsibility. Neither implementation is deprecated or declared superseded.
+
+**B assessment:** it reconciles the three historical arrow directions and
+centralizes traceability, but bears the highest semantic-conflation,
+coordination, and mirror burden. Its safe internal staging resembles C while
+retaining tighter ownership/release coupling. It remains logically admissible,
+but evidentially weak and unimplemented.
+
+### 8.3 Option C — canonical profile plus separate projections
+
+C separates descriptive synthesis from prediction, evaluation, and product
+presentation. A profile is justified only if it performs reusable synthesis,
+not if it merely renames a mirror or pointer bundle.
+
+#### Q1 — Topology and Forecast relation
+
+**Commitment:** `Data + Teamstate + Role/opportunity + Rookies → canonical
+profile → Forecast adapter / research snapshot / Fantasy`; separately,
+`profile + optional typed Forecast run → question-bound projection → Fantasy`.
+Relative to the profile, Forecast is a consumer only. Forecast may be input to
+a separate projection but never to the profile or domain truth. [D01][F01][G02]
+
+This resolves the contradiction by splitting the overloaded FORGE coordinate:
+domains feed profile, profile feeds Forecast, and Forecast may feed evaluation.
+The topology is proposed, not established.
+
+#### Q2 — Recursion
+
+**Selection: (a), prohibited self-reference.** No prior Alpha, tier, rank,
+profile, projection, or recursive state enters the profile, Forecast adapter,
+or a new projection. Prior outputs may be reported but cannot change result or
+confidence. [D01][Y02][Y03]
+
+A typed `legacy_forge_projection` compatibility surface may quarantine old
+behavior while the live engine remains, but cannot blend it into C or claim
+semantic parity.
+
+#### Q3 — Archetype versus role
+
+**Testable boundary:** an archetype is a descriptive cross-source trait pattern
+that remains unchanged when only the player's team, depth-chart placement, or
+bounded usage window changes; a role interpretation is the team-and-time-bound
+deployment/opportunity label that changes with those facts. [P01][R01]
+
+The role side is evidenced historically. The archetype classifier, vocabulary,
+thresholds, and owner are not; they remain C design hypotheses.
+
+#### Q4 — Coherence cost and FC1
+
+The profile must add cross-source identity/time reconciliation, explicit
+missingness/conflict handling, or reproducible descriptive classification. It
+stores synthesis outputs, source references/hashes, and only values necessary
+to reproduce the output or make a declared snapshot self-contained. Every copy
+retains owner, subject, cutoff/availability, lineage, correction rule, and
+`non_authoritative_copy`. Builds are immutable/content-addressed and fail
+closed on mismatch. [O01][FC1]
+
+One governed join can prevent consumer divergence. The material defeater is
+unproven value: if C stores too little it is an empty pointer wrapper; too much
+recreates FC1. Inputs also span team-, player-week-, player-season-, rookie-,
+and run-level grains. No freeze evidence proves two consumers need the same
+neutral synthesis.
+
+#### Q5 — Forecast admission
+
+The profile owner retains the artifact; Forecast owns only its allowlisted
+adapter and admission decision. Required path: `owned promoted profile →
+identity-verified mirror/rehearsal → real/baseline/shuffled validation across
+disjoint origins → threshold review → binding/leakage review → inert-by-default
+implementation → independent activation verification → distinct human
+sign-off`. Partial-field admission does not admit the whole profile.
+[C1][F04][F05][F08][F09]
+
+No profile, adapter, validation, review, or sign-off exists in the freeze.
+
+#### Q6 — Verdict and confidence semantics
+
+The canonical profile contains no grades, tiers, ranks, `forge_alpha`, or
+Forecast inference. Those survive only as separately governed projections that
+name question/horizon, league/scoring/policy assumptions, owner, ruleset,
+cutoff, and input profile/Forecast hashes. Forecast does not acquire dynasty or
+best-ball policy; Fantasy does not create it by sorting. [F01][Y05]
+
+Profile owner records evidence coverage; source owners retain reliability;
+classifier owner records classification confidence; Forecast retains forecast
+uncertainty; projection owner records evaluative confidence. Owners and
+derivations for the new classifier/projections remain unresolved.
+
+#### Q7 — Cutoff and typed availability
+
+Each profile field binds exact subject and record, repo/path/version/hash,
+closed `availability_time_kind`, validator-derived `available_at`, profile
+cutoff, and derivation lineage. A synthesized field uses the maximum availability
+of every required source/derivation/cohort dependency. Strictly-before-cutoff
+eligibility and fail-closed ambiguity apply. Forecast pins the profile in its
+run manifest; projections pin both profile and Forecast run. [F03][F06][F07]
+
+F06/F07 are design-only and current domain artifacts do not collectively prove
+populatable typed availability. C is not implementation-ready.
+
+#### Q8 — Migration and implementation disposition
+
+Embedded Fantasy FORGE remains live as `LEGACY_CORE_TEMP` and a compatibility/
+rollback baseline. Its composition responsibility would move to the profile;
+grading/tiering to declared projections; envelopes to Fantasy adapters. It
+stays until route-by-route dual-run acceptance, cache/consumer migration,
+rollback retirement, and separate cutover authority. Standalone FORGE remains
+a bootstrap/static reproducibility fixture until promoted profile/projection
+contracts and a separate repository-disposition decision exist. [G01][Y01][Y04]
+
+FC1 is never migration truth. Exact host, consumer graph, thresholds, and
+calendar duration remain unresolved; no deprecation occurs.
+
+**C assessment:** the clearest semantic separation and a plausible single
+coherence point, offset by no established owner, contract, join grain,
+archetype, correction policy, typed inputs, or proof that reusable neutral
+synthesis beats consumer-local composition. C is a conditional target, not an
+evidence-established winner.
+
+### 8.4 Option D — retire/distribute with no canonical representation
+
+D retires the overloaded FORGE coordinate. It does not remove the need to
+replace live integration or govern question-specific evaluations.
+
+#### Q1 — Topology and Forecast relation
+
+**Commitment:** domain artifacts flow directly to Forecast adapters and to
+immutable research/inference snapshots; domain artifacts and optional declared
+projections flow to Fantasy. There is no FORGE successor node or canonical
+cross-source profile. Forecast output flows only to evaluation, audit, or
+presentation and never back to source truth or a later Forecast input.
+[D01][D02][F01]
+
+D dissolves the conflicting historical arrows instead of choosing one. It is
+acyclic, but direct consumer composition is not currently proven complete.
+
+#### Q2 — Recursion
+
+**Selection: (a), prohibited self-reference.** No domain adapter, Forecast
+feature, research snapshot, or new projection consumes legacy FORGE output.
+Prior results may be reported/audited but cannot score the next run. A typed
+compatibility result may coexist while the embedded engine remains, without
+entering D's architecture. [D01][Y02][Y03]
+
+Thus D quarantines rather than legitimizes recursion and does not claim legacy
+semantic parity.
+
+#### Q3 — Archetype versus role
+
+**Testable boundary:** D has no canonical cross-source archetype. Any
+consumer-local archetype must remain unchanged when only team, depth-chart, or
+bounded usage facts change; a label that changes is Role-and-opportunity
+interpretation. A consumer may emit no archetype at all. [P01]
+
+Any local classifier must name its owner/version and cannot masquerade as
+shared player state.
+
+#### Q4 — Coherence cost and FC1
+
+D creates no canonical synthesized copy. A consumer composes ephemerally for a
+single run or emits an immutable content-addressed, consumer-specific snapshot
+with minimal non-authoritative copies and exact owner/source/hash/cutoff/
+availability/correction lineage. Every mirror verifies producer identity and
+currency or fails closed. [O01][FC1]
+
+This avoids an unproven ontology but multiplies identity/time joins, conflict
+rules, correction logic, admissions, schema drift, and explanations. Local
+compositions can become hidden inconsistent FORGEs; FC1 is reduced, not
+automatically solved.
+
+#### Q5 — Forecast admission
+
+Forecast independently admits TIBER-Data identity/lineage/outcome contracts,
+Teamstate environment artifacts, Role-and-opportunity profiles, and the
+question-appropriate Rookies transition/prior artifacts. Each source traverses
+the full path: `owned promoted source → identity-verified mirror/rehearsal →
+validation → threshold review → binding/leakage review → inert implementation
+→ activation verification → distinct human sign-off`. Forecast owns adapters,
+not sources; one source's PASS admits no other. [C1][F01][F04][F05]
+
+T01/P01 do not prove promoted runtime inputs, and R02 proves only its narrow
+producer contract. The direct graph is not currently admission-ready.
+
+#### Q6 — Verdict and confidence semantics
+
+D retires universal `forge_alpha`, tiers, and rankings. A surviving verdict
+must be a separately governed consumer/question-specific projection with named
+question, assumptions, horizon, cutoff, version, derivation, and owner; absent
+that owner/contract, the surface retires. Forecast ordering stays forecast
+inference, and Fantasy presentation cannot silently become policy. [F01][Y05]
+
+Domain owners retain coverage/reliability; any local classifier owns
+classification confidence; Forecast owns forecast uncertainty; each declared
+projection owns evaluative confidence. Current projection owners and consumer
+tolerance for retirement remain unresolved.
+
+#### Q7 — Cutoff and typed availability
+
+Every domain field independently carries record/subject-bound typed
+availability and is checked against the consumer run cutoff. A local derived
+field uses the maximum availability of all source, derivation, and cohort
+dependencies; Forecast's manifest and research snapshots pin the complete
+source set. Operational timestamps and ambiguity fail closed. [F03][F06][F07]
+
+D has no shared layer to repair missing semantics, so every owner/consumer must
+implement compatible rules. Current artifacts do not collectively prove that
+coverage.
+
+#### Q8 — Migration and implementation disposition
+
+Embedded Fantasy FORGE remains `LEGACY_CORE_TEMP` and the compatibility/
+rollback path. Composition is replaced route by route with direct domain
+adapters; each grade/tier/rank is replaced by an owned projection or explicitly
+retired. The engine remains until all known/off-repo consumers, caches,
+contracts, dual-run criteria, rollback, and separate cutover authority are
+resolved. Standalone FORGE is not D's successor; it remains historical/demo
+evidence until a separately authorized archive/reshape/delete decision.
+[G01][Y01][Y04]
+
+Unknown consumers, exact route replacements, projection owners, and retirement
+timing remain indeterminate. No deprecation occurs.
+
+**D assessment:** the honest null hypothesis avoids a new canonical ontology
+and central mirror, but multiplies composition/admission burden and risks
+divergent hidden FORGEs. Evidence proves neither that distributed composition
+is cheaper nor that a shared profile is necessary. D remains viable.
+
+## 9. D3 result
+
+All four options contain a coherent design-hypothesis variant that answers all
+eight mandatory questions. Literal current-state A fails, but the approved
+option can be refounded while preserving its standalone evaluation role; that
+redesign must not be mislabeled as unchanged status quo. B, C, and D likewise
+require unbuilt contracts and future owners.
+
+| Option | Principal advantage | Material defeater / unknown | D3 disposition |
+|---|---|---|---|
+| A | Simple standalone evaluation boundary; no canonical profile | Material refoundation, absent Forecast integration/admission evidence, no shared synthesis | Admissible target hypothesis; not dominant |
+| B | One accountable staged contract reconciles all historical arrows | Highest conflation, mirror, coupling, and coordination burden; no owner/profile evidence | Admissible target hypothesis; not dominant |
+| C | Cleanest separation of description, prediction, evaluation, and presentation | Reusable profile value, owner, joins, grains, correction rules, archetype, and cutoff coverage unproved | Admissible conditional target; not dominant |
+| D | Avoids inventing an unproved canonical ontology | Duplicates joins/adapters/admission and may create hidden divergent FORGEs | Admissible null hypothesis; not dominated |
+
+The frozen evidence eliminates unsafe variants—cycles, recursive carry-forward,
+generic Alpha/confidence, untyped availability, stale mirrors, and fabricated
+migration—but does not eliminate all but one option. Most importantly, it does
+not settle C's shared-profile value against D's distributed-composition cost.
+No approved weighting policy resolves semantic separation, duplication,
+governance overhead, migration risk, feature continuity, and reversibility.
+
+**D3 terminal result:** `forge_reconception_requires_followup`.
+
+This result makes **zero recommendations** and does not express a fallback
+preference. It is not `forge_reconception_blocked`: the comparison is complete
+and the sources were available. Additional evidence is needed before a positive
+direction can be selected:
+
+1. a consumer-demand inventory for Forecast, Fantasy, and research that
+   identifies genuinely shared neutral synthesis versus question-specific
+   composition;
+2. a bounded profile-viability contract sketch naming candidate owner, exact
+   identity/time grains, joins, conflict/correction behavior, minimal
+   materialization, and the test that prevents both empty-wrapper and FC1-mirror
+   failure;
+3. a distributed-composition map and cost/risk comparison for the same consumer
+   paths, including repeated admissions and schema drift;
+4. a typed-availability coverage assessment for the proposed domain inputs,
+   without substituting operational timestamps;
+5. an inventory of every grade/tier/ranking consumer and a decision on which
+   question-specific projections must survive and who could own them; and
+6. complete embedded/standalone consumer, compatibility, parity, rollback, and
+   repository-disposition requirements.
+
+That package is separately scoped future discovery and is not executed or
+activated by this checkpoint. A human-approved weighting/priority statement
+would also be required if the evidence leaves a Pareto tradeoff rather than one
+strictly dominant option.
+
+## 10. D3 candidate checkpoint
+
+- Four and only four approved options are compared.
+- Each option answers Q1–Q8, declares Forecast's typed position, chooses exactly
+  one recursion classification, gives a counterfactual archetype/role boundary,
+  addresses FC1, preserves the full Forecast admission sequence, separates five
+  confidence claims, uses record-bound typed availability, and dispositions
+  both existing implementations without deprecation. [C1]
+- Every future owner, contract, adapter, projection, migration, and repository
+  disposition remains a hypothesis or later decision.
+- No dependency, source repository, registry, #15/#20 state, implementation,
+  prototype, PR, merge, or deprecation was created.
+- #15 R2 remains `r2_parked_pending_forge_reconception`; D4–D6 remain inactive.
+
+Candidate checkpoint state:
+`d3_comparison_complete_forge_reconception_requires_followup_pending_independent_verification`.
+
+This executing-agent checkpoint is not self-approval. Fresh-context independent
+verification is required before D3 can be accepted. A PASS would validate this
+comparison only; it would not select a FORGE direction or activate D4.
