@@ -6,7 +6,7 @@ Frontier: `RD1-F — source-use and admissibility policy`
 Work item: `research_observatory_rd1_f_source_admissibility_v0`
 Authority: [scope approval](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5040660662) and signed [activation](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-5040664503) of the exact proposal [#24 comment 5034511886](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5034511886), SHA-256 `31b3245cd770aff0f154e18a2df51877703cbfc6d881b8aaf0ec5f5fc3ee2e56`
 Predecessor: accepted RD1 audit `docs/architecture/research-observatory-readiness-inventory-v0.md`, blob `149e60f3f2634021f743d83fe7ee02b396c58577`, document SHA-256 `a5104706260b83888d4a94e0623ded78d165d611dbe1de8893a939503e1dbe77`, merge commit `c443f281f184301edd8dc70eeb218cbc5b777edf`
-Drafted: 2026-07-22 UTC (rev. 3 after second independent review)
+Drafted: 2026-07-22 UTC (rev. 4 after third independent review)
 Terminal result: **`source_use_admissibility_policy_ready_for_operator_decision`** (provisional; pending fresh-context independent review of this head)
 
 > This document is a **policy proposal**, not legal advice, not adopted policy, and not permission to acquire, retain, transform, publish, or redistribute any data. Every classification below is an operator-policy candidate. A source becomes usable only through the separate operator adoption and later feasibility/acquisition controls applicable to its disposition. Unknown or conflicting rights fail closed.
@@ -42,7 +42,7 @@ Rights-determinative primary pages:
 | Genius Sports distribution | [link](https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports) | Exclusive distributor of real-time official play-by-play and proprietary Next Gen Stats through 2027-28. **No material change.** |
 | Sports Reference data-use policy | [link](https://www.sports-reference.com/data_use.html) | **HTTP 403 — could not re-verify.** Fail closed: RD1's finding is carried unchanged; PFR-derived snap counts remain excluded pending express review. |
 
-Source-specific loader/documentation pages (already cited by RD1) were re-read per family on 2026-07-22 and their links and retrieval dates are recorded in each §5 row: `load_pbp`, `load_schedules`, `load_rosters_weekly`, `load_depth_charts`, `load_injuries`, `load_nextgen_stats`, and the [official Big Data Bowl page](https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl). These documentation pages carry coverage/grain/cadence, not a licence; the licence and owner-reservation live in the two nflverse rights pages above. **No material change** in coverage/grain was observed except one **parked source-identity delta** for depth charts (§5.5, §9).
+Source-specific loader/documentation and tooling-licence pages (already cited by RD1) were re-read per family on 2026-07-22 and their links and retrieval dates are recorded in each §5 row: `load_pbp`, `load_schedules`, `load_rosters_weekly`, `load_depth_charts`, `load_injuries`, `load_nextgen_stats`, the [official Big Data Bowl page](https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl), and the `nflreadr`/`nflreadpy` MIT licences (§5.17). These documentation pages carry coverage/grain/cadence, not a data licence; the data licence and owner-reservation live in the two nflverse rights pages above. **No material change** in coverage/grain was observed except one **parked source-identity delta** for depth charts (§5.5, §9).
 
 No re-read contradicted an accepted RD1 finding, changed the frozen source universe, or required a broader source or rights interpretation. No RD1 correction is triggered.
 
@@ -485,8 +485,9 @@ held_for_qualified_review
 
 ### 5.17 `nflreadr` / `nflreadpy` (access tooling)
 
+- **Provider / upstream owner:** both clients are maintained by the **nflverse** project (maintainers Tan Ho, Sebastian Carl, and contributors). They are access **tooling**, not a data source: the **underlying data ownership varies by the loaded source family** (resolved in the §5.1–§5.16 rows), and the clients themselves **convey no data rights**.
 - **Rights posture:** MIT-licensed access clients. The software licence covers the **code**, not the underlying data.
-- **Primary evidence:** [`nflreadr` Terms of Use](https://github.com/nflverse/nflreadr#terms-of-use) (retrieved 2026-07-22, MIT covers code; NFL data belong to owners); [`nflreadpy`](https://github.com/nflverse/nflreadpy) (MIT access client) per RD1 §5.1.
+- **Primary evidence (direct, retrieval-dated):** `nflreadr` — [MIT `LICENSE`](https://nflreadr.nflverse.com/LICENSE.html), "Copyright (c) 2021 nflreadr authors" (retrieved 2026-07-22), plus its [Terms of Use](https://github.com/nflverse/nflreadr#terms-of-use) reserving underlying NFL-data ownership (2026-07-22); `nflreadpy` — [MIT `LICENSE.md`](https://raw.githubusercontent.com/nflverse/nflreadpy/main/LICENSE.md), "Copyright (c) 2025 nflreadpy contributors", corroborated by [PyPI metadata](https://pypi.org/project/nflreadpy/) ("License Expression: MIT") (both retrieved 2026-07-22).
 
 | Intended-use axis | Net authority (as a source of *data* rights) |
 | --- | --- |
@@ -570,7 +571,7 @@ Discoveries in these areas must be recorded and parked, not absorbed into RD1-F.
 ## 11. Completion criteria check (proposal §8)
 
 1. Every family has a fully populated row — **yes** (§5; 18 rows against the §4 evidence-contract template, participation split 10a/10b; all seven axes with exact enums per cell).
-2. Every non-fail-closed claim cites primary evidence — **yes**; per-row direct primary links with retrieval dates are now present in all 18 rows (not "as §5.1"), incl. `load_participation` for the FTN-era candidate.
+2. Every non-fail-closed claim cites primary evidence — **yes**; per-row direct primary links with retrieval dates are now present in all 18 rows (no longer relying solely on `as §5.1` shorthand for provider/source identity, links, dates, obligations, and dispositions), incl. `load_participation` for the FTN-era candidate.
 3. Raw data / derived artifacts / public findings / model use not conflated — **yes** (per-axis cells; hosted-transfer separated with its distinct blocker).
 4. Attribution / ShareAlike / retention / redistribution obligations explicit — **yes**; TIBER provenance obligations are distinguished from CC legal triggers (§5.9, §5.10a), and obligations are marked *not applicable while fail-closed* elsewhere.
 5. Unresolved conflicts excluded or routed to qualified review, never silently admitted — **yes**; the backbone and NGS-era slice are net-authority fail-closed (§5, §6).
@@ -578,7 +579,7 @@ Discoveries in these areas must be recorded and parked, not absorbed into RD1-F.
 7. Consequences for the question envelope stated — **yes** (§8).
 8. Traceability to RD1 follow-ups 1, 2, and review-gate of 7 — **yes** (§12).
 9. No existing TIBER artifact retroactively approved/broadened — **affirmed** (§10, §8 final bullet); this policy governs external source admissibility only.
-10. Candidate document + terminal token receive fresh-context independent review — **rev. 1 and rev. 2 reviewed (CHANGES REQUIRED); this rev. 3 head is submitted for fresh-context re-review.**
+10. Candidate document + terminal token receive fresh-context independent review — **rev. 1–3 reviewed (CHANGES REQUIRED each); this rev. 4 head is submitted for fresh-context re-review.**
 11. Executing agent stops for Joseph's separate terminal-acceptance, merge, policy-adoption, and next-frontier decisions — **yes** (draft PR; not self-merged).
 
 ## 12. Requirements traceability
