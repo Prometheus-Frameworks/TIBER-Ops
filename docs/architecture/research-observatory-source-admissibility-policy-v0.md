@@ -5,7 +5,7 @@ Owning issue: [TIBER-Ops #24](https://github.com/Prometheus-Frameworks/TIBER-Ops
 Frontier: `RD1-F — source-use and admissibility policy`
 Correction frontier: `RD1-F-C — FTN authority correction` · Work item `research_observatory_rd1_f_c_ftn_authority_correction_v0` · active token `research_observatory_rd1f_correction_active`
 Authority (RD1-F): [scope approval](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5040660662) and signed [activation](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-5040664503) of the exact proposal [#24 comment 5034511886](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5034511886), SHA-256 `31b3245cd770aff0f154e18a2df51877703cbfc6d881b8aaf0ec5f5fc3ee2e56`
-Authority (RD1-F-C): [scope proposal](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5079977009), SHA-256 `1865edaf14a3648b4d5a16e80487faf335b2d7a0be9c1b556774081211e56188`; signed [activation](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-5079994624); [activation checkpoint](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5079999507); actionable [PR #40 P1 `r3648541911`](https://github.com/Prometheus-Frameworks/TIBER-Ops/pull/40#discussion_r3648541911)
+Authority (RD1-F-C): [scope proposal](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5079977009), SHA-256 `1865edaf14a3648b4d5a16e80487faf335b2d7a0be9c1b556774081211e56188`; signed [activation](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-5079994624); [activation checkpoint](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5079999507); actionable [PR #40 P1 `r3648541911`](https://github.com/Prometheus-Frameworks/TIBER-Ops/pull/40#discussion_r3648541911); review-correction pass [signed authorization](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-5080992929)
 Predecessor: accepted RD1 audit `docs/architecture/research-observatory-readiness-inventory-v0.md`, blob `149e60f3f2634021f743d83fe7ee02b396c58577`, document SHA-256 `a5104706260b83888d4a94e0623ded78d165d611dbe1de8893a939503e1dbe77`, merge commit `c443f281f184301edd8dc70eeb218cbc5b777edf`
 Merged as: [PR #40](https://github.com/Prometheus-Frameworks/TIBER-Ops/pull/40) — merge commit `972af621b00c3b43bb87d7b4168d1ac7a9527613`, policy blob `6b3294532d39da362a02a6d6b2f46a5afdffb3bc`, merged document SHA-256 `cc485fbab5abe9e7aabb2dae02cb2c48384959212eca3e7c1d51bc782cae5a3d`
 Revised: 2026-07-25 UTC — rev. 5 (RD1-F-C FTN-authority correction); originally drafted 2026-07-22 (rev. 4)
@@ -109,6 +109,8 @@ not_applicable
 
 **Two result columns where a repository licence sits over an unresolved upstream layer.** For the nflverse statistical families, a **CC BY 4.0 compilation-layer** column records what nflverse's own repository grant would support — this is **contingent evidence, not present permission** — and a **Net authority** column records the operative result once the unresolved upstream reservation is accounted for. Some families are presented with a single **Net authority** column; a single column is **not** a finding that the authority chain is sufficient. In particular (per the RD1-F-C correction), the FTN-sourced families (§5.9, §5.10a) are single-column **and fail-closed**: a CC-labeled loader-page notice does not by itself establish the upstream product's applicable terms or the distributor's authority to license it, so absent an evidenced authority chain those families fail closed. The operative classification is always the Net-authority column.
 
+**Per-family evidence contract.** Every one of the 18 rendered rows (17 families; participation split 10a/10b) records the same template: provider and upstream owner — or a clearly identified attributed source when ownership is unproven; direct primary evidence links with retrieval date; the complete seven-axis intended-use matrix; explicit obligations (including *not applicable while fail-closed* where the net authority is fail-closed); operator/qualified-review requirement; inherited temporal/revision caveats; and exactly one disposition.
+
 **Per-family disposition** — exactly one of:
 
 ```text
@@ -184,7 +186,7 @@ held_for_qualified_review
 - **Obligations:** *not applicable while net authority is fail-closed* (CC BY 4.0 attribution would attach if cleared; TIBER internal provenance required regardless).
 - **Operator / qualified review required:** Yes.
 - **Temporal caveats (RD1):** the combined file refreshes every ~5 minutes; mutable fields have no revision identity; each archive date needs an asset/digest check.
-- **Disposition:** `held_for_qualified_review`. *Contingent path:* the stable game-identity fields are the strongest candidate for a later feasibility review; mutable schedule/result fields remain fail-closed until revision identity is established.
+- **Disposition:** `held_for_qualified_review`. *Contingent future path — not in the §7 candidate set:* the stable game-identity fields are a **potential** future starting point for a later feasibility review **only if** the CC BY 4.0-vs-upstream question (as §5.1) is first resolved by qualified review; mutable schedule/result fields remain fail-closed until revision identity is established. This family is **not** a present candidate and is **not** part of the empty §7 candidate set unless that gate is resolved.
 
 ### 5.4 nflverse weekly rosters
 
@@ -490,7 +492,7 @@ held_for_qualified_review
 - **Obligations:** *not applicable while fail-closed* (obligations would come from the per-release competition terms, not audited here).
 - **Operator / qualified review required:** Yes, per dataset/release. This row does **not** audit release-specific terms.
 - **Temporal caveats (RD1):** dataset/task-specific; not a recurring weekly feed.
-- **Disposition:** `held_for_qualified_review` (dataset-specific research candidate only; separate per-release audit required before any retention).
+- **Disposition:** `held_for_qualified_review` (a **potential** future dataset-specific research path only, **not** in the §7 candidate set; a separate per-release terms audit must be resolved before it could be considered, and no retention is authorized).
 
 ### 5.17 `nflreadr` / `nflreadpy` (access tooling)
 
