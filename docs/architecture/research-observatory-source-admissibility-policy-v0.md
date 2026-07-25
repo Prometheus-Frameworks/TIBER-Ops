@@ -1,15 +1,30 @@
 # Research Observatory source-use and admissibility policy v0
 
-Status: **RD1-F candidate deliverable — DRAFT for independent review; NOT adopted policy**
+Status: **RD1-F candidate — MERGED to main (recorded), NOT adopted; under RD1-F-C correction (FTN authority fail-close)**
 Owning issue: [TIBER-Ops #24](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24)
 Frontier: `RD1-F — source-use and admissibility policy`
-Work item: `research_observatory_rd1_f_source_admissibility_v0`
-Authority: [scope approval](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5040660662) and signed [activation](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-5040664503) of the exact proposal [#24 comment 5034511886](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5034511886), SHA-256 `31b3245cd770aff0f154e18a2df51877703cbfc6d881b8aaf0ec5f5fc3ee2e56`
+Correction frontier: `RD1-F-C — FTN authority correction` · Work item `research_observatory_rd1_f_c_ftn_authority_correction_v0` · active token `research_observatory_rd1f_correction_active`
+Authority (RD1-F): [scope approval](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5040660662) and signed [activation](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-5040664503) of the exact proposal [#24 comment 5034511886](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5034511886), SHA-256 `31b3245cd770aff0f154e18a2df51877703cbfc6d881b8aaf0ec5f5fc3ee2e56`
+Authority (RD1-F-C): [scope proposal](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5079977009), SHA-256 `1865edaf14a3648b4d5a16e80487faf335b2d7a0be9c1b556774081211e56188`; signed [activation](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-5079994624); [activation checkpoint](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/24#issuecomment-5079999507); actionable [PR #40 P1 `r3648541911`](https://github.com/Prometheus-Frameworks/TIBER-Ops/pull/40#discussion_r3648541911)
 Predecessor: accepted RD1 audit `docs/architecture/research-observatory-readiness-inventory-v0.md`, blob `149e60f3f2634021f743d83fe7ee02b396c58577`, document SHA-256 `a5104706260b83888d4a94e0623ded78d165d611dbe1de8893a939503e1dbe77`, merge commit `c443f281f184301edd8dc70eeb218cbc5b777edf`
-Drafted: 2026-07-22 UTC (rev. 4 after third independent review)
-Terminal result: **`source_use_admissibility_policy_ready_for_operator_decision`** (provisional; pending fresh-context independent review of this head)
+Merged as: [PR #40](https://github.com/Prometheus-Frameworks/TIBER-Ops/pull/40) — merge commit `972af621b00c3b43bb87d7b4168d1ac7a9527613`, policy blob `6b3294532d39da362a02a6d6b2f46a5afdffb3bc`, merged document SHA-256 `cc485fbab5abe9e7aabb2dae02cb2c48384959212eca3e7c1d51bc782cae5a3d`
+Revised: 2026-07-25 UTC — rev. 5 (RD1-F-C FTN-authority correction); originally drafted 2026-07-22 (rev. 4)
+Terminal result (RD1-F-C): **`source_use_admissibility_policy_correction_ready_for_operator_decision`** (provisional; pending fresh-context independent review of this head)
 
 > This document is a **policy proposal**, not legal advice, not adopted policy, and not permission to acquire, retain, transform, publish, or redistribute any data. Every classification below is an operator-policy candidate. A source becomes usable only through the separate operator adoption and later feasibility/acquisition controls applicable to its disposition. Unknown or conflicting rights fail closed.
+
+## 0. Correction status (RD1-F-C)
+
+This document was merged to `main` via PR #40 as the RD1-F candidate record. **Merging recorded the candidate; it did not adopt the policy or admit any source.** After the earlier fresh-context PASS (rev. 4, `4e2754d1`, 2026-07-24) and after merge, a late actionable **P1** ([`r3648541911`](https://github.com/Prometheus-Frameworks/TIBER-Ops/pull/40#discussion_r3648541911), 2026-07-24) observed that the RD1-F treatment made **FTN charting** (§5.9) — and, by inheritance, the **FTN-era participation slice** (§5.10a) — eligible for internal use based only on an nflreadr loader-page CC BY-SA notice and the absence of an identified reservation, which does not establish FTN's applicable terms or nflverse's authority to license FTN's product. That is inconsistent with the document's own fail-closed rule. This P1 was raised **after** the PASS and merge; that historical sequence is not rewritten, and the earlier PASS makes no claim to have dispositioned this later finding.
+
+The **RD1-F-C** correction frontier (authority above) addresses that P1 using **only the evidence already contained in this document, PR #40, and the late P1** — no new licensing or source research, no source/data/archive access. It:
+
+- reclassifies every Net-authority cell for FTN charting (§5.9) and FTN-era participation (§5.10a) as `unresolved_fail_closed`;
+- changes both dispositions to `held_for_qualified_review`;
+- makes the narrow candidate-source set (§7) **explicitly empty**;
+- reconciles the directly dependent §4, §6, §8, and §§10–14 language.
+
+All other families' fail-closed conclusions and every parked follow-up from RD1-F are preserved unchanged. The distinction between a **reviewed policy candidate** and an **adopted policy** is preserved. RD1-F-C does not adopt the policy, admit or acquire a source, inspect archives, merge, or activate R1-0/RD2/the three-run pilot.
 
 ## 1. What this document decides, and what it does not
 
@@ -21,30 +36,32 @@ It does **not** resolve: archive feasibility, point-in-time availability, a repl
 
 ## 2. Method and evidence discipline
 
-Under the approved RD1-F scope, this discovery:
+The original RD1-F discovery (rev. 1–4):
 
 - evaluated **only** the closed source universe frozen by RD1 (§4 of the proposal; §3 below). No new provider or dataset was searched.
 - **read only primary licence, terms, and documentation pages already cited by RD1**, to detect material change. Retrieval date recorded below and per row in §5.
 - did **not** download, sample, retain, hash, transform, or inspect any source **data** asset. Reading terms/licences is not source-corpus acquisition.
 - fails closed on unknown or conflicting rights, and routes conflicts to qualified review rather than silently admitting them.
 
+The **RD1-F-C** correction (rev. 5) conducted **no new licensing or source research**: it uses only the evidence already contained in this document, PR #40, and the late P1, and reclassifies FTN-sourced families to fail-closed accordingly (§0, §5.9, §5.10a).
+
 ### 2.1 Fresh re-verification log (2026-07-22 UTC)
 
-Rights-determinative primary pages:
+Rights-determinative primary pages (read during the original RD1-F discovery):
 
 | Primary page re-read | RD1 citation | Result 2026-07-22 |
 | --- | --- | --- |
 | nflverse-data `LICENSE.md` | [link](https://github.com/nflverse/nflverse-data/blob/main/LICENSE.md) | CC BY 4.0 confirmed; attribution + indicate-modifications + retain-licence obligations. **No material change.** |
 | `nflreadr` Terms of Use | [link](https://github.com/nflverse/nflreadr#terms-of-use) | "NFL data accessed by this package belong to their respective owners, and are governed by their terms of use"; MIT covers code only. **No material change.** |
 | NFL Terms of Service | [link](https://www.nfl.com/legal/terms/) | Individual non-commercial/informational use only; "Systematic retrieval of data or other content … to create or compile … a collection, compilation, database, or directory, is prohibited absent … express prior written consent." **No material change.** |
-| FTN charting (`load_ftn_charting`) | [link](https://nflreadr.nflverse.com/reference/load_ftn_charting.html) | CC BY-SA 4.0; required attribution "FTN Data via nflverse"; share-alike. **No material change.** |
-| Participation (`load_participation`) | [link](https://nflreadr.nflverse.com/reference/load_participation.html) | CC BY-SA 4.0; attribution "FTN Data via nflverse" (2023+) vs "NFL NextGenStats via nflverse" (≤2022); "prior to 2023 is from NFL NGS … from 2023 onwards is courtesy of FTN"; "from 2023 onwards is provided after all post-season games are completed." **No material change.** |
+| FTN charting (`load_ftn_charting`) | [link](https://nflreadr.nflverse.com/reference/load_ftn_charting.html) | Loader page shows a CC BY-SA 4.0 notice and attribution "FTN Data via nflverse". **RD1-F-C:** this loader-page notice does **not** establish FTN's applicable terms or nflverse's authority to license FTN's product (§5.9). |
+| Participation (`load_participation`) | [link](https://nflreadr.nflverse.com/reference/load_participation.html) | Loader page shows CC BY-SA 4.0; attribution "FTN Data via nflverse" (2023+) vs "NFL NextGenStats via nflverse" (≤2022); "prior to 2023 is from NFL NGS … from 2023 onwards is courtesy of FTN"; "from 2023 onwards is provided after all post-season games are completed." **RD1-F-C:** the FTN-era slice inherits the same unresolved FTN authority gap (§5.10a). |
 | Genius Sports distribution | [link](https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports) | Exclusive distributor of real-time official play-by-play and proprietary Next Gen Stats through 2027-28. **No material change.** |
 | Sports Reference data-use policy | [link](https://www.sports-reference.com/data_use.html) | **HTTP 403 — could not re-verify.** Fail closed: RD1's finding is carried unchanged; PFR-derived snap counts remain excluded pending express review. |
 
-Source-specific loader/documentation and tooling-licence pages (already cited by RD1) were re-read per family on 2026-07-22 and their links and retrieval dates are recorded in each §5 row: `load_pbp`, `load_schedules`, `load_rosters_weekly`, `load_depth_charts`, `load_injuries`, `load_nextgen_stats`, the [official Big Data Bowl page](https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl), and the `nflreadr`/`nflreadpy` MIT licences (§5.17). These documentation pages carry coverage/grain/cadence, not a data licence; the data licence and owner-reservation live in the two nflverse rights pages above. **No material change** in coverage/grain was observed except one **parked source-identity delta** for depth charts (§5.5, §9).
+Source-specific loader/documentation and tooling-licence pages (already cited by RD1) were re-read per family on 2026-07-22 and their links and retrieval dates are recorded in each §5 row: `load_pbp`, `load_schedules`, `load_rosters_weekly`, `load_depth_charts`, `load_injuries`, `load_nextgen_stats`, the [official Big Data Bowl page](https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl), and the `nflreadr`/`nflreadpy` MIT licences (§5.17). These documentation pages carry coverage/grain/cadence, not a data licence, and — as RD1-F-C makes explicit — a loader-page CC label does not establish the upstream product's applicable terms or the distributor's authority to license it.
 
-No re-read contradicted an accepted RD1 finding, changed the frozen source universe, or required a broader source or rights interpretation. No RD1 correction is triggered.
+No original re-read contradicted an accepted RD1 finding, changed the frozen source universe, or required a broader source or rights interpretation. No RD1 (predecessor) correction is triggered; the RD1-F-C correction here is internal to this RD1-F policy document.
 
 ## 3. Closed source universe
 
@@ -90,9 +107,7 @@ unresolved_fail_closed
 not_applicable
 ```
 
-**Two result columns where a repository licence sits over an unresolved upstream layer.** For the nflverse statistical families, a **CC BY 4.0 compilation-layer** column records what nflverse's own repository grant would support — this is **contingent evidence, not present permission** — and a **Net authority** column records the operative result once the unresolved upstream reservation is accounted for. Where there is no separately reserved upstream layer (e.g. FTN's own CC BY-SA product), a single **Net authority** column is used. The operative classification is always the Net-authority column.
-
-**Per-family evidence contract.** Every one of the 18 rendered rows (17 families; participation split 10a/10b) records the same template: provider and upstream owner — or a clearly identified attributed source when ownership is unproven; direct primary evidence links with retrieval date; the complete seven-axis intended-use matrix; explicit obligations (including *not applicable while fail-closed* where the net authority is fail-closed); operator/qualified-review requirement; inherited temporal/revision caveats; and exactly one disposition.
+**Two result columns where a repository licence sits over an unresolved upstream layer.** For the nflverse statistical families, a **CC BY 4.0 compilation-layer** column records what nflverse's own repository grant would support — this is **contingent evidence, not present permission** — and a **Net authority** column records the operative result once the unresolved upstream reservation is accounted for. Some families are presented with a single **Net authority** column; a single column is **not** a finding that the authority chain is sufficient. In particular (per the RD1-F-C correction), the FTN-sourced families (§5.9, §5.10a) are single-column **and fail-closed**: a CC-labeled loader-page notice does not by itself establish the upstream product's applicable terms or the distributor's authority to license it, so absent an evidenced authority chain those families fail closed. The operative classification is always the Net-authority column.
 
 **Per-family disposition** — exactly one of:
 
@@ -283,54 +298,48 @@ held_for_qualified_review
 
 ### 5.9 nflverse FTN charting
 
-- **Provider / upstream owner:** FTN Data (own charting product), distributed via nflverse.
-- **Primary evidence:** [`load_ftn_charting`](https://nflreadr.nflverse.com/reference/load_ftn_charting.html) (retrieved 2026-07-22) — **CC BY-SA 4.0**; required attribution "FTN Data via nflverse"; share-alike. Fresh-verified. **No additional upstream reservation was identified in the cited source-specific documentation** for FTN's own charting.
-- **Rights posture:** affirmative CC BY-SA 4.0 grant; single Net-authority column.
+- **Provider / upstream owner:** FTN Data (own charting product), distributed via nflverse. **FTN's applicable terms, and nflverse's authority to license FTN's product, are not evidenced in the record.**
+- **Primary evidence:** [`load_ftn_charting`](https://nflreadr.nflverse.com/reference/load_ftn_charting.html) (retrieved 2026-07-22) — the loader page shows a **CC BY-SA 4.0 notice** and required attribution "FTN Data via nflverse". **RD1-F-C (following PR #40 P1 [`r3648541911`](https://github.com/Prometheus-Frameworks/TIBER-Ops/pull/40#discussion_r3648541911)):** a loader-page CC notice is **not** an authoritative FTN grant. It does not establish FTN's applicable terms for its charting product, nor nflverse's authority to sublicense that product. Under this document's own rule, unknown upstream authority **fails closed**.
+- **Rights posture:** the FTN upstream authority chain is **unresolved**; net authority is **uniformly fail-closed** (single Net-authority column, all cells fail-closed).
 
 | Intended-use axis | Net authority |
 | --- | --- |
-| Machine acquisition | operator_policy_candidate_permitted_with_obligations |
-| Exact-byte retention | operator_policy_candidate_permitted_with_obligations |
-| Internal research use | operator_policy_candidate_permitted_with_obligations |
-| Model / analytical use — local/internal | operator_policy_candidate_permitted_with_obligations |
+| Machine acquisition | unresolved_fail_closed |
+| Exact-byte retention | unresolved_fail_closed |
+| Internal research use | unresolved_fail_closed |
+| Model / analytical use — local/internal | unresolved_fail_closed |
 | Model / analytical use — hosted third-party model transfer | unresolved_fail_closed |
-| Transformation & derived-artifact retention | operator_policy_candidate_permitted_with_obligations |
-| Public findings / derived-output publication | operator_policy_candidate_permitted_with_obligations |
-| Raw-data redistribution | operator_policy_candidate_permitted_with_obligations |
+| Transformation & derived-artifact retention | unresolved_fail_closed |
+| Public findings / derived-output publication | unresolved_fail_closed |
+| Raw-data redistribution | unresolved_fail_closed |
 
-- **Obligations — TIBER policy vs CC legal triggers are distinct:**
-  - **TIBER operator policy (always on):** internal provenance and attribution are always required for any retained record — this is the obligation that makes the internal cells `operator_policy_candidate_permitted_with_obligations`. It is a TIBER provenance obligation, **not** a legal-ShareAlike attachment.
-  - **CC BY attribution (legal):** attaches when the licensed material is **Shared** (distributed/publicly made available).
-  - **CC BY-SA ShareAlike (legal):** attaches when **Adapted Material is Shared**, with the licence's database-specific conditions (adapted-database/sui-generis) preserved.
-  - **Private/internal analytical use does not itself trigger legal ShareAlike.**
-- **Hosted third-party model transfer** is `unresolved_fail_closed`. The **CC copyright-rights layer is affirmative** (CC BY-SA contains no special AI/model prohibition); the unresolved layer is the **unreviewed hosted-model provider's terms and data handling** — retention, training, sublicensing, disclosure, and related controls — which must be reviewed before records are transferred.
-- **Operator / qualified review required:** an **operator policy decision** on whether TIBER will accept CC BY-SA ShareAlike on any *published/redistributed* adaptation; a **qualified-review flag** on the exact scope of ShareAlike/database conditions attaching to a governed TIBER derivative when Shared; and a provider-terms/data-handling review before any hosted-model transfer. Internal-use candidacy does not depend on these.
-- **Temporal caveats (RD1):** 2022 onward; charted within ~48h but provider-dependent; rolling asset can be replaced; **not** a receiver-width or all-route-denominator solution. Archive completeness must be verified later.
-- **Disposition:** **`candidate_for_later_feasibility_review`** — narrow candidate for **local/internal analytical use** under TIBER provenance + attribution, with hosted-model transfer fail-closed and publication/redistribution gated on the ShareAlike decisions above.
+- **Obligations:** *not presently actionable while Net authority is fail-closed.* CC BY-SA attribution/ShareAlike obligations would only become relevant if an authoritative FTN grant or licensing chain is later evidenced and the family is cleared; they do not, by themselves, establish authority to use FTN data.
+- **Operator / qualified review required:** **Yes** — an authoritative FTN grant or a recorded FTN→nflverse licensing chain (FTN's applicable terms *and* nflverse's authority to license FTN's product) must be established before any admission. The loader-page CC notice and the absence of an identified reservation are insufficient.
+- **Temporal caveats (RD1):** 2022 onward; charted within ~48h but provider-dependent; rolling asset can be replaced; **not** a receiver-width or all-route-denominator solution. Archive completeness would be a later step and is moot while fail-closed.
+- **Disposition:** **`held_for_qualified_review`** (RD1-F-C fail-close; previously proposed as a candidate in rev. 4).
 
 ### 5.10a nflverse participation — FTN-era slice (2023 onward)
 
-- **Provider / upstream owner:** FTN Data via nflverse (2023+).
-- **Primary evidence:** [`load_participation`](https://nflreadr.nflverse.com/reference/load_participation.html) (retrieved 2026-07-22) — CC BY-SA 4.0; attribution "FTN Data via nflverse" for 2023+; "Participation data from 2023 onwards is courtesy of FTN"; "provided after all post-season games are completed."
-- **Rights posture:** as §5.9 (FTN CC BY-SA); no additional upstream reservation identified in the cited source-specific documentation for the FTN-sourced slice.
+- **Provider / upstream owner:** FTN Data via nflverse (2023+). **As with §5.9, FTN's applicable terms and nflverse's authority to license FTN's product are not evidenced.**
+- **Primary evidence:** [`load_participation`](https://nflreadr.nflverse.com/reference/load_participation.html) (retrieved 2026-07-22) — loader-page CC BY-SA 4.0 notice; attribution "FTN Data via nflverse" for 2023+; "Participation data from 2023 onwards is courtesy of FTN"; "provided after all post-season games are completed."
+- **Rights posture:** inherits the **unresolved FTN authority gap** of §5.9 (RD1-F-C, PR #40 P1); the loader-page CC notice does not establish FTN's terms or nflverse's authority to license FTN's product. Net authority is **uniformly fail-closed**.
 
 | Intended-use axis | Net authority |
 | --- | --- |
-| Machine acquisition | operator_policy_candidate_permitted_with_obligations |
-| Exact-byte retention | operator_policy_candidate_permitted_with_obligations |
-| Internal research use | operator_policy_candidate_permitted_with_obligations |
-| Model / analytical use — local/internal | operator_policy_candidate_permitted_with_obligations |
+| Machine acquisition | unresolved_fail_closed |
+| Exact-byte retention | unresolved_fail_closed |
+| Internal research use | unresolved_fail_closed |
+| Model / analytical use — local/internal | unresolved_fail_closed |
 | Model / analytical use — hosted third-party model transfer | unresolved_fail_closed |
-| Transformation & derived-artifact retention | operator_policy_candidate_permitted_with_obligations |
-| Public findings / derived-output publication | operator_policy_candidate_permitted_with_obligations |
-| Raw-data redistribution | operator_policy_candidate_permitted_with_obligations |
+| Transformation & derived-artifact retention | unresolved_fail_closed |
+| Public findings / derived-output publication | unresolved_fail_closed |
+| Raw-data redistribution | unresolved_fail_closed |
 
-- **Obligations:** as §5.9 — TIBER provenance/attribution always on for internal use (not legal ShareAlike); CC BY attribution on Sharing; CC BY-SA ShareAlike + database conditions when Adapted Material is Shared; internal analytical use does not trigger legal ShareAlike.
-- **Hosted third-party model transfer:** `unresolved_fail_closed` for the same reason as §5.9 (affirmative CC layer; unresolved model-provider terms/data-handling).
-- **Separability condition:** this slice may advance **only if it can be acquired without also retaining unresolved NGS-era (≤2022) records** (§5.10b). If the loader/asset cannot yield the 2023+ FTN slice in isolation, this slice fails closed until it can.
+- **Obligations:** *not presently actionable while Net authority is fail-closed* (as §5.9).
+- **Separability condition (now moot while fail-closed):** even if this slice could be acquired without also retaining unresolved NGS-era (≤2022) records (§5.10b), it remains fail-closed until the FTN authority chain is evidenced. Separability alone does not clear it.
+- **Operator / qualified review required:** Yes — the FTN authority chain of §5.9 must be established first.
 - **Temporal caveats (RD1 + primary):** postseason-only (not an in-season weekly feed); does not expose receiver-width coordinates.
-- **Operator / qualified review required:** ShareAlike decision and hosted-model provider-terms review as §5.9.
-- **Disposition:** **`candidate_for_later_feasibility_review`** — local/internal analytical use, subject to the separability condition and the ShareAlike/hosted-model gates.
+- **Disposition:** **`held_for_qualified_review`** (RD1-F-C fail-close; previously proposed as a candidate in rev. 4).
 
 ### 5.10b nflverse participation — NGS-era slice (2022 and earlier)
 
@@ -517,8 +526,8 @@ held_for_qualified_review
 | 6 | nflverse historical injuries | held_for_qualified_review | as #1 + no current feed (recurring lane blocked) |
 | 7 | nflverse / PFR snap counts | **excluded** | Sports Reference data-use conflict (re-verify 403 → fail closed) |
 | 8 | nflverse weekly NGS aggregates | held_for_qualified_review | as #1; preserve absent-vs-zero |
-| 9 | nflverse FTN charting | **candidate_for_later_feasibility_review** | operator acceptance of CC BY-SA ShareAlike on Sharing; hosted-model transfer fail-closed on provider terms; internal use unaffected |
-| 10a | nflverse participation — FTN-era 2023+ | **candidate_for_later_feasibility_review** | as #9 + separable from NGS-era records; postseason-only |
+| 9 | nflverse FTN charting | **held_for_qualified_review** | FTN applicable terms and nflverse's authority to license FTN's product not evidenced (RD1-F-C; net fail-closed) |
+| 10a | nflverse participation — FTN-era 2023+ | **held_for_qualified_review** | inherits FTN authority gap (RD1-F-C; net fail-closed); + separability; postseason-only |
 | 10b | nflverse participation — NGS-era ≤2022 | held_for_qualified_review | NGS upstream ownership (net fail-closed) |
 | 11 | NFL Game Books | manual_reference_only | NFL Terms bar systematic retrieval (no-corpus posture) |
 | 12 | NFL injury surfaces | manual_reference_only | as #11 |
@@ -530,18 +539,17 @@ held_for_qualified_review
 
 ## 7. Narrow candidate source set (RD1 follow-up #2)
 
-The narrowest source set responsibly eligible for a **later archive-feasibility decision**, under this proposal, is:
+**The narrow candidate source set is EMPTY.**
 
-1. **nflverse FTN charting** (2022+, §5.9), for **local/internal** analytical use under TIBER provenance + attribution; hosted-model transfer fail-closed on provider terms; publication/redistribution gated on the operator's CC BY-SA ShareAlike decision.
-2. **nflverse participation — FTN-era slice (2023+, §5.10a)** only, same basis, **subject to the separability condition** (acquirable without retaining unresolved NGS-era records) and the caveat that it is **postseason-only and unsuitable as a live weekly backbone**.
+Rev. 4 named nflverse FTN charting (§5.9) and the FTN-era participation slice (§5.10a) as the narrow candidate set. The **RD1-F-C** correction fail-closes both, because the record does not establish FTN's applicable terms or nflverse's authority to license FTN's product (PR #40 P1 [`r3648541911`](https://github.com/Prometheus-Frameworks/TIBER-Ops/pull/40#discussion_r3648541911)). No other family was ever a candidate. Therefore **no source family is presently eligible for a later archive-feasibility decision**.
 
-This set is deliberately narrow. The nflverse statistical **backbone** (play-by-play, weekly stats, schedules, rosters, depth charts, NGS aggregates) and the **NGS-era participation slice** are **`held_for_qualified_review`** with **net-authority fail-closed** on the CC BY 4.0/CC BY-SA-vs-upstream question; each would become a candidate for internal use only if that question is resolved. PFR snap counts are **excluded** and all NFL-owned public surfaces are **manual-reference-only** by rule.
+An empty candidate set is a valid, successful correction result. The nflverse statistical **backbone** (play-by-play, weekly stats, schedules, rosters, depth charts, NGS aggregates), the **NGS-era participation slice**, and now the **FTN-sourced families** are all `held_for_qualified_review` with **net-authority fail-closed**; PFR snap counts are **excluded**; all NFL-owned public surfaces are **manual-reference-only**; Genius Sports and Big Data Bowl are **held**. Each held family would become a candidate only if its specific gating question is resolved by qualified review.
 
-**Naming a family a candidate is not permission to acquire it.** It marks it as eligible to enter the *next* (archive-feasibility) gate, which itself precedes any acquisition, retention, or adoption decision.
+**Naming a family a candidate is not permission to acquire it** — and here there are no candidates to name. Any future admission requires the family's gating question to be resolved and then a separate archive-feasibility gate, which itself precedes any acquisition, retention, or adoption decision.
 
 ## 8. Consequences for the initial Research Observatory question envelope (completion criterion #7)
 
-- With the statistical backbone net-authority fail-closed and held for qualified review, the initial envelope **cannot yet admit a recurring cutoff-bound source corpus**. The realistic near-term admissible material is FTN-charted play-level labels (local/internal use), which supports selected play-level questions but **not** the volume/efficiency backbone, and **not** a live weekly cadence (participation is postseason-only).
+- With the statistical backbone **and** the FTN-sourced families now net-authority fail-closed and held for qualified review, the initial envelope **cannot admit any recurring cutoff-bound source corpus and has no presently-admissible source family at all** — the near-term admissible set is empty. In particular, FTN-charted play-level labels are **no longer** treated as presently admissible (RD1-F-C).
 - **Injury-conditioned** questions remain **blocked** for lack of a current source (RD1 follow-up #4).
 - **Receiver-width / all-route** questions remain **not testable** from this universe; formation labels must not be substituted for alignment coordinates (RD1 admission rule 7).
 - **Raw player-tracking** questions require the Genius Sports licensed path or a separately cleared competition dataset — both `held_for_qualified_review`.
@@ -550,58 +558,60 @@ This set is deliberately narrow. The nflverse statistical **backbone** (play-by-
 ## 9. Parked follow-ups and deltas (not resolved or activated here)
 
 - **Depth-chart source-identity delta (independent review):** nflreadr 1.5.0 changelog reports the depth-chart source changed from NFL Data Exchange to ESPN. Parked — outside RD1-F's already-cited-page boundary; ESPN terms not inspected/classified; family not admitted; universe not expanded (§5.5).
+- **FTN authority chain (RD1-F-C):** whether an authoritative FTN grant or a recorded FTN→nflverse licensing chain exists is **unresolved** and routed to qualified review; establishing it is not part of RD1-F-C, which conducted no new licensing research (§5.9, §5.10a).
 - **Standing parked follow-ups:** asset-level archive feasibility and point-in-time availability; inspection of archive assets/dates/digests; historical week/cohort selection; injury-provider replacement/procurement; receiver-alignment/tracking/licensed-feed acquisition; contacting/pricing/procuring/evaluating any licensed feed (incl. Genius Sports, Big Data Bowl); capture-timing/correction/cutoff policy; snapshot architecture/storage/manifests/builders; question generation/routing; research execution, modeling, forecasting, scheduling, promotion; any public or recurring source corpus.
 
-Discoveries in these areas must be recorded and parked, not absorbed into RD1-F.
+Discoveries in these areas must be recorded and parked, not absorbed into RD1-F or RD1-F-C.
 
 ## 10. Interpretation rules applied (proposal §7)
 
-- Unknown or conflicting rights → fail closed. The nflverse upstream question renders the backbone **net-authority fail-closed** despite contingent CC BY 4.0 compilation-layer evidence; Genius, Big Data Bowl, and the Sports Reference 403 likewise fail closed.
+- Unknown or conflicting rights → fail closed. The nflverse upstream question renders the backbone **net-authority fail-closed** despite contingent CC BY 4.0 compilation-layer evidence; the FTN authority gap renders FTN charting and FTN-era participation fail-closed (RD1-F-C); Genius, Big Data Bowl, and the Sports Reference 403 likewise fail closed.
 - A repository-level licence does not override upstream-owner terms — CC BY 4.0 / CC BY-SA labels are preserved as **contingent evidence, not present permission** where an upstream layer is unresolved.
+- **A CC-labeled loader-page notice does not establish the upstream product's applicable terms or the distributor's authority to license it.** Absent an evidenced authority chain, the family fails closed. This is the basis for the RD1-F-C fail-close of FTN charting and FTN-era participation (PR #40 P1 `r3648541911`).
 - An access-client software licence does not license the underlying data (nflreadr/nflreadpy MIT).
 - Internal analysis, model use, retained derivatives, public findings, and raw redistribution are decided **separately** on every family; hosted third-party model transfer is called out separately from local/internal use, and its blocker is the unreviewed model-provider terms/data-handling, not a CC AI prohibition.
-- TIBER internal provenance/attribution obligations are distinguished from CC legal triggers: CC attribution attaches on Sharing, CC BY-SA ShareAlike attaches when Adapted Material is Shared, and neither is triggered by purely internal analytical use.
+- TIBER internal provenance/attribution obligations are distinguished from CC legal triggers: CC attribution attaches on Sharing, CC BY-SA ShareAlike attaches when Adapted Material is Shared, and neither is triggered by purely internal analytical use. This legal-trigger note describes obligations that would apply *only if* an authority chain existed; it does **not** itself establish authority, and it does not make FTN material internally usable while the FTN authority chain is unresolved (§5.9).
 - Public access does not imply machine-access, retention, model-use, or redistribution rights (all NFL-owned surfaces `operator_policy_candidate_not_permitted`); `manual_reference_only` is a conservative no-corpus posture, not an affirmative grant to incorporate manual observations into TIBER artifacts or outputs.
 - PFR snap counts remain excluded pending express review.
 - A TIBER derivative cannot receive broader permissions than the underlying evidence supports; transformation does not launder obligations.
-- A positive outcome is reached with a deliberately narrow set while ambiguous families are excluded, manual-only, or held.
+- A positive outcome may be reached with a deliberately narrow — or **empty** — candidate set while ambiguous families are excluded, manual-only, or held; under RD1-F-C the candidate set is empty.
 - Rights that differ by era/provider/field are handled honestly: **schedules distinguishes stable vs mutable fields within a single row; participation is the family actually split into subrows (10a FTN-era / 10b NGS-era)**.
 - No disposition here establishes historical point-in-time availability — that is the later archive-feasibility step.
 
 ## 11. Completion criteria check (proposal §8)
 
 1. Every family has a fully populated row — **yes** (§5; 18 rows against the §4 evidence-contract template, participation split 10a/10b; all seven axes with exact enums per cell).
-2. Every non-fail-closed claim cites primary evidence — **yes**; per-row direct primary links with retrieval dates are now present in all 18 rows (no longer relying solely on `as §5.1` shorthand for provider/source identity, links, dates, obligations, and dispositions), incl. `load_participation` for the FTN-era candidate.
+2. Every non-fail-closed claim cites primary evidence — **yes**; and after RD1-F-C the FTN-sourced families carry no non-fail-closed cells at all (§5.9, §5.10a).
 3. Raw data / derived artifacts / public findings / model use not conflated — **yes** (per-axis cells; hosted-transfer separated with its distinct blocker).
-4. Attribution / ShareAlike / retention / redistribution obligations explicit — **yes**; TIBER provenance obligations are distinguished from CC legal triggers (§5.9, §5.10a), and obligations are marked *not applicable while fail-closed* elsewhere.
-5. Unresolved conflicts excluded or routed to qualified review, never silently admitted — **yes**; the backbone and NGS-era slice are net-authority fail-closed (§5, §6).
-6. Narrow candidate set named, incl. empty-set option — **yes**, non-empty but narrow (§7).
+4. Attribution / ShareAlike / retention / redistribution obligations explicit — **yes**; TIBER provenance obligations are distinguished from CC legal triggers (§5.9, §10), and obligations are marked *not applicable / not presently actionable while fail-closed*.
+5. Unresolved conflicts excluded or routed to qualified review, never silently admitted — **yes**; the backbone, NGS-era slice, and FTN-sourced families are net-authority fail-closed (§5, §6).
+6. Narrow candidate set named, incl. empty-set option — **yes**; under RD1-F-C the candidate set is **empty** (§7), which is a valid result.
 7. Consequences for the question envelope stated — **yes** (§8).
 8. Traceability to RD1 follow-ups 1, 2, and review-gate of 7 — **yes** (§12).
 9. No existing TIBER artifact retroactively approved/broadened — **affirmed** (§10, §8 final bullet); this policy governs external source admissibility only.
-10. Candidate document + terminal token receive fresh-context independent review — **rev. 1–3 reviewed (CHANGES REQUIRED each); this rev. 4 head is submitted for fresh-context re-review.**
-11. Executing agent stops for Joseph's separate terminal-acceptance, merge, policy-adoption, and next-frontier decisions — **yes** (draft PR; not self-merged).
+10. Candidate document + terminal token receive fresh-context independent review — rev. 1–3 CHANGES REQUIRED; rev. 4 PASS (2026-07-24) then merged; a late P1 (`r3648541911`) was raised **after** the PASS and merge and bound to RD1-F-C; this rev. 5 correction head is submitted for fresh-context independent review.
+11. Executing agent stops for Joseph's separate terminal-acceptance, merge, policy-adoption, and next-frontier decisions — **yes** (draft PR; not self-merged; the original PR #40 P1 is not resolved by the executing agent).
 
 ## 12. Requirements traceability
 
 | RD1 follow-up | Addressed by |
 | --- | --- |
 | #1 — signed source-use policy by family and intended use | §5 per-family rows (full evidence contract); §10 interpretation rules |
-| #2 — narrow admissible source set | §7 candidate set (FTN charting; FTN-era participation 10a) |
-| #7 (review-gate portion) — where qualified review is required | §5 review flags; §6 gating-question column; §13 terminal rationale |
+| #2 — narrow admissible source set | §7 candidate set — **empty under RD1-F-C** |
+| #7 (review-gate portion) — where qualified review is required | §5 review flags (incl. FTN authority chain); §6 gating-question column; §13 terminal rationale |
 
 Follow-ups #3 (archive feasibility), #4 (injury source), #5 (alignment/tracking), and #6 (correction/cutoff policy) remain **parked** (§9).
 
-## 13. Terminal result
+## 13. Terminal result (RD1-F-C correction)
 
 ```text
-source_use_admissibility_policy_ready_for_operator_decision
+source_use_admissibility_policy_correction_ready_for_operator_decision
 ```
 
-**Rationale.** An independently-reviewable, operator-legible policy proposal now exists. A **narrow, complete** candidate policy is honestly available for an operator decision: admit — for a later archive-feasibility gate — FTN charting and the FTN-era participation slice, for local/internal analytical use under TIBER provenance + attribution, with hosted-model transfer fail-closed on provider terms and publication/redistribution gated on an operator CC BY-SA ShareAlike decision; hold the nflverse statistical backbone and the NGS-era participation slice for qualified review with net authority fail-closed on the CC BY 4.0/CC BY-SA-vs-upstream question; exclude PFR snap counts; keep all NFL-owned public surfaces manual-reference-only; hold Genius Sports and Big Data Bowl for qualified/per-release review. The held rows are dispensable to this narrow policy, so a complete decision does not depend on qualified input — satisfying the positive terminal rather than `..._requires_qualified_review`. The token is **provisional pending fresh-context independent review of this head**.
+**Rationale.** RD1-F reached `source_use_admissibility_policy_ready_for_operator_decision` (rev. 4, PASS 2026-07-24) and was merged to `main` as the recorded — but **unadopted** — candidate. A late actionable P1 ([`r3648541911`](https://github.com/Prometheus-Frameworks/TIBER-Ops/pull/40#discussion_r3648541911)) then showed the FTN treatment rested on a loader-page CC notice rather than an evidenced FTN authority chain, contradicting the document's own fail-closed rule. The **RD1-F-C** correction fail-closes FTN charting (§5.9) and FTN-era participation (§5.10a), holds both for qualified review, and makes the candidate set **empty** (§7) — using only the existing record. The result is a truthful, internally consistent correction candidate. An **empty** candidate set is a valid successful correction outcome.
 
-This token means **only** that a reviewed policy proposal exists. It does **not** approve the policy, admit any source, activate archive feasibility, or authorize acquisition, retention, model use, publication, or redistribution. The candidate set is a proposal for the operator's separate adoption decision.
+This token means **only** that a reviewed correction candidate exists. It does **not** adopt the policy, admit any source, activate archive feasibility, or authorize acquisition, retention, model use, publication, or redistribution. It does not resolve the original PR #40 P1; that remains open pending fresh-context review of this correction and Joseph's separate decisions.
 
 ## 14. Hard stop boundary
 
-This document does not activate RD2, #24's three-run pilot, or #35 F1–F5. It authorizes no source acquisition, data download/sampling/retention/hashing/transformation/inspection, registry change, deployment, publication, scheduling, model run, Forecast influence, or production behavior. It is a docs-only candidate on one non-main branch in one draft PR. Execution stops here for fresh-context independent review and Joseph's separate decisions.
+This document does not activate RD2, R1-0, #45 R2–R9, #24's three-run pilot, the parked contract-versus-volume question, or #35 F1–F5. It authorizes no source acquisition, data download/sampling/retention/hashing/transformation/inspection, archive inspection, registry change, deployment, publication, scheduling, model run, Forecast influence, or production behavior. The RD1-F-C correction changes only this one file on one non-main branch in one draft PR; it does not adopt the policy, admit a source, mark ready, or merge. Execution stops here for fresh-context independent review and Joseph's separate terminal-acceptance, merge, and policy-adoption decisions.
