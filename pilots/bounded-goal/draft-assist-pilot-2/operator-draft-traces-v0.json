@@ -1,0 +1,1061 @@
+{
+  "artifact": {
+    "name": "OperatorDraftTraceV0",
+    "version": "v0",
+    "status": "non_production_design_example",
+    "authority": "Prometheus-Frameworks/TIBER-Ops#48",
+    "source": "The field source packet embedded in TIBER-Ops#48",
+    "source_limit": "Only facts, operator theses, and agent contributions explicitly recorded in the source packet are encoded. Missing state is marked unknown or not_recorded.",
+    "prohibited_uses": [
+      "player ranking",
+      "player projection",
+      "Strategy label assignment",
+      "Forecast feature admission",
+      "automated draft action",
+      "universalization of operator theses"
+    ]
+  },
+  "shape": {
+    "required_fields": [
+      "league_contract",
+      "observed_draft_state",
+      "selection",
+      "realistic_alternatives",
+      "operator_reasoning",
+      "selection_intent",
+      "agent_contribution",
+      "forecast_support_or_gap",
+      "strategy_support_or_gap",
+      "data_support_or_gap",
+      "product_surface_gap",
+      "not_used_during_decision",
+      "uncertainty",
+      "final_action_authority"
+    ],
+    "field_semantics": {
+      "league_contract": "Observed league settings only. Unknown settings remain unknown.",
+      "observed_draft_state": "Pick position, supplied room events, and snapshot availability. It does not reconstruct an unrecorded board.",
+      "selection": "The exact selections supplied by the operator.",
+      "realistic_alternatives": "Only explicitly named alternatives. No candidate is inferred from ADP or hindsight.",
+      "operator_reasoning": "Timestamp-bound operator field evidence, never model evidence.",
+      "selection_intent": "Why a selection was being made when the source states it; otherwise not_recorded.",
+      "agent_contribution": "A separately attributed agent role, if the packet records one.",
+      "forecast_support_or_gap": "Governed Forecast evidence actually used, or the honest capability/evidence gap.",
+      "strategy_support_or_gap": "Governed Strategy interpretation actually used, or the honest concept/consumption gap.",
+      "data_support_or_gap": "Governed data actually used, or the evidence contract needed to test the thesis.",
+      "product_surface_gap": "The missing read-only interaction or state surface, without implying implementation authority.",
+      "not_used_during_decision": "Known retrospective diagnostics that must not be rewritten as contemporaneous rationale.",
+      "uncertainty": "Source limits, unresolved state, and thesis-versus-fact boundaries.",
+      "final_action_authority": "The human manager who made or would make the platform action."
+    },
+    "selection_intent_values": [
+      "strict_preference",
+      "roster_construction",
+      "price_click",
+      "exploration",
+      "portfolio_diversification",
+      "thesis_test",
+      "targeted_acquisition_window",
+      "not_recorded"
+    ],
+    "support_status_values": [
+      "used_governed_support",
+      "partially_supported_not_used",
+      "missing_contract",
+      "missing_capability",
+      "unsupported_domain",
+      "not_recorded"
+    ],
+    "missing_value_semantics": {
+      "not_recorded": "The #48 source packet does not state the value or event. No inference is permitted.",
+      "unknown": "The source identifies the field or question but its value remains unresolved."
+    },
+    "container_rules": [
+      "starters is always an object with status and slots.",
+      "room_events is always an array and room_events_status states whether the packet recorded any event evidence.",
+      "realistic_alternatives is always an object with status, by_pick, unrecorded_scope, unrecorded_picks, and availability_at_each_pick.",
+      "not_used_during_decision is always an object with status and items.",
+      "Sentinel strings may appear only in scalar leaves; an object or array is never replaced by a sentinel."
+    ],
+    "invariants": [
+      "Observed facts, operator theses, agent interpretations, Forecast outputs, and Strategy interpretations remain separately attributed.",
+      "No missing draft board, alternative, rationale, or league setting may be reconstructed.",
+      "A named room statement is contextual demand evidence, not a trade offer or durable market price.",
+      "Exploration cannot be converted into a strict operator ranking.",
+      "Schedule and bye analysis is post-draft diagnostic material for Traces B-G and cannot be attributed to the selections.",
+      "IDP remains visible and unsupported until separately governed evidence, model, and product contracts exist.",
+      "Every final action remains human."
+    ]
+  },
+  "records": [
+    {
+      "trace_id": "A",
+      "trace_name": "live_18_team_dynasty_startup",
+      "league_contract": {
+        "teams": 18,
+        "format": "dynasty_startup",
+        "qb_mode": "one_qb",
+        "scoring": {
+          "reception": 1,
+          "passing_td": 6,
+          "passing_yards": 0.04,
+          "interception": -1,
+          "rushing_yards": 0.1,
+          "receiving_yards": 0.1,
+          "rushing_td": 6,
+          "receiving_td": 6,
+          "bonus_300_399_passing": 5,
+          "bonus_100_199_rushing": 5,
+          "bonus_100_199_receiving": 5
+        },
+        "starters": {
+          "status": "observed",
+          "slots": {
+            "QB": 1,
+            "RB": 2,
+            "WR": 2,
+            "TE": 1,
+            "FLEX_RB_WR_TE": 2,
+            "DL": 1,
+            "LB": 1,
+            "DB": 1,
+            "IDP_FLEX": 1
+          }
+        },
+        "bench": 15,
+        "ir": 2,
+        "taxi": 5,
+        "playoff_structure": "unknown"
+      },
+      "observed_draft_state": {
+        "manager_slot": 12,
+        "available_player_snapshot_id": "not_recorded",
+        "draft_cursor_snapshot_id": "not_recorded",
+        "return_distance_after_2.07_picks": 22,
+        "room_events_status": "observed",
+        "room_events": [
+          {
+            "after_pick": "2.07",
+            "event": "The manager at 2.08 stated in league chat that they were desperate for Drake Maye.",
+            "epistemic_status": "direct_room_specific_demand_evidence",
+            "not_equivalent_to": "guaranteed_trade_offer"
+          }
+        ]
+      },
+      "selection": [
+        {
+          "pick": "1.12",
+          "player": "Brock Bowers"
+        },
+        {
+          "pick": "2.07",
+          "player": "Drake Maye"
+        }
+      ],
+      "realistic_alternatives": {
+        "status": "partial_recorded",
+        "by_pick": {
+          "1.12": [],
+          "2.07": [
+            "Josh Allen",
+            "Lamar Jackson"
+          ]
+        },
+        "unrecorded_picks": [
+          "1.12"
+        ],
+        "unrecorded_scope": "listed_picks_only",
+        "availability_at_each_pick": "not_recorded"
+      },
+      "operator_reasoning": [
+        {
+          "selection": "Brock Bowers at 1.12",
+          "thesis": "Elite positional-separation asset with possible 2026 reception-leader ceiling.",
+          "epistemic_status": "operator_thesis"
+        },
+        {
+          "selection": "Drake Maye at 2.07",
+          "thesis": "Prior film and rushing conviction, age-window preference, and an improved supporting-cast view moved Maye to the top of the operator's tier over Allen and Jackson.",
+          "epistemic_status": "operator_thesis"
+        },
+        {
+          "selection": "context",
+          "thesis": "Sleeper ADP was useful as a market coordinate but did not describe the final executable acquisition window.",
+          "epistemic_status": "operator_observation"
+        }
+      ],
+      "selection_intent": [
+        {
+          "selection": "Brock Bowers at 1.12",
+          "intent": "strict_preference",
+          "basis": "The packet records Bowers as the chosen elite positional-separation asset."
+        },
+        {
+          "selection": "Drake Maye at 2.07",
+          "intent": "strict_preference",
+          "basis": "The packet records Maye at the top of the operator's tier."
+        }
+      ],
+      "agent_contribution": "not_recorded",
+      "forecast_support_or_gap": {
+        "status": "missing_capability",
+        "governed_forecast_used": false,
+        "gaps": [
+          "multi-year dynasty asset outlook",
+          "state-conditional injury and recovery scenarios",
+          "player-level IDP outlooks"
+        ]
+      },
+      "strategy_support_or_gap": {
+        "status": "missing_contract",
+        "governed_strategy_interpretation_used": false,
+        "gaps": [
+          "dynasty positional separation against replacement",
+          "age, timeline, and liquidity interpretation",
+          "turn-relative acquisition window",
+          "IDP reasoning"
+        ]
+      },
+      "data_support_or_gap": {
+        "status": "missing_contract",
+        "governed_data_used": false,
+        "gaps": [
+          "live available-player snapshot",
+          "room-demand event contract",
+          "governed injury, medical event, practice-status, availability, and recovery-scenario evidence for the Malik Nabers comparison",
+          "IDP evidence"
+        ]
+      },
+      "product_surface_gap": {
+        "status": "missing_capability",
+        "gaps": [
+          "state-bound shortlist comparison",
+          "turn-distance display",
+          "visible unsupported IDP state",
+          "operator-thesis capture separated from model evidence"
+        ]
+      },
+      "not_used_during_decision": {
+        "status": "not_recorded",
+        "items": []
+      },
+      "uncertainty": [
+        "The complete available board and return distance after 1.12 are not recorded; #48 supplies a 22-pick return distance after 2.07.",
+        "Bowers' reception-leader ceiling and Maye's player evaluation are operator theses, not verified forecasts.",
+        "The 2.08 statement is a room event, not a durable market valuation.",
+        "No governed medical or IDP support is present."
+      ],
+      "final_action_authority": {
+        "kind": "human",
+        "actor": "Joseph",
+        "action": "draft selections"
+      }
+    },
+    {
+      "trace_id": "B",
+      "trace_name": "redraft_mock_1_pick_1_12",
+      "league_contract": {
+        "teams": 12,
+        "format": "redraft",
+        "scoring": {
+          "reception": 1,
+          "other_rules": "unknown"
+        },
+        "qb_mode": "unknown",
+        "starters": {
+          "status": "not_recorded",
+          "slots": {}
+        },
+        "bench": "unknown",
+        "playoff_structure": "unknown"
+      },
+      "observed_draft_state": {
+        "manager_slot": 12,
+        "available_player_snapshot_id": "not_recorded",
+        "draft_cursor_snapshot_id": "not_recorded",
+        "room_events_status": "not_recorded",
+        "room_events": []
+      },
+      "selection": [
+        {"pick": "1.12", "player": "Kenneth Walker"},
+        {"pick": "2.01", "player": "Ashton Jeanty"},
+        {"pick": "3.12", "player": "Garrett Wilson"},
+        {"pick": "4.01", "player": "Zay Flowers"},
+        {"pick": "5.12", "player": "Carnell Tate"},
+        {"pick": "6.01", "player": "Tucker Kraft"},
+        {"pick": "7.12", "player": "Justin Herbert"},
+        {"pick": "8.01", "player": "Parker Washington"},
+        {"pick": "9.12", "player": "Kenny Gainwell"},
+        {"pick": "10.01", "player": "Josh Downs"},
+        {"pick": "11.12", "player": "KC Concepcion"},
+        {"pick": "12.01", "player": "Matthew Golden"},
+        {"pick": "13.12", "player": "Tank Bigsby"},
+        {"pick": "14.01", "player": "Kimani Vidal"},
+        {"pick": "15.12", "player": "Tampa Bay DEF"}
+      ],
+      "realistic_alternatives": {
+        "status": "not_recorded",
+        "by_pick": {},
+        "unrecorded_scope": "all",
+        "unrecorded_picks": [],
+        "availability_at_each_pick": "not_recorded"
+      },
+      "operator_reasoning": [
+        {
+          "selection": "Kenneth Walker and Ashton Jeanty",
+          "thesis": "Double RB was intentional because the operator expected the usable RB tier to decline steeply after roughly Round 4 while WR value persisted through the 3/4 turn.",
+          "epistemic_status": "operator_strategy_hypothesis"
+        },
+        {
+          "selection": "Justin Herbert",
+          "thesis": "Herbert was a planned wait-at-QB value pocket.",
+          "epistemic_status": "operator_strategy_hypothesis"
+        },
+        {
+          "selection": "Tucker Kraft",
+          "thesis": "The TE approach was to secure a small high-separation pass-catching tier or wait for cheap upside or streaming.",
+          "epistemic_status": "operator_strategy_hypothesis"
+        }
+      ],
+      "selection_intent": [
+        {"selection": "Rounds 1-2", "intent": "roster_construction"},
+        {"selection": "Justin Herbert at 7.12", "intent": "targeted_acquisition_window"},
+        {"selection": "Tucker Kraft at 6.01", "intent": "roster_construction"}
+      ],
+      "agent_contribution": "not_recorded",
+      "forecast_support_or_gap": {
+        "status": "missing_capability",
+        "governed_forecast_used": false,
+        "gaps": [
+          "2026 promoted player outlook comparison",
+          "tier survival probability",
+          "streaming-baseline forecast"
+        ]
+      },
+      "strategy_support_or_gap": {
+        "status": "missing_contract",
+        "governed_strategy_interpretation_used": false,
+        "gaps": [
+          "turn-relative tier persistence",
+          "targeted wait-at-QB",
+          "elite-or-wait TE against a waiver baseline"
+        ]
+      },
+      "data_support_or_gap": {
+        "status": "missing_contract",
+        "governed_data_used": false,
+        "gaps": [
+          "live draft cursor and available-player state",
+          "format-adjusted market context",
+          "league waiver baseline"
+        ]
+      },
+      "product_surface_gap": {
+        "status": "missing_capability",
+        "gaps": [
+          "candidate shortlist comparison",
+          "turn-distance and tier-survival display",
+          "target-versus-generic-wait distinction"
+        ]
+      },
+      "not_used_during_decision": {
+        "status": "recorded",
+        "items": [
+          "bye-week analysis",
+          "schedule analysis"
+        ]
+      },
+      "uncertainty": [
+        "The source does not provide lineup, flex, bench, playoff, or non-PPR scoring settings.",
+        "No available-player board or realistic alternatives are recorded.",
+        "The claimed RB-tier decline is an operator hypothesis, not a measured survival probability."
+      ],
+      "final_action_authority": {
+        "kind": "human",
+        "actor": "Joseph",
+        "action": "mock-draft selections"
+      }
+    },
+    {
+      "trace_id": "C",
+      "trace_name": "redraft_mock_2_pick_1_09",
+      "league_contract": {
+        "teams": 12,
+        "format": "redraft",
+        "scoring": {
+          "reception": 1,
+          "other_rules": "unknown"
+        },
+        "qb_mode": "unknown",
+        "starters": {
+          "status": "not_recorded",
+          "slots": {}
+        },
+        "bench": "unknown",
+        "playoff_structure": "unknown"
+      },
+      "observed_draft_state": {
+        "manager_slot": 9,
+        "available_player_snapshot_id": "not_recorded",
+        "draft_cursor_snapshot_id": "not_recorded",
+        "room_events_status": "not_recorded",
+        "room_events": []
+      },
+      "selection": [
+        {"pick": "1.09", "player": "Amon-Ra St. Brown"},
+        {"pick": "2.04", "player": "Kenneth Walker"},
+        {"pick": "3.09", "player": "Garrett Wilson"},
+        {"pick": "4.04", "player": "Luther Burden"},
+        {"pick": "5.09", "player": "David Montgomery"},
+        {"pick": "6.04", "player": "Jalen Hurts"},
+        {"pick": "7.09", "player": "Alec Pierce"},
+        {"pick": "8.04", "player": "Jadarian Price"},
+        {"pick": "9.09", "player": "Tony Pollard"},
+        {"pick": "10.04", "player": "Romeo Doubs"},
+        {"pick": "11.09", "player": "Brenton Strange"},
+        {"pick": "12.04", "player": "KC Concepcion"},
+        {"pick": "13.09", "player": "Rashid Shaheed"}
+      ],
+      "realistic_alternatives": {
+        "status": "partial_recorded",
+        "by_pick": {
+          "4.04": [
+            "Zay Flowers",
+            "Colston Loveland",
+            "Ladd McConkey",
+            "DeVonta Smith",
+            "Emeka Egbuka",
+            "Jaylen Waddle"
+          ]
+        },
+        "unrecorded_scope": "all_except_listed",
+        "unrecorded_picks": [],
+        "availability_at_each_pick": "close_range_recorded_but_not_snapshot_bound"
+      },
+      "operator_reasoning": [
+        {
+          "selection": "Luther Burden at 4.04",
+          "thesis": "Prior prospect conviction, DJ Moore's departure, and Ben Johnson's public buying-stock signal supported the selection.",
+          "epistemic_status": "operator_thesis_with_ungoverned_external_signals"
+        },
+        {
+          "selection": "Luther Burden at 4.04",
+          "thesis": "Amon-Ra St. Brown and Garrett Wilson already supplied receiver foundation, creating room for a higher-variance WR3.",
+          "epistemic_status": "operator_roster_interpretation"
+        },
+        {
+          "selection": "Luther Burden at 4.04",
+          "thesis": "The mock was deliberately exploratory to avoid reproducing the same team every time.",
+          "epistemic_status": "operator_selection_intent"
+        },
+        {
+          "selection": "post-selection review",
+          "thesis": "The subsequent review caused a genuine Emeka Egbuka re-evaluation.",
+          "epistemic_status": "operator_belief_update_not_a_retroactive_ranking"
+        }
+      ],
+      "selection_intent": [
+        {
+          "selection": "Luther Burden at 4.04",
+          "intent": "exploration"
+        },
+        {
+          "selection": "whole mock",
+          "intent": "portfolio_diversification"
+        }
+      ],
+      "agent_contribution": "not_recorded",
+      "forecast_support_or_gap": {
+        "status": "missing_capability",
+        "governed_forecast_used": false,
+        "gaps": [
+          "2026 promoted player outlook comparison",
+          "variance and role-state scenarios"
+        ]
+      },
+      "strategy_support_or_gap": {
+        "status": "missing_contract",
+        "governed_strategy_interpretation_used": false,
+        "gaps": [
+          "roster risk budget",
+          "exploration-mode semantics",
+          "candidate comparison without forced ranking"
+        ]
+      },
+      "data_support_or_gap": {
+        "status": "missing_contract",
+        "governed_data_used": false,
+        "gaps": [
+          "live availability snapshot",
+          "governed personnel and role-change evidence",
+          "source-bound public statement evidence"
+        ]
+      },
+      "product_surface_gap": {
+        "status": "missing_capability",
+        "gaps": [
+          "selection-intent capture",
+          "post-selection thesis-update history",
+          "exploration mode that cannot be mistaken for a ranking"
+        ]
+      },
+      "not_used_during_decision": {
+        "status": "recorded",
+        "items": [
+          "bye-week analysis",
+          "schedule analysis"
+        ]
+      },
+      "uncertainty": [
+        "The exact availability of every named close-range alternative is not snapshot-bound.",
+        "Personnel and public-statement premises are operator-supplied and not governed here.",
+        "The Egbuka re-evaluation is a later belief update, not the rationale for the Burden selection."
+      ],
+      "final_action_authority": {
+        "kind": "human",
+        "actor": "Joseph",
+        "action": "mock-draft selections and later thesis update"
+      }
+    },
+    {
+      "trace_id": "D",
+      "trace_name": "redraft_mock_3_pick_1_11",
+      "league_contract": {
+        "teams": 12,
+        "format": "redraft",
+        "scoring": {
+          "reception": 1,
+          "other_rules": "unknown"
+        },
+        "qb_mode": "unknown",
+        "starters": {
+          "status": "not_recorded",
+          "slots": {}
+        },
+        "bench": "unknown",
+        "playoff_structure": "unknown"
+      },
+      "observed_draft_state": {
+        "manager_slot": 11,
+        "available_player_snapshot_id": "not_recorded",
+        "draft_cursor_snapshot_id": "not_recorded",
+        "room_events_status": "not_recorded",
+        "room_events": []
+      },
+      "selection": [
+        {"pick": "1.11", "player": "De'Von Achane"},
+        {"pick": "2.02", "player": "Ashton Jeanty"},
+        {"pick": "3.11", "player": "Ladd McConkey"},
+        {"pick": "4.02", "player": "Jaylen Waddle"},
+        {"pick": "5.11", "player": "Quinshon Judkins"},
+        {"pick": "6.02", "player": "Christian Watson"},
+        {"pick": "7.11", "player": "Alec Pierce"},
+        {"pick": "8.02", "player": "Justin Herbert"},
+        {"pick": "9.11", "player": "Jacory Croskey-Merritt"},
+        {"pick": "10.02", "player": "Stefon Diggs"},
+        {"pick": "11.11", "player": "Xavier Worthy"},
+        {"pick": "12.02", "player": "Omar Cooper"},
+        {"pick": "13.11", "player": "Terrance Ferguson"}
+      ],
+      "realistic_alternatives": {
+        "status": "not_recorded",
+        "by_pick": {},
+        "unrecorded_scope": "all",
+        "unrecorded_picks": [],
+        "availability_at_each_pick": "not_recorded"
+      },
+      "operator_reasoning": [
+        {
+          "selection": "De'Von Achane and Ashton Jeanty",
+          "thesis": "The repeated double-RB turn hypothesis was being tested.",
+          "epistemic_status": "operator_strategy_hypothesis"
+        },
+        {
+          "selection": "Ladd McConkey and Jaylen Waddle",
+          "thesis": "The pair represented accepted receiver-tier exploration.",
+          "epistemic_status": "operator_exploration"
+        },
+        {
+          "selection": "Quinshon Judkins",
+          "thesis": "Judkins restored RB depth after consecutive receivers.",
+          "epistemic_status": "operator_roster_interpretation"
+        },
+        {
+          "selection": "later selections",
+          "thesis": "Later selections targeted mispriced or unresolved roles.",
+          "epistemic_status": "operator_strategy_observation"
+        },
+        {
+          "selection": "Stefon Diggs",
+          "thesis": "An unsigned player exposed the need for state-conditional forecasts.",
+          "epistemic_status": "operator_design_observation"
+        },
+        {
+          "selection": "Terrance Ferguson",
+          "thesis": "Nearly free athletic and route-growth TE upside, not a Week 1 starter claim.",
+          "epistemic_status": "operator_thesis"
+        }
+      ],
+      "selection_intent": [
+        {"selection": "Rounds 1-2", "intent": "thesis_test"},
+        {"selection": "Rounds 3-4", "intent": "exploration"},
+        {"selection": "Quinshon Judkins at 5.11", "intent": "roster_construction"},
+        {"selection": "later mispriced or unresolved roles", "intent": "not_recorded"}
+      ],
+      "agent_contribution": "not_recorded",
+      "forecast_support_or_gap": {
+        "status": "missing_capability",
+        "governed_forecast_used": false,
+        "gaps": [
+          "state-conditional unsigned-player forecasts",
+          "role-contingent outcomes",
+          "season-shape and route-growth scenarios"
+        ]
+      },
+      "strategy_support_or_gap": {
+        "status": "missing_contract",
+        "governed_strategy_interpretation_used": false,
+        "gaps": [
+          "starter-capacity and RB-depth interpretation",
+          "uncertain-role price clicks",
+          "late-TE upside versus Week 1 starter distinction"
+        ]
+      },
+      "data_support_or_gap": {
+        "status": "missing_contract",
+        "governed_data_used": false,
+        "gaps": [
+          "live availability snapshot",
+          "contract and landing-state events",
+          "route and role evidence"
+        ]
+      },
+      "product_surface_gap": {
+        "status": "missing_capability",
+        "gaps": [
+          "conditional state display",
+          "roster construction comparison",
+          "unresolved-role coverage flags"
+        ]
+      },
+      "not_used_during_decision": {
+        "status": "recorded",
+        "items": [
+          "bye-week analysis",
+          "schedule analysis"
+        ]
+      },
+      "uncertainty": [
+        "No realistic alternatives or available-player snapshot are recorded.",
+        "Unsigned and contingent-role outcomes are unresolved by design.",
+        "The Ferguson note is upside framing, not a starting-role forecast."
+      ],
+      "final_action_authority": {
+        "kind": "human",
+        "actor": "Joseph",
+        "action": "mock-draft selections"
+      }
+    },
+    {
+      "trace_id": "E",
+      "trace_name": "redraft_mock_4_pick_1_06",
+      "league_contract": {
+        "teams": 12,
+        "format": "redraft",
+        "scoring": {
+          "reception": 1,
+          "other_rules": "unknown"
+        },
+        "qb_mode": "unknown",
+        "starters": {
+          "status": "not_recorded",
+          "slots": {}
+        },
+        "bench": "unknown",
+        "playoff_structure": "unknown"
+      },
+      "observed_draft_state": {
+        "manager_slot": 6,
+        "available_player_snapshot_id": "not_recorded",
+        "draft_cursor_snapshot_id": "not_recorded",
+        "room_events_status": "not_recorded",
+        "room_events": []
+      },
+      "selection": [
+        {"pick": "1.06", "player": "Christian McCaffrey"},
+        {"pick": "2.07", "player": "Brock Bowers"},
+        {"pick": "3.06", "player": "A.J. Brown"},
+        {"pick": "4.07", "player": "Emeka Egbuka"},
+        {"pick": "5.06", "player": "Bhayshul Tuten"},
+        {"pick": "6.07", "player": "Christian Watson"},
+        {"pick": "7.06", "player": "Alec Pierce"},
+        {"pick": "8.07", "player": "Kyle Monangai"},
+        {"pick": "9.06", "player": "Brock Purdy"},
+        {"pick": "10.07", "player": "Jayden Higgins"},
+        {"pick": "11.06", "player": "Jordan Mason"},
+        {"pick": "12.07", "player": "KC Concepcion"},
+        {"pick": "13.06", "player": "Antonio Williams"}
+      ],
+      "realistic_alternatives": {
+        "status": "not_recorded",
+        "by_pick": {},
+        "unrecorded_scope": "all",
+        "unrecorded_picks": [],
+        "availability_at_each_pick": "not_recorded"
+      },
+      "operator_reasoning": [
+        {
+          "selection": "Christian McCaffrey",
+          "thesis": "CMC remained the Round 1 exception despite age and workload risk.",
+          "epistemic_status": "operator_thesis"
+        },
+        {
+          "selection": "Brock Bowers",
+          "thesis": "Bowers was the unicorn exception to the preferred double-RB structure.",
+          "epistemic_status": "operator_roster_interpretation"
+        },
+        {
+          "selection": "Brock Purdy",
+          "thesis": "Purdy was strong standalone value and created a CMC/Purdy stack.",
+          "epistemic_status": "operator_value_and_portfolio_interpretation"
+        },
+        {
+          "selection": "CMC/Purdy",
+          "thesis": "The stack has direct positive correlation on CMC receiving events, no shared passing points on CMC rushing touchdowns, and shared team-environment and failure risk.",
+          "epistemic_status": "operator_interpretation"
+        },
+        {
+          "selection": "Bhayshul Tuten",
+          "thesis": "Potential league-winner upside with unresolved role certainty and roster dependence.",
+          "epistemic_status": "operator_thesis_with_explicit_uncertainty"
+        },
+        {
+          "selection": "A.J. Brown",
+          "thesis": "A value click despite only moderate operator confidence in the new environment.",
+          "epistemic_status": "operator_price_click"
+        }
+      ],
+      "selection_intent": [
+        {"selection": "Christian McCaffrey at 1.06", "intent": "strict_preference"},
+        {"selection": "Brock Bowers at 2.07", "intent": "roster_construction"},
+        {"selection": "A.J. Brown at 3.06", "intent": "price_click"},
+        {"selection": "Brock Purdy at 9.06", "intent": "price_click"},
+        {"selection": "Bhayshul Tuten at 5.06", "intent": "not_recorded"}
+      ],
+      "agent_contribution": "not_recorded",
+      "forecast_support_or_gap": {
+        "status": "missing_capability",
+        "governed_forecast_used": false,
+        "gaps": [
+          "joint-event or covariance outlook",
+          "role-state scenarios for Tuten",
+          "current-environment outlook for A.J. Brown"
+        ]
+      },
+      "strategy_support_or_gap": {
+        "status": "missing_contract",
+        "governed_strategy_interpretation_used": false,
+        "gaps": [
+          "mixed-correlation stack decomposition",
+          "exception handling without hidden ranking",
+          "price-versus-confidence interpretation"
+        ]
+      },
+      "data_support_or_gap": {
+        "status": "missing_contract",
+        "governed_data_used": false,
+        "gaps": [
+          "live availability snapshot",
+          "joint scoring-event inputs",
+          "role and roster-dependence evidence"
+        ]
+      },
+      "product_surface_gap": {
+        "status": "missing_capability",
+        "gaps": [
+          "transparent stack channel display",
+          "confidence and unresolved-role flags",
+          "exception-to-plan capture"
+        ]
+      },
+      "not_used_during_decision": {
+        "status": "recorded",
+        "items": [
+          "bye-week analysis",
+          "schedule analysis"
+        ]
+      },
+      "uncertainty": [
+        "No alternatives or availability snapshot are recorded.",
+        "Tuten's role certainty and roster dependence remain unresolved.",
+        "The CMC/Purdy correlation decomposition is conceptual and not quantified by a governed artifact."
+      ],
+      "final_action_authority": {
+        "kind": "human",
+        "actor": "Joseph",
+        "action": "mock-draft selections"
+      }
+    },
+    {
+      "trace_id": "F",
+      "trace_name": "redraft_mock_5_pick_1_02",
+      "league_contract": {
+        "teams": 12,
+        "format": "redraft",
+        "scoring": {
+          "reception": 1,
+          "other_rules": "unknown"
+        },
+        "qb_mode": "unknown",
+        "starters": {
+          "status": "partial_recorded",
+          "slots": {
+            "FLEX": 2
+          }
+        },
+        "bench": "unknown",
+        "playoff_structure": "unknown"
+      },
+      "observed_draft_state": {
+        "manager_slot": 2,
+        "available_player_snapshot_id": "not_recorded",
+        "draft_cursor_snapshot_id": "not_recorded",
+        "room_events_status": "not_recorded",
+        "room_events": []
+      },
+      "selection": [
+        {"pick": "1.02", "player": "Jahmyr Gibbs"},
+        {"pick": "2.11", "player": "Saquon Barkley"},
+        {"pick": "3.02", "player": "Josh Allen"},
+        {"pick": "4.11", "player": "Zay Flowers"},
+        {"pick": "5.02", "player": "David Montgomery"},
+        {"pick": "6.11", "player": "Kyle Pitts"},
+        {"pick": "7.02", "player": "Michael Wilson"},
+        {"pick": "8.11", "player": "Michael Pittman"},
+        {"pick": "9.02", "player": "Jordan Addison"},
+        {"pick": "10.11", "player": "Josh Downs"},
+        {"pick": "11.02", "player": "Stefon Diggs"},
+        {"pick": "12.11", "player": "KC Concepcion"},
+        {"pick": "13.02", "player": "Dylan Sampson"}
+      ],
+      "realistic_alternatives": {
+        "status": "partial_recorded",
+        "by_pick": {
+          "5.02": [
+            "Davante Adams"
+          ]
+        },
+        "unrecorded_scope": "all_except_listed",
+        "unrecorded_picks": [],
+        "availability_at_each_pick": "not_recorded"
+      },
+      "operator_reasoning": [
+        {
+          "selection": "Jahmyr Gibbs, Saquon Barkley, and David Montgomery",
+          "thesis": "Three premium RB investments were acceptable because two flex slots allowed all three to start simultaneously.",
+          "epistemic_status": "operator_roster_interpretation"
+        },
+        {
+          "selection": "David Montgomery over Davante Adams",
+          "thesis": "A difficult but intentional bet on workload and goal-line access.",
+          "epistemic_status": "operator_thesis"
+        },
+        {
+          "selection": "Jordan Addison and Josh Downs",
+          "thesis": "They could fill a similar roster role while reaching spike outcomes through different production mechanisms.",
+          "epistemic_status": "operator_interpretation"
+        }
+      ],
+      "selection_intent": [
+        {"selection": "third premium RB", "intent": "roster_construction"},
+        {"selection": "David Montgomery at 5.02", "intent": "strict_preference"},
+        {"selection": "Jordan Addison and Josh Downs", "intent": "not_recorded"}
+      ],
+      "agent_contribution": "not_recorded",
+      "forecast_support_or_gap": {
+        "status": "missing_capability",
+        "governed_forecast_used": false,
+        "gaps": [
+          "2026 promoted workload and goal-line outlook",
+          "production-mechanism scenarios",
+          "lineup-conditioned marginal value"
+        ]
+      },
+      "strategy_support_or_gap": {
+        "status": "missing_contract",
+        "governed_strategy_interpretation_used": false,
+        "gaps": [
+          "starter capacity",
+          "positional saturation",
+          "different mechanisms for a similar roster role"
+        ]
+      },
+      "data_support_or_gap": {
+        "status": "missing_contract",
+        "governed_data_used": false,
+        "gaps": [
+          "full lineup contract beyond two flex slots",
+          "live availability snapshot",
+          "governed workload and goal-line evidence"
+        ]
+      },
+      "product_surface_gap": {
+        "status": "missing_capability",
+        "gaps": [
+          "starter-capacity calculation",
+          "bench-locked warning",
+          "candidate mechanism comparison"
+        ]
+      },
+      "not_used_during_decision": {
+        "status": "recorded",
+        "items": [
+          "bye-week analysis",
+          "schedule analysis"
+        ]
+      },
+      "uncertainty": [
+        "Only the two-flex property is recorded; the complete lineup is unknown.",
+        "No availability snapshot is recorded.",
+        "Workload and goal-line access are operator theses, not governed forecasts."
+      ],
+      "final_action_authority": {
+        "kind": "human",
+        "actor": "Joseph",
+        "action": "mock-draft selections"
+      }
+    },
+    {
+      "trace_id": "G",
+      "trace_name": "redraft_mock_6_pick_1_06",
+      "league_contract": {
+        "teams": 12,
+        "format": "redraft",
+        "scoring": {
+          "reception": 1,
+          "other_rules": "unknown"
+        },
+        "qb_mode": "unknown",
+        "starters": {
+          "status": "not_recorded",
+          "slots": {}
+        },
+        "bench": "unknown",
+        "playoff_structure": "unknown"
+      },
+      "observed_draft_state": {
+        "manager_slot": 6,
+        "available_player_snapshot_id": "not_recorded",
+        "draft_cursor_snapshot_id": "not_recorded",
+        "room_events_status": "not_recorded",
+        "room_events": []
+      },
+      "selection": [
+        {"pick": "1.06", "player": "Jaxon Smith-Njigba"},
+        {"pick": "2.07", "player": "Brock Bowers"},
+        {"pick": "3.06", "player": "Josh Jacobs"},
+        {"pick": "4.07", "player": "Garrett Wilson"},
+        {"pick": "5.06", "player": "Quinshon Judkins"},
+        {"pick": "6.07", "player": "Jordyn Tyson"},
+        {"pick": "7.06", "player": "Kyle Monangai"},
+        {"pick": "8.07", "player": "Trevor Lawrence"},
+        {"pick": "9.06", "player": "Quentin Johnston"},
+        {"pick": "10.07", "player": "Josh Downs"},
+        {"pick": "11.06", "player": "Jordan Mason"},
+        {"pick": "12.07", "player": "KC Concepcion"},
+        {"pick": "13.06", "player": "Omar Cooper"}
+      ],
+      "realistic_alternatives": {
+        "status": "partial_recorded",
+        "by_pick": {
+          "5.06": [
+            "David Montgomery"
+          ]
+        },
+        "unrecorded_scope": "all_except_listed",
+        "unrecorded_picks": [],
+        "availability_at_each_pick": "not_recorded"
+      },
+      "operator_reasoning": [
+        {
+          "selection": "Quinshon Judkins over David Montgomery",
+          "thesis": "Positive recovery and practice information moved Judkins materially upward during the session.",
+          "epistemic_status": "operator_update_from_ungoverned_current_information"
+        },
+        {
+          "selection": "Josh Jacobs and Quinshon Judkins",
+          "thesis": "Jacobs supplied floor, allowing the roster to spend more risk budget on Judkins' ceiling.",
+          "epistemic_status": "operator_roster_interpretation"
+        },
+        {
+          "selection": "Trevor Lawrence",
+          "thesis": "Lawrence was a specific target inside an acquisition window, not a generic wait-on-any-quarterback plan.",
+          "epistemic_status": "operator_targeting_strategy"
+        },
+        {
+          "selection": "opening construction",
+          "thesis": "The opening produced an elite receiving foundation, Bowers' positional advantage, and a stable-plus-ceiling RB pairing.",
+          "epistemic_status": "operator_roster_interpretation"
+        }
+      ],
+      "selection_intent": [
+        {"selection": "Quinshon Judkins at 5.06", "intent": "strict_preference"},
+        {"selection": "Josh Jacobs and Quinshon Judkins", "intent": "roster_construction"},
+        {"selection": "Trevor Lawrence at 8.07", "intent": "targeted_acquisition_window"}
+      ],
+      "agent_contribution": "not_recorded",
+      "forecast_support_or_gap": {
+        "status": "missing_capability",
+        "governed_forecast_used": false,
+        "gaps": [
+          "current injury and recovery scenarios",
+          "practice-status-conditioned outlook",
+          "target-tier survival probability"
+        ]
+      },
+      "strategy_support_or_gap": {
+        "status": "missing_contract",
+        "governed_strategy_interpretation_used": false,
+        "gaps": [
+          "roster risk budget",
+          "floor-plus-ceiling pairing",
+          "targeted acquisition window"
+        ]
+      },
+      "data_support_or_gap": {
+        "status": "missing_contract",
+        "governed_data_used": false,
+        "gaps": [
+          "source-bound injury, recovery, practice, and availability events",
+          "live draft cursor and available-player state",
+          "format-adjusted market context"
+        ]
+      },
+      "product_surface_gap": {
+        "status": "missing_capability",
+        "gaps": [
+          "same-session evidence refresh",
+          "roster-risk comparison",
+          "named target acquisition-window alert"
+        ]
+      },
+      "not_used_during_decision": {
+        "status": "recorded",
+        "items": [
+          "bye-week analysis",
+          "schedule analysis"
+        ]
+      },
+      "uncertainty": [
+        "The recovery and practice information is not source-bound or governed in this trace.",
+        "No full availability snapshot is recorded.",
+        "Risk budget is an operator interpretation, not a quantified Strategy output."
+      ],
+      "final_action_authority": {
+        "kind": "human",
+        "actor": "Joseph",
+        "action": "mock-draft selections"
+      }
+    }
+  ]
+}
