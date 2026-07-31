@@ -1,6 +1,7 @@
 # TIBER World Workspace — owner-only Sites pilot record v0
 
-Status: **PILOT DEPLOYED / GOVERNANCE RECONCILED / LONG-TERM FIT UNDECIDED**
+Status: **PILOT DEPLOYED / RATIFICATION POSTED / DOCUMENTATION PENDING REVIEW /
+LONG-TERM FIT UNDECIDED**
 
 | Binding | Value |
 | --- | --- |
@@ -73,7 +74,8 @@ easier. Deployment is not adoption.
 ## 3. Deployed architecture
 
 ```text
-TIBER-Fantasy Management and Data Lab GET endpoints
+TIBER-Fantasy live GET surface
+      | Management/Data Lab plus league, sync, rankings, and rookies
       | live product state, derived diagnostics, source-specific clocks
       v
 Owner-only Site server adapter
@@ -118,8 +120,9 @@ the upstream implementation, not inferred from HTTP method alone.
 
 ## 4. Exact live source inventory
 
-All paths are resolved against the single server-configured TIBER-Fantasy
-Management/Data Lab deployment. The base origin is not accepted from the
+All paths are resolved against the single server-configured TIBER-Fantasy live
+deployment. The surface includes Management and Data Lab plus league context,
+league sync, rankings, and rookies. The base origin is not accepted from the
 browser or included in the client bundle.
 
 | Source ID | Allowlisted GET path | Workspace use | Failure/freshness rule |
@@ -132,11 +135,13 @@ browser or included in the client bundle.
 | `teamstate_movement` | `/api/data-lab/team-environment-movement` | Team-environment movement availability | Missing artifact remains unavailable; no inference from other team fields |
 | `promoted_status_2026` | `/api/data-lab/promoted-status?season=2026` | FORGE/promotion diagnostics and activation metadata | Stale or failed gates remain visible and cannot be collapsed into the raw classifier |
 
-The current upstream endpoints are public, unversioned, and do not present a
-proved authentication or rate-limit boundary. Owner-only Site access reduces
-exposure of this UI; it does not repair the upstream boundary. Before broader
-use, TIBER-Fantasy should expose an authenticated, versioned, bounded aggregate
-or equivalent governed read surface.
+The current route set is public and does not present a proved authentication or
+rate-limit boundary. It has no single governed, versioned aggregate contract;
+several routes are unversioned, while `/api/rankings/v2/weekly` carries a route
+version. Owner-only Site access reduces exposure of this UI; it does not repair
+the upstream boundary. Before broader use, TIBER-Fantasy should expose an
+authenticated, versioned, bounded aggregate or equivalent governed read
+surface.
 
 ## 5. Pilot-local read model
 
@@ -180,8 +185,9 @@ terminals.
 
 ## 6. Production observation on 2026-07-31 UTC
 
-An authenticated owner-path request to the deployed production Site returned
-the live read model rather than fixtures.
+An authorized request through the owner-only Site access path, using an
+already-configured bypass credential, returned the live read model rather than
+fixtures.
 
 | Field | Observed value | Interpretation boundary |
 | --- | --- | --- |
@@ -210,15 +216,19 @@ the effective evidence level is Level 1. The Site preserves both statements and
 labels the conflict. It does not choose one by hiding the other.
 
 This observation is a dated deployment check, not a durable canonical snapshot.
-Values may change after any source clock advances.
+Values may change after any source clock advances. The live response preserved
+workspace and source-specific clocks, but their exact values were not copied
+into this reconciliation document; this table is therefore not a clock-complete
+receipt.
 
 ## 7. Observatory boundary
 
-The current deployed surface is wired to **Management and Data Lab**. The
-existing Observatory proper is client-only and exposes no accepted backend
-reasoning contract that this Site can consume. The interface may present an
-"Observatory" lens over live diagnostics, but it must not imply that a governed
-Observatory reasoning service exists today.
+The current deployed surface is wired to the **TIBER-Fantasy live GET surface**,
+including Management and Data Lab plus league, sync, rankings, and rookie
+routes. The existing Observatory proper is client-only and exposes no accepted
+backend reasoning contract that this Site can consume. The interface may
+present an "Observatory" lens over live diagnostics, but it must not imply that
+a governed Observatory reasoning service exists today.
 
 A future backend must separately define inputs, versioning, provenance,
 freshness, deterministic versus model-derived fields, failure semantics,
@@ -256,12 +266,15 @@ packet a human sees. A useful export includes:
 An agent may use this packet to explain current state, compare evidence, name
 missing contracts, draft questions, or propose a bounded next investigation.
 It must not treat the export as a command envelope, durable memory, promoted
-artifact, or permission to mutate TIBER.
+artifact, or permission to mutate TIBER. Exports inherit the Site's owner-only,
+private boundary and may not be published or shared without separate human
+authorization.
 
 ## 10. Known architecture and governance gaps
 
-1. The upstream GET surface is public, unversioned, and lacks a proved
-   authentication/rate-limit contract.
+1. The upstream GET surface is public, lacks a proved authentication/rate-limit
+   contract, and has no single governed/versioned aggregate contract; several
+   routes remain unversioned.
 2. `default_user` is a shared pilot identity boundary, not an acceptable
    multi-operator identity model.
 3. Browser CORS requires a server proxy, increasing the importance of the
@@ -300,9 +313,9 @@ artifact, or permission to mutate TIBER.
 5. Confirm that no canonical TIBER state, artifact, or workflow depended on the
    Site. No back-migration is expected because the pilot owns no canonical data.
 
-Rollback does not require a TIBER-Fantasy or TIBER-Data mutation. Secret
-rotation is required only if an actual credential exposure is observed; normal
-Site removal alone does not imply exposure.
+Rollback does not require a TIBER-Fantasy or TIBER-Data mutation. Credential
+disposition remains governed by the applicable incident or decommission policy;
+this pilot record creates no replacement rule.
 
 ## 12. Review questions
 
