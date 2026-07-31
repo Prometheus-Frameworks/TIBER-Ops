@@ -1,6 +1,7 @@
 # TIBER World Workspace owner-only Sites pilot — progress ledger
 
-Status: **candidate reconciliation record; no program frontier activated**
+Status: **ratification posted; documentation package pending review; no program
+frontier activated**
 
 - Present-state authority: [TIBER-Ops #22 comment 5145331704](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/22#issuecomment-5145331704)
 - Earlier pilot/design record: [TIBER-Ops #35](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/35)
@@ -71,9 +72,10 @@ uses a single navigable world-model shell with:
 - per-source provenance receipts and clocks; and
 - an agent-readable export of the same normalized context.
 
-The current integration reaches Management and Data Lab. Observatory proper is
-client-only and has no accepted backend reasoning contract, so the Site does
-not claim a live Observatory reasoning source.
+The current integration reaches the TIBER-Fantasy live GET surface, including
+Management and Data Lab plus league, sync, rankings, and rookie routes.
+Observatory proper is client-only and has no accepted backend reasoning
+contract, so the Site does not claim a live Observatory reasoning source.
 
 ## Entry 4 — adapter boundary
 
@@ -109,8 +111,9 @@ no D1/R2 binding and no client-side upstream credential.
 
 ## Entry 6 — production verification
 
-An owner-authenticated request to the deployed production API on `2026-07-31`
-UTC returned:
+An authorized request through the owner-only Site access path, using an
+already-configured bypass credential, reached the deployed production API on
+`2026-07-31` UTC and returned:
 
 - schema `TIBER_WORKSPACE_CONTEXT_V1`;
 - mode `live`;
@@ -129,6 +132,10 @@ UTC returned:
 
 The raw classifier and activation evidence were preserved separately. No
 fixture value was substituted for a live failure or missing artifact.
+
+The live response carried workspace and source-specific clocks, but their exact
+values were not copied into this reconciliation ledger. This entry is a dated
+deployment verification, not a clock-complete source receipt.
 
 ## Entry 7 — deployment and access receipt
 
@@ -151,8 +158,9 @@ mechanism was used without recording its value.
 
 The reconciliation package records, without resolving:
 
-1. public/unversioned upstream endpoints and no proved authentication or
-   rate-limit boundary;
+1. a public upstream surface with no proved authentication/rate-limit boundary
+   and no single governed/versioned aggregate contract; several routes remain
+   unversioned;
 2. the `default_user` shared-identity limitation;
 3. CORS dependence on a same-origin server adapter;
 4. possible internal persistence behind the Management GET;
