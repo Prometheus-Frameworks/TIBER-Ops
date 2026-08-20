@@ -7,6 +7,16 @@ It is **not** a product repo and **not** an automation repo. It is the
 operating layer for coordinating TIBER's multi-repo work: deciding what is
 active, what is parked, and how work moves between repos.
 
+## Canonical architecture direction
+
+Cross-system product and agent-interface decisions should start with
+[`TIBER Product Boundary v1`](docs/architecture/tiber-product-boundary-v1.md).
+It promotes the decisions recorded in TIBER-Ops #64: TIBER owns governed
+football context and stable inspection/control; the operator may use their
+chosen agent; and the intended Fantasy front door is Pulse + Use TIBER. The
+document is architecture direction only and does not activate implementation
+or remove existing surfaces.
+
 ## What TIBER-Ops does
 
 - Holds the operating map: which lanes exist, what each one owns, and where
@@ -33,6 +43,7 @@ Those live in their respective repos. TIBER-Ops only coordinates.
 
 | Path | Purpose |
 | --- | --- |
+| [`docs/architecture/tiber-product-boundary-v1.md`](docs/architecture/tiber-product-boundary-v1.md) | Canonical product, agent, evidence, UI, and transport boundary. |
 | [`docs/operating-map.md`](docs/operating-map.md) | The lanes, what each owns, and the core operating rule. |
 | [`docs/lane-index.md`](docs/lane-index.md) | Per-lane index of repos, anchors, and current state. |
 | [`docs/parked-ideas.md`](docs/parked-ideas.md) | Incubation backlog — explicitly parked, not in progress. |
