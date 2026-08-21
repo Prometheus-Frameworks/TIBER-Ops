@@ -373,4 +373,4 @@ Where they conflict, this document supersedes only the older documents’ assump
 
 Those records remain valid as historical evidence and may still contain useful implementation contracts, audits, and migration details. This document does not close their issues, remove their code, or decide the final disposition of their surfaces.
 
-Later explicit operator decisions supersede this document.
+Later operator decisions supersede this document only when their consequential authority is valid under [TIBER-Ops #66](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/66); plain text alone does not suffice.
