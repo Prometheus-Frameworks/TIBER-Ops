@@ -294,37 +294,51 @@ The platform-neutral exact-action architecture in [TIBER-Ops #39](https://github
 
 ## 10. Implementation implications and gates
 
-This document establishes direction only. Each implementation requires a separately scoped issue and explicit authority.
+This document establishes direction only. No item below is activated by this document. Each implementation requires a separately scoped issue and authority valid under [TIBER-Ops #66](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/66). The active implementation lane remains ML / modeling until an explicit lane rotation; documentation and audits do not rotate it.
 
 Recommended follow-up sequence:
 
-1. **Promote and reconcile documentation**  
-   Mark older conflicting product-positioning documents as historical or partially superseded without erasing their implementation evidence.
+1. **Phase 0 — promote and reconcile documentation**  
+   Mark older conflicting product-positioning documents as historical or partially superseded without erasing their implementation evidence. Preserve every current route, API, surface, calculation, and historical record unless a later, separately authorized decision changes it.
 
-2. **Run a bounded Fantasy surface-and-consumer audit**  
-   Classify every mounted route, API, module, and unmounted historical surface as:
-   - canonical inspection/control;
-   - reusable domain or MCP capability;
-   - useful generated projection/demo;
-   - archive or quarantine;
-   - delete after replacement and verified consumer removal.
+2. **Phase 1 — run audits only, in parallel with the active ML lane**  
+   - Run a bounded Fantasy surface-and-consumer audit. Classify each mounted page, route or API, underlying calculation or module, job or script, and unmounted historical surface as canonical inspection/control, reusable domain or MCP capability, useful generated projection/demo, archive/quarantine, or delete only after replacement and verified consumer removal.
+   - Keep pages and calculations as separate audit rows so a generated projection cannot hide a reusable capability.
+   - Complete the capability-parity inventory in [TIBER-Ops #67](https://github.com/Prometheus-Frameworks/TIBER-Ops/issues/67), using the TIBER-Research #13 navigation trace to identify the smallest transport-neutral read/validate/persist surface a brought agent needs without repository authority. Do not collapse this work into Ops #30.
+   - Record that Pulse depends on a governed World/event-change contract. Audit TIBER-Rookies Devy Pulse before inventing a duplicate architecture; that comparison remains indexed unless separately authorized.
 
-3. **Define the Pulse event contract**  
-   Reuse governed World, event, identity, provenance, freshness, uncertainty, and impact-propagation primitives. Audit TIBER-Rookies Devy Pulse before creating a duplicate architecture.
+   Phase 1 authorizes inventory, classification, and design evidence only. It does not authorize implementation, route or API changes, cleanup, quarantine, migration, retirement, or deletion.
 
-4. **Design the Use TIBER path**  
-   Document supported clients, connection methods, permissions, concrete workflows, failure states, and safe demos.
+3. **Gate — explicit implementation-lane rotation**  
+   Phase 2 may begin only after an explicit human lane-rotation decision valid under Ops #66. A merged documentation PR, completed audit, available tool, or successful pilot does not rotate the lane. Before implementation begins, the accepted #67 inventory, an exact qualifying governed World change, and an owner-backed callable validator must exist.
 
-5. **Separate capabilities from current pages**  
-   Preserve reusable contracts and calculations independently of whether their existing UI remains mounted.
+4. **Phase 2 — build the smallest closed agent-substrate loop**  
+   Reuse the existing context pilots in TIBER-Fantasy #332, TIBER-Research #12, and merged TIBER-Fantasy PR #333 rather than opening a second architecture. The bounded slice must let an agent:
+   - persist a context-bound entity model;
+   - retrieve it in a later session;
+   - append a bounded operator-local observation;
+   - inspect current Shared Reality and freshness for the relevant entities;
+   - attach a governed Shared Reality reference without promoting private or ephemeral evidence;
+   - validate a candidate against the real owner-backed contract;
+   - explain rejection and expose what remains unknown.
 
-6. **Expand governed introspection before granting repository access**  
-   Resolve the ownership and minimal read surface requested by Ops #67.
+   This first Phase 2 lane excludes Pulse UI, a Use TIBER homepage, remote MCP hosting, OAuth, multi-tenant authentication, rankings or Tiers removal, autonomous league execution, repository or publication authority, and a broader verification-linter product.
 
-7. **Preserve deletion discipline**  
-   Prove imports, routes, callers, scripts, deployments, and tests before removal. Quarantine ambiguous code first and delete only after its replacement and consumer migration are verified.
+5. **Acceptance gate — prove the loop without GitHub**  
+   Phase 2 is complete only when an agent, without opening GitHub or receiving repository authority, can persist and later retrieve one bounded player- or team-centered model, attach a governed Shared Reality change without promoting private evidence, ask TIBER whether a candidate object is valid, receive a deterministic rejection explanation when invalid, and see what remains unknown.
 
-No step above is activated by this document.
+6. **Phase 3 — package Pulse and Use TIBER**  
+   Only after the acceptance gate passes may separately authorized work package Pulse as canonical inspection of governed TIBER World changes rather than a news feed, and Use TIBER as a worked connection/example path rather than a feature catalog. The preferred first demonstration is: “Bring up the models I track. What changed this week? What evidence would change them?”
+
+Across every phase:
+
+- preserve reusable contracts and calculations independently of whether their current UI remains mounted;
+- prove callers, imports, routes, jobs, deployments, tests, replacements, and rollback before any removal;
+- quarantine ambiguous code before deletion, and delete only after replacement and consumer migration are verified;
+- treat private and ephemeral evidence as non-promotable to Shared Reality by default;
+- preserve the rule that league-chat, coercive, or psychological evidence about leaguemates is non-representable in every TIBER scope.
+
+Nothing in this sequence authorizes a runtime change, broad Fantasy rewrite, authentication change, MCP hosting or expansion, data promotion, surface retirement, deletion, deployment, or second implementation lane.
 
 ## 11. Supersession and related records
 
