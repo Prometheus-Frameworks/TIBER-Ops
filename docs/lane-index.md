@@ -44,27 +44,44 @@ of TIBER work. The active lane is chosen weekly — see
 
 ## ML / modeling lane — **ACTIVE**
 
-- **Owns:** PPM, point projection / scenario / outlook work.
-- **Active anchor:** Point-prediction-model #60 — first successful PPM
-  model-run operator evaluation.
-- **Indexed anchors:** PPM issue #49 and TIBER-Fantasy #265.
-- **State:** **Active lane.** Authorized as the single active implementation
-  lane following the close of the Product lane.
-- **Purpose of this lane:**
-  - Surface bottlenecks that prevent PPM from becoming more trustworthy.
-  - Move PPM beyond player PPR-only inputs.
-  - Begin connecting governed Teamstate artifacts into the PPM feature path.
-- **First step (audit/spec, not implementation):** Audit/spec for **2024
-  full-league Teamstate artifact production** and **PPM consumption
-  boundaries**. PPM needs full-league 2024 Teamstate artifacts before
-  model-run-2 can properly test richer inputs, so the first likely
-  implementation/audit work happens in **Teamstate**.
+- **Owns:** governed Forecast / PPM model evaluation, candidate-runtime
+  readiness, and explicitly admitted modeling inputs.
+- **Program anchor:** TIBER-Forecast #167 — 2026 Forward Forecast v0
+  baseline-candidate path.
+- **Current execution gate:** TIBER-Forecast #170 — the bounded
+  `seasonal-ppr-2026-forward-001` candidate remains inactive until its exact
+  live operator authorization is valid under TIBER-Ops #66.
+- **State:** **Active by policy; stopped at the human execution gate.** The
+  implementation/evidence prerequisites are materially complete:
+  - Forecast #169 / PR #172 delivered the typed deterministic forward runtime.
+  - Forecast #168 / PR #174 froze the base model/configuration at
+    `813eff8de0b4a8d4f29f5c37abe522fe3e792ca3`.
+  - TIBER-Data #227 and #228 delivered the bounded census and scoring
+    reconciliation evidence.
+  - Forecast PR #175 bound the admitted inputs and compatibility policies in
+    the immutable artifact bundle at
+    `804fb39b318bb8406cb7e3c24e6fbb9234a930c8`.
+- **Pre-run status (2026-08-21):** an independent read-only check rehashed the
+  declared packages/evidence and compared the six direct pre-fit runtime files
+  against current Forecast `main`. Pins remain current and compatible.
+  Preparation is complete; no run has occurred.
+- **Teamstate disposition:** the full 2024 coverage chain is complete, but
+  Forecast #98 deliberately parks the Teamstate Run 2 path after the unchanged
+  full-coverage rerun showed no measured lift. Teamstate is not a blocker for
+  Forward Run 1 and is not admitted into this base-only candidate.
+- **Permitted preparation without a new consequential decision:** read-only
+  pin/compatibility checks, exact decision-packet preparation, and review of
+  already-produced evidence. Lane status alone does not authorize execution.
 - **Boundaries for this lane:**
-  - This is **not** Product-lane work.
-  - Do **not** surface PPM outputs in Management yet.
-  - Do **not** create rankings / advice / product behavior.
-  - Do **not** start #259 / #265 / #277 / freshness unless separately
-    authorized.
+  - Any #170 output remains `candidate_only`, `production_ready: false`,
+    `consumer_eligibility: never`, and
+    `uncertainty_status: unavailable_not_calibrated`.
+  - Do not promote, publish, deploy, activate Fantasy/Strategy consumers, or
+    represent the candidate as advice.
+  - Do not surface PPM outputs in Management or create rankings/product
+    behavior from this lane.
+  - Teamstate public-report publication remains separately gated and disabled.
+  - Do not rotate the implementation lane through this factual update.
 
 ## Parked / incubation lane
 
@@ -78,9 +95,11 @@ of TIBER work. The active lane is chosen weekly — see
 | Item | Lane | State |
 | --- | --- | --- |
 | TIBER-Fantasy #264 (PR A–D: #269/#270/#271/#278) | Product | **Completed and closed** |
-| Point-prediction-model #60 | ML / modeling | **ACTIVE** — first PPM model-run operator evaluation |
-| 2024 full-league Teamstate artifacts + PPM consumption boundaries | ML / modeling | **Active first step** — audit/spec (work likely in Teamstate) |
-| PPM model (#49, #265) | ML / modeling | Indexed under active lane |
+| TIBER-Forecast #167 | ML / modeling | **ACTIVE program anchor** — 2026 Forward Forecast v0 candidate path |
+| TIBER-Forecast #170 | ML / modeling | **Awaiting live operator gate** — pins/compatibility reverified 2026-08-21; no run executed |
+| Forecast #169 / PR #172, #168 / PR #174, Data #227/#228, Forecast PR #175 | ML / modeling | **Prerequisites materially complete** — runtime, frozen base model, data evidence, and admission binding |
+| Forecast #98 / completed 2024 Teamstate coverage chain | ML / modeling | **Parked, not blocking #170** — no measured lift at the tested scale/feature shape |
+| TIBER-Teamstate #90 public report | ML / modeling | **Implemented but inactive** — publication remains disabled and separately gated |
 | TIBER-Fantasy #277 | Governance | **Parked** — audit/spec ticket; not authorized |
 | TIBER-Ops #21 freshness preflight + registry v0 (PR #23) | Governance | **Authorized docs-only exception under #22** — delivered via PR #23; effective as merged to `main` (see the registry's effective condition) |
 | Freshness fail-closed (artifact/product-surface enforcement — distinct from #21's agent-context protocol) | Governance | Documented future work, **not opened** |

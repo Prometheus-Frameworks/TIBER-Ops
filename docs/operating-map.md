@@ -26,12 +26,20 @@ UI, or source data. It coordinates the repos that do.
 
 ### 4. ML / modeling lane — **active**
 
-- **Scope:** PPM, point projection / scenario / outlook work.
-- **Active anchor:** Point-prediction-model #60 — first successful PPM
-  model-run operator evaluation.
-- **Indexed anchors:** PPM issue #49 and TIBER-Fantasy #265.
-- **First step:** audit/spec for 2024 full-league Teamstate artifacts and PPM
-  consumption boundaries — see [`lane-index.md`](lane-index.md).
+- **Scope:** governed Forecast / PPM model evaluation, candidate-runtime
+  readiness, and explicitly admitted modeling inputs.
+- **Program anchor:** TIBER-Forecast #167 — 2026 Forward Forecast v0
+  baseline-candidate path.
+- **Current execution gate:** TIBER-Forecast #170 remains inactive until its
+  exact live operator authorization is valid under TIBER-Ops #66.
+- **Current state:** runtime, frozen base-model, Data evidence, and admission
+  binding prerequisites are materially complete. The 2026-08-21 read-only
+  pre-run check passed, but no candidate run has occurred.
+- **Teamstate disposition:** Forecast #98 deliberately parks the completed
+  2024 Teamstate Run 2 path after no measured lift at the tested scale and
+  feature shape. It is not a blocker for Forward Run 1.
+- ML / modeling remains the sole active implementation lane; this factual
+  correction does not rotate it. See [`lane-index.md`](lane-index.md).
 
 ### 5. Parked / incubation lane
 
