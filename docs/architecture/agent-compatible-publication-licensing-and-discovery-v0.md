@@ -359,6 +359,10 @@ illustrative contract below is not active and grants no rights:
       "license": {
         "spdx": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/",
+        "legal_text": {
+          "version_url": "https://<public-host>/<immutable-adopted-license-text-path>",
+          "sha256": "<exact adopted license-text bytes hash>"
+        },
         "licensor": {
           "legal_name": "<approved legal licensor; decision required>",
           "identifier": "<stable legal-entity identifier or null>",
@@ -370,6 +374,16 @@ illustrative contract below is not active and grants no rights:
           "rights_cleared_structured_output"
         ]
       },
+      "rights_notices": [
+        {
+          "notice_id": "<stable path-scoped notice identifier>",
+          "applies_to_paths": [
+            "<exact approved public path>"
+          ],
+          "version_url": "https://<public-host>/<immutable-rights-notice-path>",
+          "sha256": "<exact rights/notice bytes hash>"
+        }
+      ],
       "permissions": {
         "search": "permitted",
         "ai_index": "permitted",
@@ -406,7 +420,18 @@ illustrative contract below is not active and grants no rights:
           "id": "tiber-open-knowledge-crawlers-v0",
           "version_url": "https://<public-host>/<immutable-crawler-profile-path>",
           "sha256": "<exact crawler-profile bytes hash>",
+          "expected_robots_txt_url": "https://<public-host>/robots.txt",
           "expected_robots_txt_sha256": "<exact deployed robots.txt bytes hash>"
+        },
+        "sitemap": {
+          "deployed_url": "https://<public-host>/sitemap.xml",
+          "version_url": "https://<public-host>/<immutable-deployed-sitemap-snapshot-path>",
+          "sha256": "<exact deployed sitemap bytes hash>",
+          "approved_urls": [
+            "https://<public-host>/<exact approved immutable public path>"
+          ],
+          "approved_url_set_sha256": "<hash of canonical approved_urls set>",
+          "child_sitemaps": []
         }
       },
       "exclusions": [
@@ -420,9 +445,13 @@ illustrative contract below is not active and grants no rights:
 
 The rights manifest's own bytes cannot safely self-hash without a canonical omission rule. The
 external exact-action approval must bind rights_manifest_sha256 separately, plus every
-representations[].sha256 value, the public source-rights summary hash, the private evidence-ledger
-hash, and each machine-signal hash. JSON and HTML remain separately named and bound, preserving
-the approval contract already implemented by Teamstate PR #91; the additional bindings extend a
+representations[].sha256 value; the immutable identity and SHA-256 of the exact adopted legal
+text; every rights_notices[] notice ID, exact path scope, immutable URL, and SHA-256; the public
+source-rights summary hash; the private evidence-ledger hash; the RSL and crawler-profile
+identities and hashes; the expected deployed robots.txt URL and hash; and the sitemap's deployed
+and immutable snapshot URLs, exact bytes hash, approved URL set, approved-url-set hash, and every
+child-sitemap identity and hash. JSON and HTML remain separately named and bound, preserving the
+approval contract already implemented by Teamstate PR #91; the additional bindings extend a
 later rights/discovery approval rather than weakening that contract.
 
 Validator requirements:
@@ -443,8 +472,14 @@ Validator requirements:
    each representation.
 9. A site-wide wildcard grant must not cover a domain that also serves private, candidate,
    third-party, or differently licensed material.
-10. The approval must independently bind every representation, the public summary, the private
-    evidence ledger, RSL/crawler policy, expected robots bytes, and the rights manifest itself.
+10. The approval must independently bind every representation, the exact adopted legal text,
+    every path-scoped rights/notice asset, the public summary, the private evidence ledger,
+    RSL/crawler policy, expected deployed robots.txt URL and bytes, the deployed sitemap bytes and
+    exact approved URL set, every bound child sitemap, and the rights manifest itself.
+11. The sitemap's approved_url_set_sha256 must hash canonical JSON for the sorted, normalized,
+    duplicate-free absolute approved_urls array. Every child sitemap must carry its own immutable
+    identity, bytes hash, exact approved URL set, and set hash; an unbound child sitemap fails
+    closed.
 
 ---
 
@@ -462,7 +497,8 @@ Every public report page should visibly include:
   the TIBER public brand;
 - the report title and immutable version;
 - data-through, source-snapshot, and generated-at dates;
-- the canonical URL;
+- the immutable version URL as the primary citation target, plus the canonical alias only as a
+  current-report discovery and navigation link;
 - the methodology URL and version;
 - the applicable license and rights-manifest URL;
 - required upstream attribution;
@@ -491,7 +527,11 @@ Recommended citation hint:
 
 > TIBER, “2024 NFL Offensive Environments,”
 > teamstate_public_offensive_environment_2024_v1.r1, data through the 2024 regular season,
-> canonical URL, CC BY 4.0.
+> immutable version URL, CC BY 4.0.
+
+The citation_text field must name version_url. canonical_url may be exposed as a discovery and
+navigation pointer to the current report, but it is not the evidence identity for a
+version-specific citation.
 
 This is a machine-friendly suggestion, not an attempt to override the “reasonable manner”
 attribution flexibility in CC BY 4.0.
@@ -617,12 +657,14 @@ An exact artifact may enter the public agent layer only if every gate passes:
 7. **Rights-instrument coherence:** the applicable license or documented public-domain /
    no-exclusive-right basis, per-artifact manifest, RSL, visible notices, API terms, and crawler
    posture do not contradict one another; contracts and database rights are still checked.
-8. **Artifact identity:** JSON, HTML, methodology, manifest, and approval bind to immutable versions
-   and content hashes.
+8. **Artifact identity:** JSON, HTML, methodology, manifest, adopted legal text, path-scoped
+   notices, RSL/crawler/robots assets, and sitemap bytes bind to immutable identities and content
+   hashes; the sitemap also binds the exact approved URL set.
 9. **Security:** no credentials, private/operator context, candidate data, fixtures, internal paths,
    approval records, or source-restricted bytes leak.
-10. **Human approval:** a valid exact-action operator approval names the version, hashes, license
-    profile, crawler profile, and activation action.
+10. **Human approval:** a valid exact-action operator approval names and binds the version,
+    license profile, activation action, and every publication-affecting identity, path scope,
+    content hash, and approved sitemap URL set required by this profile.
 11. **Serving state:** deployment changes occur only in a separately authorized implementation lane.
 12. **Post-publication controls:** monitoring, takedown/withdrawal procedure, supersession, and
     incident ownership exist.
@@ -630,27 +672,33 @@ An exact artifact may enter the public agent layer only if every gate passes:
 Any false, unknown, expired, or missing gate yields withhold. The system must not downgrade an
 authoritative complete report into a silently partial public answer.
 
-### 10.1 Immutability, withdrawal, and tombstones
+### 10.1 Immutable report bytes and separately bound withdrawal status
 
-“Immutable version” means that TIBER never serves different report bytes under the same version
-identity. It does not promise perpetual public availability when law, safety, privacy, source
-rights, or a material governance failure requires withdrawal.
+This profile does not amend or supersede the immutable-route requirements in TIBER-Ops #11 or the
+Teamstate report contract. Under those current contracts, once a version is published, its
+immutable HTML and JSON version URLs continue to return the exact approved bytes. A withdrawal
+state must not replace either immutable response with tombstone or status content.
 
-If an immutable version must be withdrawn:
+If a published version requires a withdrawal warning under the current contract:
 
-- do not replace its HTML or JSON with corrected or different report bytes under the old identity;
-- replace the public version route with an explicit tombstone or withdrawal status, preferably an
-  appropriate HTTP status plus a machine-readable status resource;
-- record withdrawal date, non-confidential reason class, successor/correction if one exists, and
-  accountable approval;
-- preserve exact prior hashes, bytes, rights evidence, and audit history privately where lawful;
-- remove the version from active sitemaps/index promotion and update the canonical alias safely;
-  and
-- do not claim that withdrawal or a later robots/RSL change revokes compliant copies already
-  received under an irrevocable license.
+- keep the HTML and JSON bytes at each immutable version URL unchanged;
+- publish the withdrawal state only at a distinct status resource that is not either immutable
+  report URL, and bind that resource's immutable identity, bytes hash, affected report_version_id
+  and version URLs, withdrawal date, non-confidential reason class, successor or correction if one
+  exists, and accountable approval;
+- remove the version from active sitemap and index promotion only through a separately approved,
+  newly hashed discovery bundle, and move the canonical alias only to a separately approved
+  successor under the existing atomic registry rules;
+- preserve the exact prior hashes, bytes, rights evidence, and audit history privately where
+  lawful; and
+- do not claim that a withdrawal record or later robots/RSL change revokes compliant copies
+  already received under an irrevocable license.
 
-This rule reconciles exact-byte identity with necessary takedown authority: report bytes never
-mutate silently, while availability may end transparently.
+If law, safety, privacy, source rights, or a material governance failure later requires an
+immutable version URL itself to stop serving the approved bytes or to return a tombstone or
+different status, TIBER must first adopt a separately reviewed and operator-approved amendment to
+TIBER-Ops #11 and the normative Teamstate contract and implementation. This profile stages that
+later amendment question; it does not make or authorize the amendment.
 
 ---
 
@@ -704,12 +752,14 @@ A later operator packet must name:
 1. the exact report version and JSON/HTML/content hashes;
 2. the completed private field-addressable source-rights ledger, its detached hash, and the
    disclosure-safe public source-rights summary;
-3. the license profile and exact legal text;
+3. the license profile and the immutable identity and SHA-256 of the exact adopted legal text;
 4. the search, AI-index, AI-input, and AI-training permissions;
-5. required upstream and TIBER attribution;
+5. required upstream and TIBER attribution plus every path-scoped rights/notice identity, exact
+   path scope, immutable URL, and SHA-256;
 6. the rights-manifest bytes and hash;
 7. the implementation commit for public rights/discovery metadata;
-8. the crawler/RSL/sitemap posture;
+8. the immutable identities and SHA-256 values for RSL/crawler policy, expected deployed
+   robots.txt, and the deployed sitemap, including the exact approved sitemap URL set;
 9. monitoring, rollback, and takedown ownership; and
 10. the exact publication state transition.
 
@@ -776,9 +826,11 @@ Terminal condition: implementation reviewed and deployable, publication still di
 
 ### Profile Stage 4 — exact canary publication decision
 
-- freeze and hash the final artifact, manifest, notices, and discovery policy;
+- freeze and hash the final artifact, manifest, exact adopted legal text, path-scoped notices,
+  RSL/crawler/robots assets, deployed sitemap, and exact approved sitemap URL set;
 - run technical, rights, security, and agent-retrieval review;
-- record an exact operator approval;
+- record an exact operator approval binding every required immutable identity, path scope, hash,
+  approved sitemap URL set, and activation action;
 - activate only the approved report/version;
 - verify live metadata, routes, crawler exposure, citation, rollback, and monitoring.
 
