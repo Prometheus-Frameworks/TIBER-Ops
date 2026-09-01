@@ -421,6 +421,8 @@ illustrative contract below is not active and grants no rights:
           "version_url": "https://<public-host>/<immutable-crawler-profile-path>",
           "sha256": "<exact crawler-profile bytes hash>",
           "expected_robots_txt_url": "https://<public-host>/robots.txt",
+          "expected_robots_txt_snapshot_version_url":
+            "https://<public-host>/<immutable-deployed-robots-snapshot-path>",
           "expected_robots_txt_sha256": "<exact deployed robots.txt bytes hash>"
         },
         "sitemap": {
@@ -448,7 +450,7 @@ external exact-action approval must bind rights_manifest_sha256 separately, plus
 representations[].sha256 value; the immutable identity and SHA-256 of the exact adopted legal
 text; every rights_notices[] notice ID, exact path scope, immutable URL, and SHA-256; the public
 source-rights summary hash; the private evidence-ledger hash; the RSL and crawler-profile
-identities and hashes; the expected deployed robots.txt URL and hash; and the sitemap's deployed
+identities and hashes; the expected deployed robots.txt URL, immutable snapshot URL, and hash; and the sitemap's deployed
 and immutable snapshot URLs, exact bytes hash, approved URL set, approved-url-set hash, and every
 child-sitemap identity and hash. JSON and HTML remain separately named and bound, preserving the
 approval contract already implemented by Teamstate PR #91; the additional bindings extend a
@@ -474,7 +476,7 @@ Validator requirements:
    third-party, or differently licensed material.
 10. The approval must independently bind every representation, the exact adopted legal text,
     every path-scoped rights/notice asset, the public summary, the private evidence ledger,
-    RSL/crawler policy, expected deployed robots.txt URL and bytes, the deployed sitemap bytes and
+    RSL/crawler policy, expected deployed robots.txt URL, immutable snapshot URL, and bytes, the deployed sitemap bytes and
     exact approved URL set, every bound child sitemap, and the rights manifest itself.
 11. The sitemap's approved_url_set_sha256 must hash canonical JSON for the sorted, normalized,
     duplicate-free absolute approved_urls array. Every child sitemap must carry its own immutable
@@ -758,8 +760,9 @@ A later operator packet must name:
    path scope, immutable URL, and SHA-256;
 6. the rights-manifest bytes and hash;
 7. the implementation commit for public rights/discovery metadata;
-8. the immutable identities and SHA-256 values for RSL/crawler policy, expected deployed
-   robots.txt, and the deployed sitemap, including the exact approved sitemap URL set;
+8. the immutable identities and SHA-256 values for RSL/crawler policy; the expected deployed
+   robots.txt URL, immutable snapshot URL, and bytes; and the deployed sitemap, including the
+   exact approved sitemap URL set;
 9. monitoring, rollback, and takedown ownership; and
 10. the exact publication state transition.
 
@@ -827,7 +830,8 @@ Terminal condition: implementation reviewed and deployable, publication still di
 ### Profile Stage 4 — exact canary publication decision
 
 - freeze and hash the final artifact, manifest, exact adopted legal text, path-scoped notices,
-  RSL/crawler/robots assets, deployed sitemap, and exact approved sitemap URL set;
+  RSL/crawler assets, the deployed robots.txt URL and immutable snapshot, deployed sitemap, and
+  exact approved sitemap URL set;
 - run technical, rights, security, and agent-retrieval review;
 - record an exact operator approval binding every required immutable identity, path scope, hash,
   approved sitemap URL set, and activation action;
