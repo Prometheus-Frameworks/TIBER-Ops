@@ -63,7 +63,8 @@ The recommended v0 design is a layered profile:
    data.
 8. **Discovery:** use canonical public HTML, linked JSON, methodology and rights pages,
    Schema.org metadata, a sitemap, crawler-specific robots directives, and RSL as coordinated
-   signals. Optional llms.txt guidance may help navigation but is not a license or access control.
+   signals. Optional llms.txt guidance may help navigation but is not a license or access control. If
+included in a later activation, it is an exact-action-bound discovery asset.
 9. **First canary:** the historical 2024 Teamstate report is technically shaped for a controlled
    pilot, but remains blocked on exact source-rights evidence, an adopted per-artifact license
    profile, exact-byte operator approval, and separately authorized discovery implementation.
@@ -425,6 +426,12 @@ illustrative contract below is not active and grants no rights:
             "https://<public-host>/<immutable-deployed-robots-snapshot-path>",
           "expected_robots_txt_sha256": "<exact deployed robots.txt bytes hash>"
         },
+        "llms_txt": {
+          "status": "absent",
+          "deployed_url": null,
+          "version_url": null,
+          "sha256": null
+        },
         "sitemap": {
           "deployed_url": "https://<public-host>/sitemap.xml",
           "version_url": "https://<public-host>/<immutable-deployed-sitemap-snapshot-path>",
@@ -445,14 +452,28 @@ illustrative contract below is not active and grants no rights:
       "supersedes": null
     }
 
+`machine_signals.llms_txt.status` is required at activation; omission or an unknown state fails
+closed. It has exactly one of two states:
+
+- `"absent"` requires `deployed_url`, `version_url`, and `sha256` to be null and no public
+  agent-navigation `llms.txt` route or alias to be served.
+- `"present"` requires all three values to identify the deployed route, an immutable snapshot, and
+  the exact served bytes; every link target must be an approved public canonical URL in the bound
+  `sitemap.approved_urls` set.
+
+The manifest, validator, and exact-action approval must fail closed if the declared state and
+served `llms.txt` state differ.
+
 The rights manifest's own bytes cannot safely self-hash without a canonical omission rule. The
 external exact-action approval must bind rights_manifest_sha256 separately, plus every
 representations[].sha256 value; the immutable identity and SHA-256 of the exact adopted legal
 text; every rights_notices[] notice ID, exact path scope, immutable URL, and SHA-256; the public
 source-rights summary hash; the private evidence-ledger hash; the RSL and crawler-profile
-identities and hashes; the expected deployed robots.txt URL, immutable snapshot URL, and hash; and the sitemap's deployed
-and immutable snapshot URLs, exact bytes hash, approved URL set, approved-url-set hash, and every
-child-sitemap identity and hash. JSON and HTML remain separately named and bound, preserving the
+identities and hashes; the expected deployed robots.txt URL, immutable snapshot URL, and hash; the conditional
+`llms_txt` state — when `"present"`, its deployed URL, immutable snapshot URL, and bytes hash, and
+when `"absent"`, its verified no-route assertion — and the sitemap's deployed and immutable snapshot
+URLs, exact bytes hash, approved URL set, approved-url-set hash, and every child-sitemap identity
+and hash. JSON and HTML remain separately named and bound, preserving the
 approval contract already implemented by Teamstate PR #91; the additional bindings extend a
 later rights/discovery approval rather than weakening that contract.
 
@@ -476,12 +497,18 @@ Validator requirements:
    third-party, or differently licensed material.
 10. The approval must independently bind every representation, the exact adopted legal text,
     every path-scoped rights/notice asset, the public summary, the private evidence ledger,
-    RSL/crawler policy, expected deployed robots.txt URL, immutable snapshot URL, and bytes, the deployed sitemap bytes and
-    exact approved URL set, every bound child sitemap, and the rights manifest itself.
+    RSL/crawler policy, expected deployed robots.txt URL, immutable snapshot URL, and bytes; the
+    conditional `llms_txt` state and, when present, its deployed URL, immutable snapshot URL, and
+    bytes hash; the deployed sitemap bytes and exact approved URL set; every bound child sitemap;
+    and the rights manifest itself.
 11. The sitemap's approved_url_set_sha256 must hash canonical JSON for the sorted, normalized,
     duplicate-free absolute approved_urls array. Every child sitemap must carry its own immutable
     identity, bytes hash, exact approved URL set, and set hash; an unbound child sitemap fails
     closed.
+12. `machine_signals.llms_txt` fails closed: `"absent"` requires no public agent-navigation
+    `llms.txt` route or alias to be served, while `"present"` requires complete binding, byte
+    equality at its deployed and immutable URLs, and every link target in the approved sitemap URL
+    set.
 
 ---
 
@@ -571,7 +598,9 @@ all of these requirements:
   routes;
 - crawler-specific robots policy aligned with the chosen profile;
 - RSL discovery and permissions aligned with the legal license;
-- optional llms.txt navigation guidance that links only to already-public canonical resources; and
+- optional llms.txt navigation guidance that links only to already-public canonical resources and,
+  if included in an activation, has an exact-action-bound deployed URL, immutable snapshot URL, and
+  bytes hash; and
 - monitoring for availability, manifest drift, stale rights reviews, crawler errors, and accidental
   index exposure.
 
@@ -660,13 +689,14 @@ An exact artifact may enter the public agent layer only if every gate passes:
    no-exclusive-right basis, per-artifact manifest, RSL, visible notices, API terms, and crawler
    posture do not contradict one another; contracts and database rights are still checked.
 8. **Artifact identity:** JSON, HTML, methodology, manifest, adopted legal text, path-scoped
-   notices, RSL/crawler/robots assets, and sitemap bytes bind to immutable identities and content
-   hashes; the sitemap also binds the exact approved URL set.
+   notices, RSL/crawler/robots assets, any present `llms.txt` navigation asset, and sitemap bytes
+   bind to immutable identities and content hashes; the sitemap also binds the exact approved URL
+   set.
 9. **Security:** no credentials, private/operator context, candidate data, fixtures, internal paths,
    approval records, or source-restricted bytes leak.
 10. **Human approval:** a valid exact-action operator approval names and binds the version,
-    license profile, activation action, and every publication-affecting identity, path scope,
-    content hash, and approved sitemap URL set required by this profile.
+    license profile, activation action, every publication-affecting identity, path scope, content
+    hash, approved sitemap URL set, and conditional `llms.txt` state required by this profile.
 11. **Serving state:** deployment changes occur only in a separately authorized implementation lane.
 12. **Post-publication controls:** monitoring, takedown/withdrawal procedure, supersession, and
     incident ownership exist.
@@ -761,8 +791,9 @@ A later operator packet must name:
 6. the rights-manifest bytes and hash;
 7. the implementation commit for public rights/discovery metadata;
 8. the immutable identities and SHA-256 values for RSL/crawler policy; the expected deployed
-   robots.txt URL, immutable snapshot URL, and bytes; and the deployed sitemap, including the
-   exact approved sitemap URL set;
+   robots.txt URL, immutable snapshot URL, and bytes; the conditional `llms.txt` state and, when
+   present, its deployed URL, immutable snapshot URL, and bytes hash; and the deployed sitemap,
+   including the exact approved sitemap URL set;
 9. monitoring, rollback, and takedown ownership; and
 10. the exact publication state transition.
 
@@ -830,8 +861,9 @@ Terminal condition: implementation reviewed and deployable, publication still di
 ### Profile Stage 4 — exact canary publication decision
 
 - freeze and hash the final artifact, manifest, exact adopted legal text, path-scoped notices,
-  RSL/crawler assets, the deployed robots.txt URL and immutable snapshot, deployed sitemap, and
-  exact approved sitemap URL set;
+  RSL/crawler assets, the deployed robots.txt URL and immutable snapshot, the conditional
+  `llms.txt` state (absence or its deployed URL, immutable snapshot, and bytes), deployed sitemap,
+  and exact approved sitemap URL set;
 - run technical, rights, security, and agent-retrieval review;
 - record an exact operator approval binding every required immutable identity, path scope, hash,
   approved sitemap URL set, and activation action;
@@ -863,7 +895,8 @@ Terminal condition: one governed public canary, or a documented no-go.
 - [x] The open profile and training-reserved alternative do not contradict CC BY 4.0.
 - [x] RSL is a machine-readable expression layer, not a substitute for legal rights.
 - [x] robots.txt is not treated as access control.
-- [x] llms.txt is optional navigation guidance, not a license or crawler control.
+- [x] llms.txt is optional navigation guidance, not a license or crawler control; at activation
+      it is either absent or bound by its deployed URL, immutable snapshot, and bytes hash.
 - [x] The layered code, docs, report, data, third-party, private, brand, and model-output treatment
       is defined.
 - [x] A source-rights and sublicensing matrix is defined.
