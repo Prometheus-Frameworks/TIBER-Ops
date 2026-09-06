@@ -14,13 +14,24 @@ human-origin proof.
 
 ## Technical readiness
 
-- [ ] **Lane named.** The PR states its lane (product, doctrine/governance,
-      research/writing, ML/modeling, parked/incubation).
+For a PR merge, the readiness record is the PR description and its linked
+review/evidence. For a separately authorized default-branch update without a
+PR, use a dated readiness comment on the target issue in the owning repository.
+Bind that comment to the exact proposed update and current default-branch
+state, and link it in the decision packet and canonical TIBER-Ops #22 authority
+record. It must supply equivalent answers to [pr-review.md](pr-review.md) and
+evidence for all eight checks below; the absence of a PR waives no check.
+This alternative records readiness only. It grants no permission to bypass a
+required PR or any stricter task, actor, repository, or authority gate.
+
+- [ ] **Lane named.** The readiness record states its lane (product,
+      doctrine/governance, research/writing, ML/modeling, parked/incubation).
 - [ ] **Owning repo named.** The repo that owns the capability is identified.
 - [ ] **Change summarized.** What changed is clear.
-- [ ] **Out of scope stated.** What the PR deliberately does not touch is
+- [ ] **Out of scope stated.** What the update deliberately does not touch is
       explicit.
-- [ ] **Guardrails confirmed.** The PR respects the constraints it claims.
+- [ ] **Guardrails confirmed.** The update respects the constraints stated in
+      its readiness record.
 - [ ] **Tests / builds reported.** What ran and the result are recorded.
 - [ ] **Follow-ups parked.** Deferred work is captured in
       [`../docs/lane-index.md`](../docs/lane-index.md) or
