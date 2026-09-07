@@ -17,6 +17,17 @@ chosen agent; and the intended Fantasy front door is Pulse + Use TIBER. The
 document is architecture direction only and does not activate implementation
 or remove existing surfaces.
 
+## 2026 season operations — LIVE
+
+Joseph's September 7 declaration moves TIBER's reporting and operator planning
+into **Week 1 preparation and the in-season evidence cycle**. See
+[`2026 season operations`](docs/season-2026-operations.md) for the dated calendar
+boundary, evidence standards, and pickup checklist.
+
+This is an operating-posture declaration, not a runtime flag, a claim that games
+have begun, or authority to activate a model, data feed, consumer, or deployment.
+Existing lane and action-specific gates remain unchanged.
+
 ## What TIBER-Ops does
 
 - Holds the operating map: which lanes exist, what each one owns, and where
