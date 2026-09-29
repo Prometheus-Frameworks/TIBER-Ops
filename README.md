@@ -1,5 +1,7 @@
 # TIBER-Ops
 
+> **[TIBER Now — what works, what we’re building, and what’s still conceptual](https://github.com/Prometheus-Frameworks/TIBER-Fantasy/blob/main/docs/TIBER_NOW.md)**
+
 TIBER-Ops is the **coordination layer** for TIBER work across Fantasy, Data,
 FORGE, Teamstate, Rookies, PPM, FLF/research docs, and future parked ideas.
 
