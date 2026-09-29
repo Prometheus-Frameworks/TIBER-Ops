@@ -44,6 +44,7 @@ Those live in their respective repos. TIBER-Ops only coordinates.
 | Path | Purpose |
 | --- | --- |
 | [`docs/architecture/tiber-product-boundary-v1.md`](docs/architecture/tiber-product-boundary-v1.md) | Canonical product, agent, evidence, UI, and transport boundary. |
+| [`docs/architecture/tiber-operating-charter-v0.md`](docs/architecture/tiber-operating-charter-v0.md) | Proposed responsibility-based agent charter; design-only, inactive, no new authority. |
 | [`docs/operating-map.md`](docs/operating-map.md) | The lanes, what each owns, and the core operating rule. |
 | [`docs/lane-index.md`](docs/lane-index.md) | Per-lane index of repos, anchors, and current state. |
 | [`docs/parked-ideas.md`](docs/parked-ideas.md) | Incubation backlog — explicitly parked, not in progress. |
