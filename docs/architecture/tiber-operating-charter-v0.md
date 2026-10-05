@@ -66,7 +66,7 @@ Follow #75's proposed attention contract and #42's capacity principle: batch rou
 
 Before an ongoing assignment, name its question, report destination, review cadence, maximum work or spend, end condition, and the point requiring the operator. These fields document a proposal unless the assignment itself is authorized. Keep nonurgent discoveries in a compact decision queue.
 
-A pause or revocation requires inspection of delegated tasks and schedules. Where the product separates their controls, stop each affected authorized activity explicitly and record confirmed, pending and failed cancellations. Revocation constrains future work at enforceable boundaries; it does not undo completed effects. A custom instruction or provider-agent rule is a fallible behavioral aid, not a technical permission boundary. Record controls that remain manual or unavailable rather than claiming enforcement.
+A pause or revocation requires an explicit inventory and inspection of the coordinator (including any separate long-lived provider session), delegated tasks and schedules. Stop each affected coordinator, delegated task and schedule explicitly through its applicable control; stopping one does not establish that the others have stopped. Record a separate confirmed, pending or failed cancellation status for each inventoried activity, and do not report the pause as complete while any affected activity remains pending or failed. Revocation constrains future work at enforceable boundaries; it does not undo completed effects. A custom instruction or provider-agent rule is a fallible behavioral aid, not a technical permission boundary. Record controls that remain manual or unavailable rather than claiming enforcement.
 
 ## 5. Three worked design checks
 
